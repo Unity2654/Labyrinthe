@@ -1,9 +1,3 @@
-/* Fonctionnement de GLUt                       */
-/*                                              */
-/* Auteur: Nicolas JANEY                        */
-/* nicolas.janey@univ-fcomte.fr                 */
-/* Janvier 2019                                 */
-
 #include <stdlib.h>
 #include <stdio.h>
 
