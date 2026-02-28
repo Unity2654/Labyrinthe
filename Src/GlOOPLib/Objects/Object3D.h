@@ -8,6 +8,6 @@ namespace gloop {
 	 */
 	class Object3D {
 	public :
-		virtual void render() = 0;
+		virtual void render() {};
 	};
 }

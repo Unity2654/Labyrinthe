@@ -23,12 +23,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
     <ClCompile Include="..\..\Src\IGTemplate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\GlOOPLib\Maths\Vector.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Object3D.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity3D.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

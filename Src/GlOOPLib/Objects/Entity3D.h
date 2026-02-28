@@ -9,6 +9,6 @@ namespace gloop {
 	 */
 	class Entity3D : public Object3D{
 	public:
-		virtual void update() = 0;
+		virtual void update() {};
 	};
 }
