@@ -13,13 +13,11 @@ namespace gloop {
 	 */
 	class Scene {
 	private :
-		std::vector<Object3D> objects;
-		std::vector<Entity3D> entities;
+		std::vector<std::unique_ptr<Object3D>> objects;
+		std::vector<std::unique_ptr<Entity3D>> entities;
 	public:
 		// Constructors 
 		Scene();
-		Scene(std::vector<Object3D> objs);
-		Scene(std::vector<Object3D> objs, std::vector<Entity3D> ents);
 
 		/// Methods
 		// Updates all the entities of the scene
@@ -28,16 +26,20 @@ namespace gloop {
 		void display();
 
 		// Function triggered at the start of the call of the update method
-		virtual void doUpdate() = 0;
+		virtual void doUpdate() {};
 		// Function triggered at the start of the call of the display method
-		virtual void doDisplay() = 0;
+		virtual void doDisplay() {};
 
 		// Adds objects to the scene
-		void addObject(Object3D o);
-		void addObjects(std::vector<Object3D> objs);
+		template<typename T>
+		void addObject(T o) {
+			objects.push_back(std::make_unique<T>(o));
+		}
 
 		// Adds entities to the scene
-		void addEntity(Entity3D e);
-		void addEntities(std::vector<Entity3D> ents);
+		template<typename T>
+		void addEntity(T e) {
+			entities.push_back(std::make_unique<T>(e));
+		}
 	};
 }

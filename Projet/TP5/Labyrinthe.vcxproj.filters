@@ -27,25 +27,25 @@
     <ClCompile Include="..\..\Src\IGTemplate.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\GlOOPLib\Objects\3dObject.cpp">
-      <Filter>Fichiers sources\OOPLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\GlOOPLib\Objects\Entity.cpp">
-      <Filter>Fichiers sources\OOPLib</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp">
       <Filter>Fichiers sources\OOPLib</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\GlOOPLib\Objects\3dObject.h">
-      <Filter>Fichiers d%27en-tête\OOPLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity.h">
-      <Filter>Fichiers d%27en-tête\OOPLib</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\GlOOPLib\Maths\Vector.h">
       <Filter>Fichiers d%27en-tête\OOPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Objects\Object3D.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity3D.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
