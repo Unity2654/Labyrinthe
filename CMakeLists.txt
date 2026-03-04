@@ -11,11 +11,14 @@ find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 
 add_executable(Labyrinthe
-        Src/IGTemplate.cpp
-        Src/GlOOPLib/Maths/Vector.cpp
-        Src/GlOOPLib/Objects/Entity3D.h
-        Src/GlOOPLib/Objects/Object3D.cpp
-        Src/GlOOPLib/Scenes/Scenes.cpp
+  Src/IGTemplate.cpp
+  Src/GlOOPLib/Maths/Vector.cpp
+  Src/GlOOPLib/Objects/Entity3D.h
+  Src/GlOOPLib/Objects/Object3D.cpp
+  Src/GlOOPLib/Scenes/Scenes.cpp
+  Src/GlOOPLib/Lights/Lights.h
+  Src/GLOOPLib/Lights/Materials.h
+  Src/GLOOPLib/Lights/Colors.h
 )
 
 add_dependencies(Labyrinthe
