@@ -17,8 +17,7 @@ add_executable(Labyrinthe
   Src/GlOOPLib/Objects/Object3D.cpp
   Src/GlOOPLib/Scenes/Scenes.cpp
   Src/GlOOPLib/Lights/Lights.h
-  Src/GLOOPLib/Lights/Materials.h
-  Src/GLOOPLib/Lights/Colors.h
+  Src/GlOOPLib/Lights/Colors.h
 )
 
 add_dependencies(Labyrinthe
