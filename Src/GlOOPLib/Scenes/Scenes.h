@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <memory>
 #include "../Objects/Object3D.h"
 #include "../Objects/Entity3D.h"
 
