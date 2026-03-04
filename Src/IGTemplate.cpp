@@ -41,7 +41,7 @@ public:
     }
 
     virtual void update() override {
-        angle += 0.01f;
+        angle += 0.1f;
     }
 };
 
