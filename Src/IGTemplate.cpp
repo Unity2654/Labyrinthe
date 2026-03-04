@@ -68,11 +68,6 @@ static void init(void) {
     mainScene.addEntity(RotatingSphere(180));
 }
 
-static void scene(void) {
-    glPushMatrix();
-    glPopMatrix();
-}
-
 
 static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);

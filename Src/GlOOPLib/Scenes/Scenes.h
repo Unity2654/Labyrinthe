@@ -3,7 +3,7 @@
 #include <memory>
 #include "../Objects/Object3D.h"
 #include "../Objects/Entity3D.h"
-
+#include "../Lights/Lights.h"
 
 namespace gloop {
 
@@ -16,6 +16,9 @@ namespace gloop {
 	private :
 		std::vector<std::unique_ptr<Object3D>> objects;
 		std::vector<std::unique_ptr<Entity3D>> entities;
+		std::vector<std::unique_ptr<Light>> lights; // Static lights (not updated)
+		std::vector<std::unique_ptr<Light>> dynamicLights; // Dynamic ligths (updated)
+
 	public:
 		// Constructors 
 		Scene();
@@ -25,11 +28,6 @@ namespace gloop {
 		void update();
 		// Displays all the objects and entities of the scene
 		void display();
-
-		// Function triggered at the start of the call of the update method
-		virtual void doUpdate() {};
-		// Function triggered at the start of the call of the display method
-		virtual void doDisplay() {};
 
 		// Adds objects to the scene
 		template<typename T>
@@ -42,5 +40,25 @@ namespace gloop {
 		void addEntity(T e) {
 			entities.push_back(std::make_unique<T>(e));
 		}
+
+		// Adds a light to the scene, that is not updated
+		template<typename T>
+		void addStaticLight(T e){
+			lights.push_back(std::make_unique<T>(e));
+		}
+
+		// Adds a light to the scene, that is periodically updated
+		template<typename T>
+		void addStaticLight(T e){
+			lights.push_back(std::make_unique<T>(e));
+		}
+
+
+	protected:
+		// Function triggered at the start of the call of the update method
+		virtual void doUpdate() {};
+		// Function triggered at the start of the call of the display method
+		virtual void doDisplay() {};
+
 	};
 }
