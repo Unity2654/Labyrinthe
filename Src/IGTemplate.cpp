@@ -9,7 +9,8 @@
 #include "GlOOPLib/Objects/Entity3D.h"
 #include "GlOOPLib/Objects/Object3D.h"
 #include "GlOOPLib/Maths/Vector.h"
-#include "GlOOPLib//Lights/Lights.h"
+#include "GlOOPLib/Lights/Lights.h"
+#include "GlOOPLib/Lights/Materials.h"
 
 class StaticCube : public gloop::Object3D {
 public :
@@ -27,18 +28,24 @@ public:
     const float distance = 0.75f;
     float angle = 0.0f;
     const float radius = 0.25f;
+    const gloop::Material material;
 
     RotatingSphere() {};
     
-    RotatingSphere(float angle): 
-        angle(angle){ }
+    RotatingSphere(float angle, gloop::Material material): 
+        angle(angle), material(material){ }
 
     virtual void render() override {
-        glPushMatrix();
-        glRotatef(angle, 0.0f, 0.0f, 1.0f);
-        glTranslatef(distance, 0.0f, 0.0f);
-        glutSolidSphere(radius, 180.0f, 70.0f);
-        glPopMatrix();
+        const float a = angle;
+        const float d = distance;
+        const float r = radius;
+        material.renderWithMaterial(GL_FRONT, [a,d,r]() {
+            glPushMatrix();
+            glRotatef(a, 0.0f, 0.0f, 1.0f);
+            glTranslatef(d, 0.0f, 0.0f);
+            glutSolidSphere(r, 180.0f, 70.0f);
+            glPopMatrix();
+        });
     }
 
     virtual void update() override {
@@ -87,16 +94,24 @@ static void init(void) {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
 
+    // Creating materials
+    gloop::Material redSpecular;
+    redSpecular.diffuseReflexion = { 1.0,0.0,0.0,1.0 };
+    redSpecular.specularReflexion = { 1.0,1.0,1.0,1.0 };
+    redSpecular.shininess = 90;
+    gloop::Material blue{ gloop::Color{0.0,0.0,0.2,1.0}, gloop::Color{0.0,0.0,0.8,1.0}, gloop::Color{0.0,0.2,0.2,1.0} };
+    blue.shininess = 90;
+
     // Adding objects and entities
     mainScene.addObject(StaticCube());
-    mainScene.addEntity(RotatingSphere());
-    mainScene.addEntity(RotatingSphere(180));
+    mainScene.addEntity(RotatingSphere(0, redSpecular));
+    mainScene.addEntity(RotatingSphere(180, blue));
 
     // Adding lights
-    gloop::DirectionalLight light0 = { GL_LIGHT0, { gloop::Color(), gloop::Color{1.0,1.0,1.0,1.0} , gloop::Color() } };
-    light0.enabled = false;
+    gloop::DirectionalLight light0 = { GL_LIGHT0, { gloop::Color{0.2,0.2,0.2,1.0}, gloop::Color{1.0,1.0,1.0,1.0} , gloop::Color{1.0,1.0,1.0,1.0}}};
     mainScene.addStaticLight(light0); 
     RotatingLight light1 = { GL_LIGHT1, 0.0, 2.0 };
+    light1.enabled = false;
     mainScene.addDynamicLight(light1);
 }
 
@@ -111,7 +126,7 @@ static void display(void) {
     glutSwapBuffers();
     int error = glGetError();
     if (error != GL_NO_ERROR)
-        printf("Attention erreur %d\n", error);
+        printf("Attention erreur %x\n", error);
 }
 
 static void reshape(int wx, int wy) {
