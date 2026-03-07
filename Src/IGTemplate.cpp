@@ -9,6 +9,7 @@
 #include "GlOOPLib/Objects/Entity3D.h"
 #include "GlOOPLib/Objects/Object3D.h"
 #include "GlOOPLib/Maths/Vector.h"
+#include "GlOOPLib//Lights/Lights.h"
 
 class StaticCube : public gloop::Object3D {
 public :
@@ -45,6 +46,30 @@ public:
     }
 };
 
+class RotatingLight : public gloop::DirectionalLight {
+    float angle;
+    float distance;
+
+public :
+    RotatingLight(GLenum light, float angle, float distance) :
+        DirectionalLight(light, { gloop::Color(), gloop::Color{0.0,1.0,1.0,1.0} }, { distance, 0.0f, distance }),
+        angle(angle),
+        distance(distance){ }
+
+
+    void update() override {
+        angle += 0.1;
+    }
+
+    void doRender() const override {
+        glPushMatrix();
+        glRotatef(angle, 0.0, 0.0, 1.0);
+        gloop::DirectionalLight::doRender();
+        glPopMatrix();
+    }
+};
+
+
 static int wTx = 480;
 static int wTy = 480;
 static int wPx = 50;
@@ -55,25 +80,31 @@ static int displayCount = 3;
 static int currentDisplay = 1;
 
 static gloop::Scene mainScene;
-static gloop::Light l{GL_LIGHT1};
 
 static void init(void) {
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
     glDepthFunc(GL_LESS);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
 
+    // Adding objects and entities
     mainScene.addObject(StaticCube());
     mainScene.addEntity(RotatingSphere());
     mainScene.addEntity(RotatingSphere(180));
+
+    // Adding lights
+    gloop::DirectionalLight light0 = { GL_LIGHT0, { gloop::Color(), gloop::Color{1.0,1.0,1.0,1.0} , gloop::Color() } };
+    light0.enabled = false;
+    mainScene.addStaticLight(light0); 
+    RotatingLight light1 = { GL_LIGHT1, 0.0, 2.0 };
+    mainScene.addDynamicLight(light1);
 }
 
 
 static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+
     mainScene.display();
 
     glFlush();

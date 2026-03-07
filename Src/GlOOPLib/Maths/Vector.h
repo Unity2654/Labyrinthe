@@ -24,6 +24,5 @@ namespace gloop {
 		Vector3f vectorial(const Vector3f& other) const; // vectorial product
 		float isOrthogonal(const Vector3f& other) const;
 
-		float* asArray() const; // Returns the vector as an array of 3 floats
 	};
 }

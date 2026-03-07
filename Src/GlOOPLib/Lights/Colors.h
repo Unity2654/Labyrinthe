@@ -2,15 +2,10 @@
 
 namespace gloop{
     struct Color {
-        float x = 0.0F;
-        float y = 0.0F;
-        float z = 0.0F;
+        float r = 0.0F;
+        float g = 0.0F;
+        float b = 0.0F;
         float alpha = 1.0F;
-
-        float* asArray() const {
-            float res[] = { x, y, z, alpha };
-            return res;
-        }
     };
 
 }

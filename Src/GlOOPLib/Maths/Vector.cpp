@@ -38,11 +38,4 @@ namespace gloop {
 	float Vector3f::isOrthogonal(const Vector3f& other) const{
 		return this->dot(other) == 0;
 	}
-
-	float* Vector3f::asArray() const
-	{
-		float res[] = { x, y, z };
-		return res;
-	}
-
 }
