@@ -6,6 +6,10 @@ namespace gloop {
 
 	void Scene::update(){
 		doUpdate();
+		// Updating every lights of the scene
+		for (std::unique_ptr<Light>& l : dynamicLights) {
+			l->update();
+		}
 		// Updating every entity in the scene
 		for (std::unique_ptr<Entity3D>& e : entities) {
 			e->update();
@@ -14,6 +18,13 @@ namespace gloop {
 
 	void Scene::display(){
 		doDisplay();
+		// Displaying the lights to the scene
+		for (std::unique_ptr<Light>& l : staticLights) {
+			l->render();
+		}
+		for (std::unique_ptr<Light>& l : dynamicLights) {
+			l->render();
+		}
 		// Displaying the content of the scene
 		for (std::unique_ptr<Object3D>& o : objects) {
 			o->render();

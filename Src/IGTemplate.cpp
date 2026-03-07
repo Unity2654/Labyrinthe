@@ -55,6 +55,7 @@ static int displayCount = 3;
 static int currentDisplay = 1;
 
 static gloop::Scene mainScene;
+static gloop::Light l{GL_LIGHT1};
 
 static void init(void) {
     glEnable(GL_LIGHTING);

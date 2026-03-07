@@ -10,10 +10,16 @@ namespace gloop{
         Color ambiantColor;
         Color diffuseColor;
         Color specularColor;
-        bool enabled = true;
+        bool enabled;
 
         // Constructors
         Light() = delete;
+        Light(GLenum light, Color ambiantColor = Color(), Color diffuseColor = Color(), Color specularColor = Color(), bool enabled = true) :
+            light(light),
+            ambiantColor(ambiantColor),
+            diffuseColor(diffuseColor),
+            specularColor(specularColor),
+            enabled(enabled){ }
 
         // Methods
         virtual void update() const {}
