@@ -16,8 +16,6 @@ namespace gloop {
 	private :
 		std::vector<std::unique_ptr<Object3D>> objects;
 		std::vector<std::unique_ptr<Entity3D>> entities;
-		std::vector<std::unique_ptr<Light>> lights; // Static lights (not updated)
-		std::vector<std::unique_ptr<Light>> dynamicLights; // Dynamic ligths (updated)
 
 	public:
 		// Constructors 
@@ -39,18 +37,6 @@ namespace gloop {
 		template<typename T>
 		void addEntity(T e) {
 			entities.push_back(std::make_unique<T>(e));
-		}
-
-		// Adds a light to the scene, that is not updated
-		template<typename T>
-		void addStaticLight(T e){
-			lights.push_back(std::make_unique<T>(e));
-		}
-
-		// Adds a light to the scene, that is periodically updated
-		template<typename T>
-		void addStaticLight(T e){
-			lights.push_back(std::make_unique<T>(e));
 		}
 
 

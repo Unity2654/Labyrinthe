@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\Src\IGTemplate.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Colors.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Lights.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Materials.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Maths\Vector.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Object3D.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity3D.h" />
