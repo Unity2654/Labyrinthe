@@ -18,6 +18,8 @@ add_executable(Labyrinthe
   Src/GlOOPLib/Scenes/Scenes.cpp
   Src/GlOOPLib/Lights/Lights.h
   Src/GlOOPLib/Lights/Colors.h
+
+  Src/spng/spng.c
 )
 
 add_dependencies(Labyrinthe
@@ -34,7 +36,6 @@ target_link_libraries(Labyrinthe
   PRIVATE
     OpenGL::OpenGL
     GLUT::GLUT
-    Lib/libspng.so
 )
 
 target_compile_options(Labyrinthe
