@@ -68,6 +68,7 @@ namespace gloop{
         using Light::Light;
         DirectionalLight(GLenum light, Vector3f direction) : Light(light), direction(direction) {}
         DirectionalLight(GLenum light, LightData data, Vector3f direction) : Light(light, data), direction(direction) {}
+        DirectionalLight(Light light) : Light(light.light, light.data) {}
 
         // Methods
         virtual void doRender() const override {
@@ -77,12 +78,11 @@ namespace gloop{
 
         // Stores the light currently applied to the scene in an object
         static DirectionalLight GetCurrentLight(GLenum targetLight) {
-            Light* result = &(Light::GetCurrentLight(targetLight));
-            DirectionalLight* res = dynamic_cast<DirectionalLight*>(result);
+            DirectionalLight res = DirectionalLight(Light::GetCurrentLight(targetLight));
             float dir[3];
             glGetLightfv(targetLight, GL_POSITION, dir);
-            res->direction = { dir[0], dir[1], dir[2] };
-            return *res;
+            res.direction = { dir[0], dir[1], dir[2] };
+            return res;
         }
     };
 
@@ -94,6 +94,7 @@ namespace gloop{
         using Light::Light;
         PonctualLight(GLenum light, Vector3f position) : Light(light), position(position) {}
         PonctualLight(GLenum light, LightData data, Vector3f position) : Light(light, data), position(position) {}
+        PonctualLight(Light light) : Light(light.light, light.data) {}
 
         // Methods
         virtual void doRender() const override {
@@ -103,12 +104,11 @@ namespace gloop{
 
         // Stores the light currently applied to the scene in an object
         static PonctualLight GetCurrentLight(GLenum targetLight) {
-            Light* result = &(Light::GetCurrentLight(targetLight));
-            PonctualLight* res = dynamic_cast<PonctualLight*>(result);
+            PonctualLight res = PonctualLight(Light::GetCurrentLight(targetLight));
             float pos[3];
             glGetLightfv(targetLight, GL_POSITION, pos);
-            res->position = { pos[0], pos[1], pos[2] };
-            return *res;
+            res.position = { pos[0], pos[1], pos[2] };
+            return res;
         }
     };
 
@@ -130,6 +130,7 @@ namespace gloop{
             direction(direction),
             cutoff(cutoff),
             exponent(exponent) {}
+        SpotLight(Light light) : PonctualLight(light) {}
 
         // Methods 
         virtual void doRender() const override {
@@ -142,16 +143,15 @@ namespace gloop{
 
         // Stores the light currently applied to the scene in an object
         static SpotLight GetCurrentLight(GLenum targetLight) {
-            PonctualLight* result = &(PonctualLight::GetCurrentLight(targetLight));
-            SpotLight* res = dynamic_cast<SpotLight*>(result);
+            SpotLight res = SpotLight(PonctualLight::GetCurrentLight(targetLight));
             // direction
             float dir[3];
             glGetLightfv(targetLight, GL_SPOT_DIRECTION, dir);
-            res->direction = { dir[0], dir[1], dir[2] };
+            res.direction = { dir[0], dir[1], dir[2] };
             // Cutoff & exponent
-            glGetLightfv(targetLight, GL_SPOT_CUTOFF, &(res->cutoff));
-            glGetLightfv(targetLight, GL_SPOT_EXPONENT, &(res->exponent));
-            return *res;
+            glGetLightfv(targetLight, GL_SPOT_CUTOFF, &(res.cutoff));
+            glGetLightfv(targetLight, GL_SPOT_EXPONENT, &(res.exponent));
+            return res;
         }
     };
 }
