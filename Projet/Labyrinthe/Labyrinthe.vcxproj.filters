@@ -13,21 +13,135 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\glOOP">
+      <UniqueIdentifier>{5d75154e-c6c4-4f34-9b33-dc012318bdd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\glOOP">
+      <UniqueIdentifier>{d2e28fd9-3f3c-46a6-bee7-00f292843e22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\spng">
+      <UniqueIdentifier>{0f725341-011b-4e00-8d14-62871cf948c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\Lib\glut32.ms.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\MateriauxEtLumieresBase.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\ObjetsGeometriques.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Colors.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Lights.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Materials.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Maths\Vector.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity3D.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Objects\Object3D.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\crc32.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\deflate.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\gzguts.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\inffast.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\inffixed.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\inflate.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\inftrees.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\spng.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\trees.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\zconf.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\zlib.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\spng\zutil.h">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\ObjetsGeometriques.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
+    <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp">
+      <Filter>Fichiers sources\glOOP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\GlOOPLib\Objects\Object3D.cpp">
+      <Filter>Fichiers sources\glOOP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp">
+      <Filter>Fichiers sources\glOOP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\IGTemplate.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\adler32.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\compress.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\crc32.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\deflate.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\gzclose.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\gzlib.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\gzread.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\gzwrite.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\infback.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\inffast.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\inflate.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\inftrees.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\spng.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\trees.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\spng\zutil.c">
+      <Filter>Fichiers sources\spng</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

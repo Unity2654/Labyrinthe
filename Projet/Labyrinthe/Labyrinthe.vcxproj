@@ -22,11 +22,46 @@
     <Library Include="..\..\Lib\glut32.ms.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\MateriauxEtLumieresBase.cpp" />
-    <ClCompile Include="..\..\Src\ObjetsGeometriques.cpp" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Colors.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Lights.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Lights\Materials.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Maths\Vector.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity3D.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Objects\Object3D.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h" />
+    <ClInclude Include="..\..\Src\spng\crc32.h" />
+    <ClInclude Include="..\..\Src\spng\deflate.h" />
+    <ClInclude Include="..\..\Src\spng\gzguts.h" />
+    <ClInclude Include="..\..\Src\spng\inffast.h" />
+    <ClInclude Include="..\..\Src\spng\inffixed.h" />
+    <ClInclude Include="..\..\Src\spng\inflate.h" />
+    <ClInclude Include="..\..\Src\spng\inftrees.h" />
+    <ClInclude Include="..\..\Src\spng\spng.h" />
+    <ClInclude Include="..\..\Src\spng\trees.h" />
+    <ClInclude Include="..\..\Src\spng\zconf.h" />
+    <ClInclude Include="..\..\Src\spng\zlib.h" />
+    <ClInclude Include="..\..\Src\spng\zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\ObjetsGeometriques.h" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Objects\Object3D.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
+    <ClCompile Include="..\..\Src\IGTemplate.cpp" />
+    <ClCompile Include="..\..\Src\spng\adler32.c" />
+    <ClCompile Include="..\..\Src\spng\compress.c" />
+    <ClCompile Include="..\..\Src\spng\crc32.c" />
+    <ClCompile Include="..\..\Src\spng\deflate.c" />
+    <ClCompile Include="..\..\Src\spng\gzclose.c" />
+    <ClCompile Include="..\..\Src\spng\gzlib.c" />
+    <ClCompile Include="..\..\Src\spng\gzread.c" />
+    <ClCompile Include="..\..\Src\spng\gzwrite.c" />
+    <ClCompile Include="..\..\Src\spng\infback.c" />
+    <ClCompile Include="..\..\Src\spng\inffast.c" />
+    <ClCompile Include="..\..\Src\spng\inflate.c" />
+    <ClCompile Include="..\..\Src\spng\inftrees.c" />
+    <ClCompile Include="..\..\Src\spng\spng.c" />
+    <ClCompile Include="..\..\Src\spng\trees.c" />
+    <ClCompile Include="..\..\Src\spng\zutil.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
