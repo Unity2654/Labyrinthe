@@ -70,7 +70,7 @@ public :
 
     void doRender() const override {
         glPushMatrix();
-        glRotatef(angle, 0.0, 0.0, 1.0);
+        glRotatef(angle, 0.0, 1.0, 0.0);
         gloop::DirectionalLight::doRender();
         glPopMatrix();
     }
@@ -111,19 +111,17 @@ static void init(void) {
     gloop::DirectionalLight light0 = { GL_LIGHT0, { gloop::Color{0.2,0.2,0.2,1.0}, gloop::Color{1.0,1.0,1.0,1.0} , gloop::Color{1.0,1.0,1.0,1.0}}};
     mainScene.addStaticLight(light0); 
     RotatingLight light1 = { GL_LIGHT1, 0.0, 2.0 };
-    light1.enabled = false;
+    //light1.enabled = false;
     mainScene.addDynamicLight(light1);
 }
 
 
 static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     mainScene.display();
 
-    glFlush();
-    glutSwapBuffers();
+    
     int error = glGetError();
     if (error != GL_NO_ERROR)
         printf("Attention erreur %x\n", error);

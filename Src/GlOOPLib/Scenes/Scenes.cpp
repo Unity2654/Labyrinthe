@@ -1,5 +1,8 @@
 #include "Scenes.h"
 #include <iostream>
+#include <GL/glut.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 namespace gloop {
 	Scene::Scene(){}
@@ -18,6 +21,7 @@ namespace gloop {
 
 	void Scene::display(){
 		doDisplay();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// Displaying the lights to the scene
 		for (std::unique_ptr<Light>& l : staticLights) {
 			l->render();
@@ -32,5 +36,7 @@ namespace gloop {
 		for (std::unique_ptr<Entity3D>& e : entities) {
 			e->render();
 		}
+		glFlush();
+		glutSwapBuffers();
 	}
 }
