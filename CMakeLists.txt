@@ -18,8 +18,6 @@ add_executable(Labyrinthe
   Src/GlOOPLib/Scenes/Scenes.cpp
   Src/GlOOPLib/Lights/Lights.h
   Src/GlOOPLib/Lights/Colors.h
-
-  Src/spng/spng.c
 )
 
 add_dependencies(Labyrinthe
