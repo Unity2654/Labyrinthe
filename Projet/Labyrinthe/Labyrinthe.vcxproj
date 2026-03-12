@@ -61,7 +61,11 @@
     <ClCompile Include="..\..\Src\spng\inftrees.c" />
     <ClCompile Include="..\..\Src\spng\spng.c" />
     <ClCompile Include="..\..\Src\spng\trees.c" />
+    <ClCompile Include="..\..\Src\spng\uncompr.c" />
     <ClCompile Include="..\..\Src\spng\zutil.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Src\spng\zconf.h.in" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
