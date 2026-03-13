@@ -10,6 +10,8 @@ include(GNUInstallDirs)
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 
+file(GLOB SPNG "spng/*.c")
+
 add_executable(Labyrinthe
   Src/IGTemplate.cpp
   Src/GlOOPLib/Maths/Vector.cpp
@@ -19,7 +21,7 @@ add_executable(Labyrinthe
   Src/GlOOPLib/Lights/Lights.h
   Src/GlOOPLib/Lights/Colors.h
 
-  Src/spng/spng.c
+  ${SPNG}
 )
 
 add_dependencies(Labyrinthe

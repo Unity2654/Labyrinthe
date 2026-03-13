@@ -5,6 +5,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+#include "spng/spng.h"
+
 #include "GlOOPLib/Scenes/Scenes.h"
 #include "GlOOPLib/Objects/Entity3D.h"
 #include "GlOOPLib/Objects/Object3D.h"
