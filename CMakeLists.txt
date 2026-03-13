@@ -12,6 +12,8 @@ find_package(GLUT REQUIRED)
 
 file(GLOB SPNG "spng/*.c")
 
+file(GLOB LABY "Laby/*.c")
+
 add_executable(Labyrinthe
   Src/IGTemplate.cpp
   Src/GlOOPLib/Maths/Vector.cpp
@@ -20,6 +22,8 @@ add_executable(Labyrinthe
   Src/GlOOPLib/Scenes/Scenes.cpp
   Src/GlOOPLib/Lights/Lights.h
   Src/GlOOPLib/Lights/Colors.h
+
+  ${LABY}
 
   ${SPNG}
 )
