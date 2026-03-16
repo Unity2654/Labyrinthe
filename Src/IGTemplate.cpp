@@ -15,12 +15,6 @@
 #include "GlOOPLib/Lights/Materials.h"
 #include "GlOOPLib/Textures/Texture.h"
 
-
-/*
-
-    
-*/
-
 class StaticOrange : public gloop::Object3D {
 public :
     const float size = 0.5f;

@@ -2,11 +2,15 @@
 #include <string>
 
 namespace gloop {
+	struct sharedTexID {
+		unsigned int ID;
+		int nbRef = 0;
+	};
+
 	class Texture {
 	private : 
-		unsigned int texID; // Should be effectively const
+		sharedTexID& texID; // Should be effectively const
 		const std::string path;
-		int ctr = 0;
 
 	public :
 
@@ -15,10 +19,12 @@ namespace gloop {
 		Texture(std::string path);
 		
 		// Rule of 3
-		// Please don't use move constructor/assignment operator with this object
+		// Preventing the use of move constructors to prevent issues with the destructor
 		~Texture();
 		Texture(const Texture& other);
 		Texture& operator=(const Texture& other);
+		Texture(const Texture&& other) = delete;
+		Texture& operator=(const Texture&& other) = delete;
 
 		// Getters
 		std::string getPath() const;
