@@ -70,7 +70,7 @@
     <None Include="..\..\Src\spng\zconf.h.in" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\Resources\Orange-Free-PNG-Image.png" />
+    <Image Include="..\..\Resources\orange.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

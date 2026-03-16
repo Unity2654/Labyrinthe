@@ -4,10 +4,9 @@
 #include <iostream>
 
 namespace gloop {
-	Texture::Texture(std::string path) : texID{0}, path(path) {
+	Texture::Texture(std::string path) : path(path) {
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-		glGenTextures(1, &texID.ID);
-		texID.ID++;
+		glGenTextures(1, &texID);
 		
 		// Loading the image with spng
 		FILE* png;
@@ -45,7 +44,7 @@ namespace gloop {
 		unsigned int img_height = ihdr.height;
 
 		// OpenGL things
-		glBindTexture(GL_TEXTURE_2D, texID.ID);
+		glBindTexture(GL_TEXTURE_2D, texID);
 		glTexImage2D(GL_TEXTURE_2D, 0, 3, img_width, img_height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -57,29 +56,15 @@ namespace gloop {
 		free(image);
 	}
 
-	Texture::~Texture(){
-		texID.nbRef--;
-		if(texID.nbRef == 0)
-			glDeleteTextures(1, &texID.ID);
-	}
-
-	Texture::Texture(const Texture& other) : texID{0} {
-		texID = other.texID;
-	} 
-
-	Texture& Texture::operator=(const Texture& other){
-		return Texture(other);
-	}
-
 	std::string Texture::getPath() const{
 		return std::string();
 	}
 
 	unsigned int Texture::getTextureID() const{
-		return texID.ID;
+		return texID;
 	}
 
-	void Texture::bind(){
-		glBindTexture(GL_TEXTURE_2D, texID.ID);
+	void Texture::bind() const{
+		glBindTexture(GL_TEXTURE_2D, texID);
 	}
 }
