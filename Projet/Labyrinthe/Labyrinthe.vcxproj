@@ -29,6 +29,7 @@
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity3D.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Object3D.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Textures\Texture.h" />
     <ClInclude Include="..\..\Src\spng\crc32.h" />
     <ClInclude Include="..\..\Src\spng\deflate.h" />
     <ClInclude Include="..\..\Src\spng\gzguts.h" />
@@ -46,6 +47,7 @@
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Objects\Object3D.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Textures\Texture.cpp" />
     <ClCompile Include="..\..\Src\IGTemplate.cpp" />
     <ClCompile Include="..\..\Src\spng\adler32.c" />
     <ClCompile Include="..\..\Src\spng\compress.c" />
