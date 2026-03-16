@@ -15,6 +15,12 @@
 #include "GlOOPLib/Lights/Materials.h"
 #include "GlOOPLib/Textures/Texture.h"
 
+
+/*
+
+    
+*/
+
 class StaticOrange : public gloop::Object3D {
 public :
     const float size = 0.5f;
@@ -25,7 +31,83 @@ public :
 
     virtual void render() override {
         glPushMatrix();
-        glutSolidCube(size);
+        float t = size/2;
+        // Making the cube
+        float points[8][3] = {
+            {-t, -t, -t},
+            {t, -t, -t},
+            {t, -t ,t},
+            {-t, -t, t},
+            {-t, t, -t},
+            {t, t, -t},
+            {t, t ,t},
+            {-t, t, t},
+        };
+        glBegin(GL_QUADS);
+        {
+            glNormal3f(0,-1,0);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex3fv(points[0]);
+            glTexCoord2f(1.0F, 0.0F);
+            glVertex3fv(points[1]);
+            glTexCoord2f(1.0F, 1.0F);
+            glVertex3fv(points[2]);
+            glTexCoord2f(0.0F, 1.0F);
+            glVertex3fv(points[3]);
+            
+            glNormal3f(1, 0, 0);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex3fv(points[1]);
+            glTexCoord2f(1.0F, 0.0F);
+            glVertex3fv(points[5]);
+            glTexCoord2f(1.0F, 1.0F);
+            glVertex3fv(points[6]);
+            glTexCoord2f(0.0F, 1.0F);
+            glVertex3fv(points[2]);
+            
+            glNormal3f(0, 0, -1);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex3fv(points[2]);
+            glTexCoord2f(1.0F, 0.0F);
+            glVertex3fv(points[6]);
+            glTexCoord2f(1.0F, 1.0F);
+            glVertex3fv(points[7]);
+            glTexCoord2f(0.0F, 1.0F);
+            glVertex3fv(points[3]);
+            
+            glNormal3f(-1, 0, 0);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex3fv(points[3]);
+            glTexCoord2f(1.0F, 0.0F);
+            glVertex3fv(points[7]);
+            glTexCoord2f(1.0F, 1.0F);
+            glVertex3fv(points[4]);
+            glTexCoord2f(0.0F, 1.0F);
+            glVertex3fv(points[0]);
+            
+            glNormal3f(0, 0, 1);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex3fv(points[0]);
+            glTexCoord2f(1.0F, 0.0F);
+            glVertex3fv(points[4]);
+            glTexCoord2f(1.0F, 1.0F);
+            glVertex3fv(points[5]);
+            glTexCoord2f(0.0F, 1.0F);
+            glVertex3fv(points[1]);
+            
+            glNormal3f(0, 1, 0);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex3fv(points[4]);
+            glTexCoord2f(1.0F, 0.0F);
+            glVertex3fv(points[7]);
+            glTexCoord2f(1.0F, 1.0F);
+            glVertex3fv(points[6]);
+            glTexCoord2f(0.0F, 1.0F);
+            glVertex3fv(points[5]);
+
+        }
+        glEnd();
+
         glPopMatrix();
     }
 };
