@@ -38,6 +38,7 @@ public :
             {-t, t, t},
         };
         tex.bind();
+
         glBegin(GL_QUADS);
         {
             glNormal3f(0,-1,0);
@@ -177,6 +178,7 @@ static void init(void) {
     glDepthFunc(GL_LESS);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
+    glEnable(GL_TEXTURE_2D);
 
     // Creating materials
     gloop::Material redSpecular;
@@ -187,13 +189,10 @@ static void init(void) {
     blue.shininess = 90;
 
     // Loading textures
-    std::cout << "Crating the texture" << std::endl;
     gloop::Texture tex{ "C:/Users/kjeli/source/repos/Labyrinthe/Resources/orange.png" };
 
     // Adding objects and entities
-    std::cout << "Crating the orange" << std::endl;
     StaticOrange orange{ tex };
-    std::cout << "Adding the object to the scene" << std::endl;
     mainScene.addObject(orange);
     mainScene.addEntity(RotatingSphere(0, redSpecular));
     mainScene.addEntity(RotatingSphere(180, blue));
