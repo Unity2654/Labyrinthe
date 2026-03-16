@@ -69,6 +69,9 @@
   <ItemGroup>
     <None Include="..\..\Src\spng\zconf.h.in" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Resources\Orange-Free-PNG-Image.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

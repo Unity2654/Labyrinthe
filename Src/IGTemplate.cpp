@@ -13,10 +13,15 @@
 #include "GlOOPLib/Maths/Vector.h"
 #include "GlOOPLib/Lights/Lights.h"
 #include "GlOOPLib/Lights/Materials.h"
+#include "GlOOPLib/Textures/Texture.h"
 
-class StaticCube : public gloop::Object3D {
+class StaticOrange : public gloop::Object3D {
 public :
     const float size = 0.5f;
+    const gloop::Texture tex;
+    
+    StaticOrange() = delete;
+    StaticOrange(gloop::Texture tex) : tex(tex) {}
 
     virtual void render() override {
         glPushMatrix();
@@ -104,8 +109,11 @@ static void init(void) {
     gloop::Material blue{ gloop::Color{0.0,0.0,0.2,1.0}, gloop::Color{0.0,0.0,0.8,1.0}, gloop::Color{0.0,0.2,0.2,1.0} };
     blue.shininess = 90;
 
+    // Loading textures
+    gloop::Texture tex{ "C:/Users/kjeli/source/repos/Labyrinthe/Resources/Orange-Free-PNG-Image.png" };
+
     // Adding objects and entities
-    mainScene.addObject(StaticCube());
+    mainScene.addObject(StaticOrange(tex));
     mainScene.addEntity(RotatingSphere(0, redSpecular));
     mainScene.addEntity(RotatingSphere(180, blue));
 

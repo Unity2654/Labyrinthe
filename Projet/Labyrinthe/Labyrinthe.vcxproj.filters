@@ -158,4 +158,9 @@
       <Filter>Fichiers sources\spng</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Resources\Orange-Free-PNG-Image.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

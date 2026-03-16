@@ -58,7 +58,7 @@ namespace gloop {
 			std::cerr << "Failed to decode image " << path << std::endl;
 			exit(1);
 		}
-		unsigned int img_width = size / ihdr.height;
+		unsigned int img_width = ihdr.width;
 		unsigned int img_height = ihdr.height;
 
 		// OpenGL things
