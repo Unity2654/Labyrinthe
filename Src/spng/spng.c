@@ -18,7 +18,7 @@
     #ifdef SPNG_USE_MINIZ
         #include <miniz.h>
     #else
-        #include <zlib.h>
+        #include "zlib.h"
     #endif
 #endif
 

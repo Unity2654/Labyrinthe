@@ -4,8 +4,9 @@
 namespace gloop {
 	class Texture {
 	private : 
-		const unsigned int texID;
+		unsigned int texID; // Should be effectively const
 		const std::string path;
+		int ctr = 0;
 
 	public :
 
