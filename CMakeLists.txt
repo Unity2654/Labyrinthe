@@ -10,9 +10,13 @@ include(GNUInstallDirs)
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 
-file(GLOB SPNG "spng/*.c")
 
-file(GLOB LABY "Laby/*.c")
+file(GLOB SPNG "Src/spng/*.c")
+
+file(GLOB LABY "Src/Laby/*.c")
+
+file(GLOB LABY3D "Src/Laby3D/*.cpp")
+
 
 add_executable(Labyrinthe
   Src/IGTemplate.cpp
@@ -25,11 +29,14 @@ add_executable(Labyrinthe
 
   ${LABY}
 
+  ${LABY3D}
+
   ${SPNG}
 )
 
 add_dependencies(Labyrinthe
   OpenGL::OpenGL
+  GLUT::GLUT
 )
 
 target_include_directories(Labyrinthe
@@ -42,6 +49,7 @@ target_link_libraries(Labyrinthe
   PRIVATE
     OpenGL::OpenGL
     GLUT::GLUT
+    OpenGL::GLU
 )
 
 target_compile_options(Labyrinthe
