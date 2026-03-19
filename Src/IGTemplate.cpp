@@ -189,7 +189,7 @@ static void init(void) {
     blue.shininess = 90;
 
     // Loading textures
-    gloop::Texture tex{ "C:/Users/kjeli/source/repos/Labyrinthe/Resources/orange.png" };
+    gloop::Texture tex{ "../Resources/orange.png" };
 
     // Adding objects and entities
     StaticOrange orange{ tex };
