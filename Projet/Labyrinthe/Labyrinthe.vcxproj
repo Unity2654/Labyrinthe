@@ -22,6 +22,8 @@
     <Library Include="..\..\Lib\glut32.ms.lib" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\GlOOPLib\Camera\Camera.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Camera\Cameraman.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Colors.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Lights.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Materials.h" />
@@ -44,6 +46,8 @@
     <ClInclude Include="..\..\Src\spng\zutil.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\GlOOPLib\Camera\Camera.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Camera\Cameraman.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Objects\Object3D.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
