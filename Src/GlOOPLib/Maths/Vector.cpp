@@ -38,4 +38,30 @@ namespace gloop {
 	float Vector3f::isOrthogonal(const Vector3f& other) const{
 		return this->dot(other) == 0;
 	}
+
+	Vector2f::Vector2f(float x, float y): x(x), y(y){}
+
+	Vector2f Vector2f::operator+(const Vector2f& other) const {
+		return Vector2f{ x + other.x, y + other.y };
+	}
+
+	Vector2f Vector2f::operator*(const Vector2f& other) const {
+		return Vector2f{ x * other.x, y * other.y };
+	}
+
+	Vector2f Vector2f::operator/(const Vector2f& other) const {
+		return Vector2f{ x / other.x, y / other.y };
+	}
+
+	Vector2f Vector2f::operator-(const Vector2f& other) const {
+		return Vector2f{ x - other.x, y - other.y};
+	}
+
+	float Vector2f::dot(const Vector2f& other) const {
+		return x * other.x + y * other.y;
+	}
+
+	float Vector2f::isOrthogonal(const Vector2f& other) const {
+		return this->dot(other) == 0;
+	}
 }

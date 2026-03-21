@@ -8,7 +8,7 @@ namespace gloop {
 	// A rectangle, destined to be used to store the data of a hitbox for collisions  
 	struct Rectangle {
 	public:
-		const Vector3f position;
+		const Vector2f position;
 		const double width;
 		const double height;
 
@@ -17,24 +17,24 @@ namespace gloop {
 		/**
 	     * Constructs a rectangle from its up left corner, and its width/height 
 		 */
-		Rectangle(Vector3f position, double width, double height);
+		Rectangle(Vector2f position, double width, double height);
 		
-		static Rectangle fromCenter(Vector3f center, double width, double height);
+		static Rectangle fromCenter(Vector2f center, double width, double height);
 		/**
 		 * Construct a rectangle from its up right and down left corners
 		 */
-		static Rectangle fromUrDlCorners(Vector3f upRightCorner, Vector3f downLeftCorner);
+		static Rectangle fromUrDlCorners(Vector2f upRightCorner, Vector2f downLeftCorner);
 		/**
 		 * Construct a rectangle from its up left and down right corners
 		 */
-		static Rectangle fromUlDrCorners(Vector3f upLeftCorner, Vector3f downRightCorner);
+		static Rectangle fromUlDrCorners(Vector2f upLeftCorner, Vector2f downRightCorner);
 
-		Vector3f getCenter() const;
+		Vector2f getCenter() const;
 
 		/**
 		 * Gets a vector containing the four corners of the square in the following order : { UL, UR, DL, DR }
 		*/
-		std::vector<Vector3f> getCorners() const;
+		std::vector<Vector2f> getCorners() const;
 	};
 
 	class Collidable {
