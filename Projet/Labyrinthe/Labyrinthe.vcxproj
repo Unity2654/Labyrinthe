@@ -28,6 +28,8 @@
     <ClInclude Include="..\..\Src\GlOOPLib\Maths\Vector.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity3D.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Object3D.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Physics\Collidable.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Physics\Physics.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Textures\Texture.h" />
     <ClInclude Include="..\..\Src\spng\crc32.h" />
@@ -46,6 +48,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Objects\Object3D.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Physics\Collidable.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Physics\Physics.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Textures\Texture.cpp" />
     <ClCompile Include="..\..\Src\IGTemplate.cpp" />
