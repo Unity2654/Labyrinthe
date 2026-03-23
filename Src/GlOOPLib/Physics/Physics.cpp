@@ -6,7 +6,7 @@ namespace gloop {
 		return collisionData();
 	}
 
-	collisionData Physics::collide(const Collidable& mainObject, const std::vector<const Collidable>& otherObjects)
+	collisionData Physics::collide(const Collidable& mainObject, const std::vector<Collidable>& otherObjects)
 	{
 		return collisionData();
 	}

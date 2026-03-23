@@ -4,6 +4,7 @@
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <vector>
 
 #include "GlOOPLib/Scenes/Scenes.h"
 #include "GlOOPLib/Objects/Entity3D.h"
@@ -14,17 +15,149 @@
 #include "GlOOPLib/Textures/Texture.h"
 #include "GlOOPLib/Physics/Physics.h"
 
+/***************/
+/* TEST SCENES */
+/***************/
+
+class MovingCube : public gloop::Entity3D, public gloop::Collidable {
+public :
+    gloop::Vector3f speed{ 0,0,0 };
+    gloop::Vector3f position{ 0,0,0 };
+    std::vector<gloop::Collidable> otherElements;
+
+    MovingCube(gloop::Vector3f position, gloop::Vector3f speed) : position(position), speed(speed){}
+
+    virtual void update() override {
+        const gloop::collisionData data = gloop::Physics::collide(*this, otherElements);
+        speed = speed + data.collision + data.correction;
+        position = position + speed;
+    }
+
+    virtual void render() override {
+        glPushMatrix();
+        glTranslatef(position.x, position.y, position.z);
+        glutSolidCube(0.2F);
+        glPopMatrix();
+    }
+
+    virtual gloop::Rectangle getCollisionBox() const override {
+        return gloop::Rectangle::fromCenter({ position.x, position.y }, 1.0, 1.0);
+    }
+};
+
+class ForceMovingCube : public MovingCube {
+public :
+    using MovingCube::MovingCube;
+
+    virtual void update() override {
+        gloop::Vector3f spd = speed;
+        const gloop::collisionData data = gloop::Physics::collide(*this, otherElements);
+        spd = spd + data.collision + data.correction;
+        position = position + spd;
+    }
+};
+
+// A Cube is sliding towards another cube
+class Collision_Simple : public gloop::Scene {
+public :
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
+    MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 } };
+
+    Collision_Simple() {
+        cube1.otherElements = { cube2 };
+        addEntity(cube1);
+        addObject(cube2);
+    }
+};
+
+// A cube sliding towards 2 other cubes, colliding in the middle
+class Collision_TwoCubes : public gloop::Scene {
+public:
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
+    MovingCube cube2{ { -0.9, 0.0, 0.1 }, { 0.0,0.0,0.0 } };
+    MovingCube cube3{ { -0.9, 0.0, -0.1 }, { 0.0,0.0,0.0 } };
+
+    Collision_TwoCubes() {
+        cube1.otherElements = { cube2, cube3 };
+        addEntity(cube1);
+        addObject(cube2);
+        addObject(cube3);
+    }
+};
+
+// A cube sliding towards another cube, higher on the Y axis
+class Collision_YAxis : public gloop::Scene {
+public:
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
+    MovingCube cube2{ { -0.6, 0.5, 0.0 }, { 0.0,0.0,0.0 } };
+
+    Collision_YAxis() {
+        cube1.otherElements = { cube2 };
+        addEntity(cube1);
+        addObject(cube2);
+    }
+};
+
+// A cube sliding towards another cube, without lowering its speed upon making contact
+class Collision_Force : public gloop::Scene {
+public:
+    ForceMovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
+    MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 } };
+
+    Collision_Force() {
+        cube1.otherElements = { cube2 };
+        addEntity(cube1);
+        addObject(cube2);
+    }
+};
+
+/**********************/
+/* END OF TEST SCENES */
+/**********************/
+
+struct SceneHandler {
+    std::vector < std::shared_ptr<gloop::Scene>> Scenes;
+    int currentScene = 0;
+    std::shared_ptr < gloop:: Scene > sc1 = std::make_shared<gloop::Scene>(Collision_Simple());
+    std::shared_ptr < gloop::Scene > sc2 = std::make_shared<gloop::Scene>(Collision_TwoCubes());
+    std::shared_ptr < gloop::Scene > sc3 = std::make_shared<gloop::Scene>(Collision_YAxis());
+    std::shared_ptr < gloop::Scene > sc4 = std::make_shared<gloop::Scene>(Collision_Force());
+
+    SceneHandler(){
+        Scenes.push_back(sc1);
+        Scenes.push_back(sc2);
+        Scenes.push_back(sc3);
+        Scenes.push_back(sc4);
+    }
+
+    void next() {
+        currentScene = (currentScene + 1) % Scenes.size();
+    }
+
+    void prev() {
+        currentScene = (currentScene - 1) % Scenes.size();
+    }
+
+    void render() {
+        Scenes[currentScene]->display();
+    }
+
+    void update() {
+        Scenes[currentScene]->update();
+    }
+};
 
 static int wTx = 480;
 static int wTy = 480;
 static int wPx = 50;
 static int wPy = 50;
+static int fps = 60;
 
-static GLenum displays[3] = { GL_LINE, GL_FILL, GL_POINT };
+static GLenum displays[3] = { GL_FILL, GL_LINE, GL_POINT };
 static int displayCount = 3;
 static int currentDisplay = 1;
 
-static gloop::Scene mainScene;
+static SceneHandler handler{};
 
 static void init(void) {
     glEnable(GL_LIGHTING);
@@ -32,6 +165,8 @@ static void init(void) {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
     glEnable(GL_TEXTURE_2D);
+    glEnable(GL_LIGHT0);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 static void clean(void) {
@@ -40,8 +175,12 @@ static void clean(void) {
 static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
 
-    mainScene.display();
+    glPushMatrix();
+    glRotatef(10, 1.0, 1.0, 0.0);
 
+    handler.render();
+
+    glPopMatrix();
 
     int error = glGetError();
     if (error != GL_NO_ERROR)
@@ -49,8 +188,9 @@ static void display(void) {
 }
 
 static void timer(int value) {
-    mainScene.update();
+    handler.update();
     glutPostRedisplay();
+    glutTimerFunc(1000 / fps, timer, 0);
 }
 
 static void reshape(int wx, int wy) {
@@ -72,8 +212,9 @@ static void keyboard(unsigned char key, int x, int y) {
         break;
     case 0x20: // space
         currentDisplay = (currentDisplay + 1) % displayCount;
-        glutPostRedisplay();
         break;
+    case 0xd : // enter
+        handler.next();
     }
     return;
 }
@@ -93,7 +234,7 @@ int main(int argc, char** argv) {
     // programmation de la gestion des événements
     glutKeyboardFunc(keyboard);
     glutReshapeFunc(reshape);
-    glutTimerFunc(1/60, timer, 0);
+    glutTimerFunc(1000/fps, timer, 0);
     glutDisplayFunc(display);
     // affichage de la fenêtre de visualisation et lancement de la boucle infinie de gestion des événements
     glutMainLoop();

@@ -21,6 +21,6 @@ namespace gloop {
 		// Collision between two objects. The data only concerns the main object.
 		static collisionData collide(const Collidable& mainObject, const Collidable& otherObject);
 		// Collision between one object, and muliple others.
-		static collisionData collide(const Collidable& mainObject, const std::vector<const Collidable>& otherObjects);
+		static collisionData collide(const Collidable& mainObject, const std::vector<Collidable>& otherObjects);
 	};
 }
