@@ -19,8 +19,16 @@ namespace gloop {
 		return Vector3f{ x * other.x, y * other.y, z * other.z };
 	}
 
+	Vector3f Vector3f::operator*(float factor) const{
+		return Vector3f{ x * factor, y * factor, z * factor };
+	}
+
 	Vector3f Vector3f::operator/(const Vector3f& other) const{
 		return Vector3f{ x / other.x, y / other.y, z / other.z };
+	}
+
+	Vector3f Vector3f::operator/(float factor) const{
+		return Vector3f{ x / factor, y / factor, z / factor };
 	}
 
 	Vector3f Vector3f::operator-(const Vector3f& other) const{
@@ -44,6 +52,10 @@ namespace gloop {
 		return this->dot(other) == 0;
 	}
 
+	float Vector3f::norm() const{
+		return sqrt(x*x + y*y + z*z);
+	}
+
 	Vector3f Vector3f::absolute(const Vector3f& other){
 		return Vector3f(abs(other.x), abs(other.y), abs(other.z));
 	}
@@ -58,8 +70,16 @@ namespace gloop {
 		return Vector2f{ x * other.x, y * other.y };
 	}
 
+	Vector2f Vector2f::operator*(float factor) const{
+		return Vector2f{ x * factor, y * factor};
+	}
+
 	Vector2f Vector2f::operator/(const Vector2f& other) const {
 		return Vector2f{ x / other.x, y / other.y };
+	}
+
+	Vector2f Vector2f::operator/(float factor) const{
+		return Vector2f{ x / factor, y / factor };
 	}
 
 	Vector2f Vector2f::operator-(const Vector2f& other) const {
@@ -72,6 +92,10 @@ namespace gloop {
 
 	float Vector2f::isOrthogonal(const Vector2f& other) const {
 		return this->dot(other) == 0;
+	}
+
+	float Vector2f::norm() const{
+		return sqrt(x * x + y * y);
 	}
 
 	Vector2f Vector2f::absolute(const Vector2f& other){

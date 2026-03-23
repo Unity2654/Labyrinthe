@@ -38,7 +38,8 @@ namespace gloop {
 
 	bool Physics::doCollide(const Rectangle& lhs, const Rectangle& rhs, Penetration& p){
         Vector2f normal = rhs.getCenter() - lhs.getCenter();
-        Vector2f overlap = lhs.getSize() / 2 + rhs.getSize() / 2 - gf::abs(normal);
+        Vector2f overlap = lhs.getDiagonal() / 2 + rhs.getDiagonal() / 2 - Vector2f::absolute(normal);
+
 
 		return false;
 	}

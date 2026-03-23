@@ -15,12 +15,15 @@ namespace gloop {
 		// Operators overloading
 		Vector2f operator+(const Vector2f& other) const;
 		Vector2f operator*(const Vector2f& other) const;
+		Vector2f operator*(float factor) const;
 		Vector2f operator/(const Vector2f& other) const;
+		Vector2f operator/(float factor) const;
 		Vector2f operator-(const Vector2f& other) const;
 
 		// Methods
 		float dot(const Vector2f& other) const; // scalar product
 		float isOrthogonal(const Vector2f& other) const;
+		float norm() const;
 
 		static Vector2f absolute(const Vector2f& other);
 	};
@@ -41,13 +44,16 @@ namespace gloop {
 		Vector3f operator+(const Vector3f& other) const;
 		Vector3f operator+(const Vector2f& other) const;
 		Vector3f operator*(const Vector3f& other) const;
+		Vector3f operator*(float factor) const;
 		Vector3f operator/(const Vector3f& other) const;
+		Vector3f operator/(float factor) const;
 		Vector3f operator-(const Vector3f& other) const; 
 
 		// Methods
 		float dot(const Vector3f& other) const; // scalar product
 		Vector3f vectorial(const Vector3f& other) const; // vectorial product
 		float isOrthogonal(const Vector3f& other) const;
+		float norm() const;
 
 		static Vector3f absolute(const Vector3f& other);
 	};

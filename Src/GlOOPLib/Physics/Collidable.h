@@ -37,6 +37,8 @@ namespace gloop {
 		std::vector<Vector2f> getCorners() const;
 
 		float getSize() const;
+
+		Vector2f getDiagonal() const;
 	};
 
 	class Collidable {

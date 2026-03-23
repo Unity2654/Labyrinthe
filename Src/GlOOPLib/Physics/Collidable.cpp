@@ -35,4 +35,8 @@ namespace gloop{
 	float Rectangle::getSize() const{
 		return height * width;
 	}
+
+	Vector2f Rectangle::getDiagonal() const{
+		return position - Vector2f{ position.x + width, position.y - height };
+	}
 }
