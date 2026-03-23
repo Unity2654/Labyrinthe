@@ -14,7 +14,13 @@ namespace gloop {
 
 	class Physics {
 	private :
-		static bool doCollide(const Rectangle& a, const Rectangle& b);
+		struct Penetration {
+			Vector2f normal;
+			float depth;
+		};
+
+		// Computes the collision between two Rectangles, and returns the important informations about the collision
+		bool doCollide(const Rectangle& lhs, const Rectangle& rhs, Penetration& p);
 
 	public :
 		Physics() = delete;

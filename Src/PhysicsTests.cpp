@@ -41,7 +41,11 @@ public :
     }
 
     virtual gloop::Rectangle getCollisionBox() const override {
-        return gloop::Rectangle::fromCenter({ position.x, position.y }, 0.2, 0.2);
+        return gloop::Rectangle::fromCenter({ position.x, position.z }, 0.2, 0.2);
+    }
+
+    virtual gloop::Vector2f getSpeed() const override {
+        return { speed.x, speed.z };
     }
 };
 
@@ -52,7 +56,7 @@ public :
     virtual void update() override {
         gloop::Vector3f spd = speed;
         const gloop::collisionData data = gloop::Physics::collide(*this, otherElements);
-        spd = spd + data.collision + data.correction;
+        spd = { spd.x + data.collision.x + data.correction.x, spd.y ,spd.z + data.collision.y + data.correction.y };
         position = position + spd;
     }
 };
@@ -87,12 +91,27 @@ public:
 };
 
 // A cube sliding towards another cube, higher on the Y axis
+// A collision should occur
 class Collision_YAxis : public gloop::Scene {
 public:
     MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
     MovingCube cube2{ { -0.6, 0.5, 0.0 }, { 0.0,0.0,0.0 } };
 
     Collision_YAxis() {
+        cube1.otherElements.push_back(cube2.getCollisionBox());
+        addEntity(cube1);
+        addObject(cube2);
+    }
+};
+
+// A cube sliding towards another cube, higher on the Z axis
+// No collision should occur
+class Collision_ZAxis : public gloop::Scene {
+public:
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
+    MovingCube cube2{ { -0.6, 0.0, 0.5 }, { 0.0,0.0,0.0 } };
+
+    Collision_ZAxis() {
         cube1.otherElements.push_back(cube2.getCollisionBox());
         addEntity(cube1);
         addObject(cube2);
@@ -122,13 +141,15 @@ struct SceneHandler {
     std::shared_ptr < gloop:: Scene > sc1 = std::make_shared<gloop::Scene>(Collision_Simple());
     std::shared_ptr < gloop::Scene > sc2 = std::make_shared<gloop::Scene>(Collision_TwoCubes());
     std::shared_ptr < gloop::Scene > sc3 = std::make_shared<gloop::Scene>(Collision_YAxis());
-    std::shared_ptr < gloop::Scene > sc4 = std::make_shared<gloop::Scene>(Collision_Force());
+    std::shared_ptr < gloop::Scene > sc4 = std::make_shared<gloop::Scene>(Collision_ZAxis());
+    std::shared_ptr < gloop::Scene > sc5 = std::make_shared<gloop::Scene>(Collision_Force());
 
     SceneHandler(){
         Scenes.push_back(sc1);
         Scenes.push_back(sc2);
         Scenes.push_back(sc3);
         Scenes.push_back(sc4);
+        Scenes.push_back(sc5);
     }
 
     void next() {

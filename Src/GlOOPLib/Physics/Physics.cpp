@@ -2,18 +2,50 @@
 #include <iostream>
 
 namespace gloop {
-	bool Physics::doCollide(const Rectangle& a, const Rectangle& b){
-		auto aCorners = a.getCorners();
-		auto bCorners = b.getCorners();
 
-		if (aCorners[3].x < bCorners[0].x || aCorners[0].x > bCorners[3].x) return false;
-		if (aCorners[3].y > bCorners[0].y || aCorners[0].y < bCorners[3].y) return false;
-		
-		return true;
+	/*
+	Vector2f normal = rhs.getCenter() - lhs.getCenter();
+    Vector2f overlap = lhs.getSize() / 2 + rhs.getSize() / 2 - gf::abs(normal);
+
+    if (overlap.x <= 0) {
+      return false;
+    }
+
+    if (overlap.y <= 0) {
+      return false;
+    }
+
+    if (overlap.x < overlap.y) {
+      if (normal.x < 0) {
+        p.normal = { -1.0f, 0.0f };
+      } else {
+        p.normal = {  1.0f, 0.0f };
+      }
+
+      p.depth = overlap.x;
+    } else {
+      if (normal.y < 0) {
+        p.normal = { 0.0f, -1.0f };
+      } else {
+        p.normal = { 0.0f,  1.0f };
+      }
+
+      p.depth = overlap.y;
+    }
+
+    return p.depth > Skin;
+	*/
+
+	bool Physics::doCollide(const Rectangle& lhs, const Rectangle& rhs, Penetration& p){
+        Vector2f normal = rhs.getCenter() - lhs.getCenter();
+        Vector2f overlap = lhs.getSize() / 2 + rhs.getSize() / 2 - gf::abs(normal);
+
+		return false;
 	}
 
 	collisionData gloop::Physics::collide(const Collidable& mainObject, const Rectangle& otherObject){
-		std::cout << doCollide(mainObject.getCollisionBox(), otherObject) << std::endl;
+		Vector2f relativeVelocity = mainObject.getSpeed();
+
 		return collisionData();
 	}
 
