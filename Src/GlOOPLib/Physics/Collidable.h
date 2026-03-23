@@ -35,6 +35,8 @@ namespace gloop {
 		 * Gets a vector containing the four corners of the square in the following order : { UL, UR, DL, DR }
 		*/
 		std::vector<Vector2f> getCorners() const;
+
+		float getSize() const;
 	};
 
 	class Collidable {

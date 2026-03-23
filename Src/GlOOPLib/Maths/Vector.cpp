@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include <cmath>
 
 namespace gloop {
 	gloop::Vector3f::Vector3f(float x, float y, float z):
@@ -43,6 +44,10 @@ namespace gloop {
 		return this->dot(other) == 0;
 	}
 
+	Vector3f Vector3f::absolute(const Vector3f& other){
+		return Vector3f(abs(other.x), abs(other.y), abs(other.z));
+	}
+
 	Vector2f::Vector2f(float x, float y): x(x), y(y){}
 
 	Vector2f Vector2f::operator+(const Vector2f& other) const {
@@ -68,4 +73,9 @@ namespace gloop {
 	float Vector2f::isOrthogonal(const Vector2f& other) const {
 		return this->dot(other) == 0;
 	}
+
+	Vector2f Vector2f::absolute(const Vector2f& other){
+		return Vector2f(abs(other.x), abs(other.y));
+	}
+
 }

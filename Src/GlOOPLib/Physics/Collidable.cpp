@@ -32,4 +32,7 @@ namespace gloop{
 			Vector2f{position.x + width, position.y - height} // Bottom right
 		};
 	}
+	float Rectangle::getSize() const{
+		return height * width;
+	}
 }

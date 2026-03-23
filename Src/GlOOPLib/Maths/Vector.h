@@ -22,6 +22,7 @@ namespace gloop {
 		float dot(const Vector2f& other) const; // scalar product
 		float isOrthogonal(const Vector2f& other) const;
 
+		static Vector2f absolute(const Vector2f& other);
 	};
 
 	struct Vector3f {
@@ -48,5 +49,6 @@ namespace gloop {
 		Vector3f vectorial(const Vector3f& other) const; // vectorial product
 		float isOrthogonal(const Vector3f& other) const;
 
+		static Vector3f absolute(const Vector3f& other);
 	};
 }
