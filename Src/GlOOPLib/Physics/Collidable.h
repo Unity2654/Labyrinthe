@@ -39,9 +39,9 @@ namespace gloop {
 
 	class Collidable {
 	public :
-		double getMass(){}
+		virtual double getMass() const{}
 
-		Rectangle getCollisionBox(){}
+		virtual Rectangle getCollisionBox() const{}
 	};
 
 }
