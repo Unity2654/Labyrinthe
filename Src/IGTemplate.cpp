@@ -279,6 +279,9 @@ static void clean(void) {
 
 /* Fonction principale                          */
 
+/* Mis en commentaire pour faire les tests avec la physique
+
+
 int main(int argc, char** argv) {
 
     atexit(clean); // exécution d'une fonction (static void clean(void)) lorsque l'application est interrompue par exécution de la fonction standard void exit(int)
@@ -303,4 +306,4 @@ int main(int argc, char** argv) {
     // affichage de la fenêtre de visualisation et lancement de la boucle infinie de gestion des événements
     glutMainLoop();
     return(0);
-}
+}*/
