@@ -41,7 +41,7 @@ public :
     }
 
     virtual gloop::Rectangle getCollisionBox() const override {
-        return gloop::Rectangle::fromCenter({ position.x, position.y }, 1.0, 1.0);
+        return gloop::Rectangle::fromCenter({ position.x, position.y }, 0.2, 0.2);
     }
 };
 
@@ -64,7 +64,7 @@ public :
     MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 } };
 
     Collision_Simple() {
-        cube1.otherElements = { cube2.getCollisionBox()};
+        cube1.otherElements.push_back(cube2.getCollisionBox());
         addEntity(cube1);
         addObject(cube2);
     }
@@ -78,7 +78,8 @@ public:
     MovingCube cube3{ { -0.9, 0.0, -0.1 }, { 0.0,0.0,0.0 } };
 
     Collision_TwoCubes() {
-        cube1.otherElements = { cube2.getCollisionBox(), cube3.getCollisionBox()};
+        cube1.otherElements.push_back(cube2.getCollisionBox()); 
+        cube1.otherElements.push_back(cube3.getCollisionBox());
         addEntity(cube1);
         addObject(cube2);
         addObject(cube3);
@@ -92,7 +93,7 @@ public:
     MovingCube cube2{ { -0.6, 0.5, 0.0 }, { 0.0,0.0,0.0 } };
 
     Collision_YAxis() {
-        cube1.otherElements = { cube2.getCollisionBox()};
+        cube1.otherElements.push_back(cube2.getCollisionBox());
         addEntity(cube1);
         addObject(cube2);
     }
@@ -105,7 +106,7 @@ public:
     MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 } };
 
     Collision_Force() {
-        cube1.otherElements = { cube2.getCollisionBox()};
+        cube1.otherElements.push_back(cube2.getCollisionBox());
         addEntity(cube1);
         addObject(cube2);
     }
