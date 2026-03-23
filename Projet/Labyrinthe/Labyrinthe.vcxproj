@@ -53,6 +53,7 @@
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Textures\Texture.cpp" />
     <ClCompile Include="..\..\Src\IGTemplate.cpp" />
+    <ClCompile Include="..\..\Src\PhysicsTests.cpp" />
     <ClCompile Include="..\..\Src\spng\adler32.c" />
     <ClCompile Include="..\..\Src\spng\compress.c" />
     <ClCompile Include="..\..\Src\spng\crc32.c" />

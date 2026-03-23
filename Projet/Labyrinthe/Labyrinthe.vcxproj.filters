@@ -164,6 +164,9 @@
     <ClCompile Include="..\..\Src\GlOOPLib\Physics\Collidable.cpp">
       <Filter>Fichiers sources\glOOP</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\PhysicsTests.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Src\spng\zconf.h.in">
