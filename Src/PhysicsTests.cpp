@@ -23,7 +23,7 @@ class MovingCube : public gloop::Entity3D, public gloop::Collidable {
 public :
     gloop::Vector3f speed{ 0,0,0 };
     gloop::Vector3f position{ 0,0,0 };
-    std::vector<gloop::Collidable> otherElements;
+    std::vector<gloop::Rectangle> otherElements;
 
     MovingCube(gloop::Vector3f position, gloop::Vector3f speed) : position(position), speed(speed){}
 
@@ -64,7 +64,7 @@ public :
     MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 } };
 
     Collision_Simple() {
-        cube1.otherElements = { cube2 };
+        cube1.otherElements = { cube2.getCollisionBox()};
         addEntity(cube1);
         addObject(cube2);
     }
@@ -78,7 +78,7 @@ public:
     MovingCube cube3{ { -0.9, 0.0, -0.1 }, { 0.0,0.0,0.0 } };
 
     Collision_TwoCubes() {
-        cube1.otherElements = { cube2, cube3 };
+        cube1.otherElements = { cube2.getCollisionBox(), cube3.getCollisionBox()};
         addEntity(cube1);
         addObject(cube2);
         addObject(cube3);
@@ -92,7 +92,7 @@ public:
     MovingCube cube2{ { -0.6, 0.5, 0.0 }, { 0.0,0.0,0.0 } };
 
     Collision_YAxis() {
-        cube1.otherElements = { cube2 };
+        cube1.otherElements = { cube2.getCollisionBox()};
         addEntity(cube1);
         addObject(cube2);
     }
@@ -105,7 +105,7 @@ public:
     MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 } };
 
     Collision_Force() {
-        cube1.otherElements = { cube2 };
+        cube1.otherElements = { cube2.getCollisionBox()};
         addEntity(cube1);
         addObject(cube2);
     }

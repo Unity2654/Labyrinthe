@@ -13,14 +13,17 @@ namespace gloop {
 	};
 
 	class Physics {
+	private :
+		static bool doCollide(const Rectangle& a, const Rectangle& b);
+
 	public :
 		Physics() = delete;
 
 		// Methods
 
 		// Collision between two objects. The data only concerns the main object.
-		static collisionData collide(const Collidable& mainObject, const Collidable& otherObject);
+		static collisionData collide(const Collidable& mainObject, const Rectangle& otherObject);
 		// Collision between one object, and muliple others.
-		static collisionData collide(const Collidable& mainObject, const std::vector<Collidable>& otherObjects);
+		static collisionData collide(const Collidable& mainObject, const std::vector<Rectangle>& otherObjects);
 	};
 }
