@@ -9,17 +9,17 @@ namespace gloop {
 	struct Rectangle {
 	public:
 		const Vector2f position;
-		const double width;
-		const double height;
+		const float width;
+		const float height;
 
 		// Constructors
 		Rectangle() = delete;
 		/**
 	     * Constructs a rectangle from its up left corner, and its width/height 
 		 */
-		Rectangle(Vector2f position, double width, double height);
+		Rectangle(Vector2f position, float width, float height);
 		
-		static Rectangle fromCenter(Vector2f center, double width, double height);
+		static Rectangle fromCenter(Vector2f center, float width, float height);
 		/**
 		 * Construct a rectangle from its up right and down left corners
 		 */
