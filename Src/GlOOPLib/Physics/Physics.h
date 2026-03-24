@@ -14,13 +14,16 @@ namespace gloop {
 
 	class Physics {
 	private :
+		static constexpr float Skin = 0.15f; // Penetration threshold for a collision to be considered
+		static constexpr float epsilon = 0.0001f; // minimum to avoid float errors
+		
 		struct Penetration {
 			Vector2f normal;
 			float depth;
 		};
 
 		// Computes the collision between two Rectangles, and returns the important informations about the collision
-		bool doCollide(const Rectangle& lhs, const Rectangle& rhs, Penetration& p);
+		static bool doCollide(const Rectangle& lhs, const Rectangle& rhs, Penetration& p);
 
 	public :
 		Physics() = delete;

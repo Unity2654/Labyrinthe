@@ -37,6 +37,6 @@ namespace gloop{
 	}
 
 	Vector2f Rectangle::getDiagonal() const{
-		return position - Vector2f{ position.x + width, position.y - height };
+		return Vector2f::absolute(Vector2f{ position.x + width, position.y - height } - position);
 	}
 }
