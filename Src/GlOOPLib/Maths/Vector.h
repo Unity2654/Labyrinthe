@@ -19,6 +19,7 @@ namespace gloop {
 		Vector2f operator/(const Vector2f& other) const;
 		Vector2f operator/(float factor) const;
 		Vector2f operator-(const Vector2f& other) const;
+		Vector2f operator-() const;
 
 		// Methods
 		float dot(const Vector2f& other) const; // scalar product
@@ -30,7 +31,7 @@ namespace gloop {
 
 	struct Vector3f {
 	private :
-		Vector3f();
+		Vector3f() = delete;
 
 	public :
 		float x;
@@ -48,6 +49,7 @@ namespace gloop {
 		Vector3f operator/(const Vector3f& other) const;
 		Vector3f operator/(float factor) const;
 		Vector3f operator-(const Vector3f& other) const; 
+		Vector3f operator-() const;
 
 		// Methods
 		float dot(const Vector3f& other) const; // scalar product

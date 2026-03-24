@@ -24,8 +24,9 @@ public :
     gloop::Vector3f speed{ 0,0,0 };
     gloop::Vector3f position{ 0,0,0 };
     std::vector<gloop::Rectangle> otherElements;
+    float scale;
 
-    MovingCube(gloop::Vector3f position, gloop::Vector3f speed) : position(position), speed(speed){}
+    MovingCube(gloop::Vector3f position, gloop::Vector3f speed, float scale) : position(position), speed(speed), scale(scale){}
 
     virtual void update() override {
         const gloop::collisionData data = gloop::Physics::collide(*this, otherElements);
@@ -36,12 +37,12 @@ public :
     virtual void render() override {
         glPushMatrix();
         glTranslatef(position.x, position.y, position.z);
-        glutSolidCube(0.2F);
+        glutSolidCube(scale);
         glPopMatrix();
     }
 
     virtual gloop::Rectangle getCollisionBox() const override {
-        return gloop::Rectangle::fromCenter({ position.x, position.z }, 0.2, 0.2);
+        return gloop::Rectangle::fromCenter({ position.x, position.z }, scale, scale);
     }
 
     virtual gloop::Vector2f getSpeed() const override {
@@ -64,8 +65,8 @@ public :
 // A Cube is sliding towards another cube
 class Collision_Simple : public gloop::Scene {
 public :
-    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
-    MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 } };
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 }, 0.5 };
+    MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 }, 0.5 };
 
     Collision_Simple() {
         cube1.otherElements.push_back(cube2.getCollisionBox());
@@ -77,9 +78,9 @@ public :
 // A cube sliding towards 2 other cubes, colliding in the middle
 class Collision_TwoCubes : public gloop::Scene {
 public:
-    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
-    MovingCube cube2{ { -0.9, 0.0, 0.1 }, { 0.0,0.0,0.0 } };
-    MovingCube cube3{ { -0.9, 0.0, -0.1 }, { 0.0,0.0,0.0 } };
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 }, 0.5 };
+    MovingCube cube2{ { -0.9, 0.0, 0.1 }, { 0.0,0.0,0.0 }, 0.5 };
+    MovingCube cube3{ { -0.9, 0.0, -0.1 }, { 0.0,0.0,0.0 }, 0.5 };
 
     Collision_TwoCubes() {
         cube1.otherElements.push_back(cube2.getCollisionBox()); 
@@ -94,8 +95,8 @@ public:
 // A collision should occur
 class Collision_YAxis : public gloop::Scene {
 public:
-    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
-    MovingCube cube2{ { -0.6, 0.5, 0.0 }, { 0.0,0.0,0.0 } };
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 }, 0.2 };
+    MovingCube cube2{ { -0.6, 0.5, 0.0 }, { 0.0,0.0,0.0 }, 0.5 };
 
     Collision_YAxis() {
         cube1.otherElements.push_back(cube2.getCollisionBox());
@@ -108,10 +109,36 @@ public:
 // No collision should occur
 class Collision_ZAxis : public gloop::Scene {
 public:
-    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
-    MovingCube cube2{ { -0.6, 0.0, 0.5 }, { 0.0,0.0,0.0 } };
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 }, 0.2};
+    MovingCube cube2{ { -0.6, 0.0, 0.7 }, { 0.0,0.0,0.0 }, 0.5};
 
     Collision_ZAxis() {
+        cube1.otherElements.push_back(cube2.getCollisionBox());
+        addEntity(cube1);
+        addObject(cube2);
+    }
+};
+
+// A Cube is sliding towards another cube in a diagonal direction
+class Collision_Diagonal : public gloop::Scene {
+public:
+    MovingCube cube1{ { 0.9, 0.0, 0.9 }, {-0.01,0.0,-0.01 }, 0.2 };
+    MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 }, 0.5 };
+
+    Collision_Diagonal() {
+        cube1.otherElements.push_back(cube2.getCollisionBox());
+        addEntity(cube1);
+        addObject(cube2);
+    }
+};
+
+// A Cube is sliding towards another cube in a diagonal direction, without lowering its speed upon making contact
+class Collision_Force_Diagonal : public gloop::Scene {
+public:
+    ForceMovingCube cube1{ { 0.9, 0.0, 0.9 }, {-0.01,0.0,-0.01 }, 0.2 };
+    MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 }, 0.5 };
+
+    Collision_Force_Diagonal() {
         cube1.otherElements.push_back(cube2.getCollisionBox());
         addEntity(cube1);
         addObject(cube2);
@@ -121,8 +148,8 @@ public:
 // A cube sliding towards another cube, without lowering its speed upon making contact
 class Collision_Force : public gloop::Scene {
 public:
-    ForceMovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 } };
-    MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 } };
+    ForceMovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 }, 0.2 };
+    MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 }, 0.5 };
 
     Collision_Force() {
         cube1.otherElements.push_back(cube2.getCollisionBox());
@@ -130,6 +157,7 @@ public:
         addObject(cube2);
     }
 };
+
 
 /**********************/
 /* END OF TEST SCENES */
@@ -143,6 +171,8 @@ struct SceneHandler {
     std::shared_ptr < gloop::Scene > sc3 = std::make_shared<gloop::Scene>(Collision_YAxis());
     std::shared_ptr < gloop::Scene > sc4 = std::make_shared<gloop::Scene>(Collision_ZAxis());
     std::shared_ptr < gloop::Scene > sc5 = std::make_shared<gloop::Scene>(Collision_Force());
+    std::shared_ptr < gloop::Scene > sc6 = std::make_shared<gloop::Scene>(Collision_Diagonal());
+    std::shared_ptr < gloop::Scene > sc7 = std::make_shared<gloop::Scene>(Collision_Force_Diagonal());
 
     SceneHandler(){
         Scenes.push_back(sc1);
@@ -150,6 +180,8 @@ struct SceneHandler {
         Scenes.push_back(sc3);
         Scenes.push_back(sc4);
         Scenes.push_back(sc5);
+        Scenes.push_back(sc6);
+        Scenes.push_back(sc7);
     }
 
     void next() {
@@ -198,7 +230,7 @@ static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
 
     glPushMatrix();
-    glRotatef(10, 1.0, 1.0, 0.0);
+    glRotatef(30, 1.0, 1.0, 0.0);
 
     handler.render();
 

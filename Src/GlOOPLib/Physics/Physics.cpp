@@ -15,7 +15,7 @@ namespace gloop {
             return false;
         }
 
-        std::cout << std::endl;
+        //std::cout << std::endl;
 
         if (overlap.x < overlap.y) {
             if (normal.x < 0) {
@@ -42,18 +42,39 @@ namespace gloop {
 	}
 
 	collisionData gloop::Physics::collide(const Collidable& mainObject, const Rectangle& otherObject){
-		Vector2f relativeVelocity = mainObject.getSpeed();
         Penetration p{ Vector2f{0,0},0 };
-        doCollide(mainObject.getCollisionBox(), otherObject, p);
-        std::cout << (p.depth > Skin) << " " << p.depth << std::endl;
-		return collisionData();
+        collisionData res;
+
+        if (!doCollide(mainObject.getCollisionBox(), otherObject, p)) // No collision occurs
+            return res;
+
+        // Correction
+        res.correction = p.normal * -std::max(p.depth - 0.1f, 0.0f) * correctionCoeff;
+
+        // Collision resolution
+        Vector2f relativeVelocity = -mainObject.getSpeed();
+        const float velocityAlongNormal = relativeVelocity.dot(p.normal);
+        if (velocityAlongNormal > 0) {
+            return res;
+        }
+        res.collisionOccured = true;
+        const float impulseScalar = (1 + restitution) * velocityAlongNormal;
+        res.collision = p.normal * impulseScalar;
+
+		return res;
 	}
 
 	collisionData Physics::collide(const Collidable& mainObject, const std::vector<Rectangle>& otherObjects){
+        collisionData res;
+        int nbCollide = 0;
 		for (auto& other : otherObjects) {
-			collide(mainObject, other);
+			auto collision = collide(mainObject, other);
+            if (collision.collisionOccured) {
+                nbCollide++;
+                res += collision;
+            }
 		}
-		return collisionData();
+        return (nbCollide > 0) ? collisionData{res.collision / nbCollide, res.correction / nbCollide, true} : res;
 	}
 
 }

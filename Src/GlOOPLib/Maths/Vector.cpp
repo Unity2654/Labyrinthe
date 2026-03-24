@@ -35,6 +35,10 @@ namespace gloop {
 		return Vector3f{ x - other.x, y - other.y, z - other.z };
 	}
 
+	Vector3f Vector3f::operator-() const{
+		return Vector3f(-x, -y, -z);
+	}
+
 	float Vector3f::dot(const Vector3f& other) const{
 		return x * other.x + y * other.y + z * other.z;
 	}
@@ -84,6 +88,10 @@ namespace gloop {
 
 	Vector2f Vector2f::operator-(const Vector2f& other) const {
 		return Vector2f{ x - other.x, y - other.y};
+	}
+
+	Vector2f Vector2f::operator-() const{
+		return Vector2f(-x, -y);
 	}
 
 	float Vector2f::dot(const Vector2f& other) const {

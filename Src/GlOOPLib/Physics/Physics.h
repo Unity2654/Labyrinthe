@@ -10,12 +10,22 @@ namespace gloop {
 	struct collisionData {
 		Vector2f collision{ 0,0 };
 		Vector2f correction{ 0,0 };
+		bool collisionOccured = false;
+
+		collisionData& operator+=(collisionData& other) {
+			collision = collision + other.collision;
+			correction = collision + other.correction;
+			collisionOccured = collisionOccured || other.collisionOccured;
+			return *this;
+		}
 	};
 
 	class Physics {
 	private :
-		static constexpr float Skin = 0.15f; // Penetration threshold for a collision to be considered
+		static constexpr float Skin = 0.0f; // Penetration threshold for a collision to be considered
 		static constexpr float epsilon = 0.0001f; // minimum to avoid float errors
+		static constexpr float correctionCoeff = 1.2f; // Coefficient for the correction applied to the objects
+		static constexpr float restitution = 0.24f; // "bounciness" coefficient of the objects
 		
 		struct Penetration {
 			Vector2f normal;
