@@ -12,6 +12,8 @@ private:
     float height;
     float rotation;
 
+    void drawCube(int facettesX, int facettesY);
+
 public:
     Wall(float posX, float posZ, float width, float thickness, float height, float rotation);
 
