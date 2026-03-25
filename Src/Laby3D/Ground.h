@@ -11,5 +11,7 @@ private:
 public:
     Ground(float sizeX, float sizeZ);
 
+    void drawCube(int facettesX, int facettesZ);
+
     void render() override;
 };
