@@ -17,4 +17,16 @@ void Pillar::render()
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, blue);
     glutSolidCube(1.0);
     glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(posX, height / 20, posZ);
+    glScalef(thickness * 1.2, height / 10, thickness * 1.5);
+    glutSolidCube(1.0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(posX, height - height / 20, posZ);
+    glScalef(thickness * 1.2, height / 10, thickness * 1.5);
+    glutSolidCube(1.0);
+    glPopMatrix();
 }
