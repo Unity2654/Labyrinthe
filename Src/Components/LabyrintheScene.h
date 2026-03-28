@@ -19,7 +19,8 @@ private:
 	Laby3D laby;
 
 public:
-	
+
 	LabyrintheScene();
+	virtual void display() override;
 
 };
