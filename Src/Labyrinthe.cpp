@@ -78,8 +78,7 @@ static void timer(int value) {
 }
 
 static void reshape(int wx, int wy){
-    wTx = wx;
-    wTy = wy;
+    mainScene.reshape(wx, wy);
 }
 
 static void keyboard(unsigned char key, int x, int y) {
@@ -96,13 +95,6 @@ static void keyboard(unsigned char key, int x, int y) {
 }
 
 int main(int argc, char** argv) {
-
-    glutInit(&argc, argv);
-    // configuration et création de la fenêtre de visualisation
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-    glutInitWindowSize(wTx, wTy);
-    glutInitWindowPosition(wPx, wPy);
-    glutCreateWindow("Labyrinthe");
     // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme
     init();
     // programmation de la gestion des événements

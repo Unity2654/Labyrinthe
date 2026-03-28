@@ -4,11 +4,17 @@
 namespace gloop {
 	class Display {
 	private:
-		Vector2f size;
+		int wx;
+		int wy;
 
 	public:
-		Display(Vector2f size, Vector2f position, std::string name);
+		Display(int wx, int wy, int px, int py, std::string name);
 
-		void reshape(Vector2f size);
+		void reshape(int wx, int wy);
+
+		int getSizeX() const;
+		int getSizeY() const;
+
+		void displayViewPort() const;
 	};
 }
