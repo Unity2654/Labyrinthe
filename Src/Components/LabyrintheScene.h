@@ -14,7 +14,7 @@ private:
 	static constexpr float PILLAR_WIDTH = 0.4f;   // width of the pillars*
 	// Creation of the 2D tab
 	static constexpr int WIDTH = 10;		      
-	static constexpr int HEIGHT = 10;			  
+	static constexpr int HEIGHT = 10;
 
 	Laby3D laby;
 

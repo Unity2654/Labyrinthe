@@ -22,6 +22,18 @@
     <Filter Include="Fichiers sources\spng">
       <UniqueIdentifier>{8619b847-7e66-462f-89d1-76e04a321bfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Laby">
+      <UniqueIdentifier>{d60b1e11-bbfc-4bab-bc84-4ae21cfe8b5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Main">
+      <UniqueIdentifier>{456addda-cf1e-476a-83a9-e847addd4e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Laby">
+      <UniqueIdentifier>{208ba1d6-fad9-45fc-85fd-743191081bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Main">
+      <UniqueIdentifier>{9c5ee0d8-6de6-4722-8d46-87851b5189a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\Lib\glut32.ms.lib" />
@@ -92,6 +104,33 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\GlOOPLib\Physics\Physics.h">
       <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Laby\generation.h">
+      <Filter>Fichiers d%27en-tête\Laby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Laby3D\Ground.h">
+      <Filter>Fichiers d%27en-tête\Laby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Laby3D\Laby3D.h">
+      <Filter>Fichiers d%27en-tête\Laby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Laby\lst_co.h">
+      <Filter>Fichiers d%27en-tête\Laby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Laby3D\Pillar.h">
+      <Filter>Fichiers d%27en-tête\Laby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Laby\tab.h">
+      <Filter>Fichiers d%27en-tête\Laby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Laby\tools.h">
+      <Filter>Fichiers d%27en-tête\Laby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Laby3D\Wall.h">
+      <Filter>Fichiers d%27en-tête\Laby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Components\LabyrintheScene.h">
+      <Filter>Fichiers d%27en-tête\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +205,39 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\PhysicsTests.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Labyrinthe.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Laby\generation.c">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Laby3D\Ground.cpp">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Laby3D\Laby3D.cpp">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\LabyIntegration.cpp">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Laby\lst_co.c">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Laby3D\Pillar.cpp">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Laby\tab.c">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Laby\tools.c">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Laby3D\Wall.cpp">
+      <Filter>Fichiers sources\Laby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp">
+      <Filter>Fichiers sources\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
