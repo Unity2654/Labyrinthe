@@ -229,6 +229,7 @@ static void clean(void) {
 
 static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glPushMatrix();
     glRotatef(30, 1.0, 1.0, 0.0);
@@ -236,7 +237,7 @@ static void display(void) {
     handler.render();
 
     glPopMatrix();
-
+    glutSwapBuffers();
     int error = glGetError();
     if (error != GL_NO_ERROR)
         printf("Attention erreur %x\n", error);

@@ -436,7 +436,7 @@ static void clean(void)
 }
 
 /* Fonction principale                          */
-
+/*
 int main(int argc, char **argv)
 {
 
@@ -463,4 +463,4 @@ int main(int argc, char **argv)
     // affichage de la fen�tre de visualisation et lancement de la boucle infinie de gestion des �v�nements
     glutMainLoop();
     return (0);
-}
+}*/
