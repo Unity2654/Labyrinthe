@@ -8,6 +8,7 @@
 #include "Ground.h"
 #include "../GlOOPLib/Scenes/Scenes.h"
 #include "../Laby/tab.h"
+#include "../Laby/generation.h"
 
 Laby3D::Laby3D(Tab t, float x_size, float z_size, float y_size, float wall_thickness, float pillar_width)
     : t(t),
@@ -15,7 +16,9 @@ Laby3D::Laby3D(Tab t, float x_size, float z_size, float y_size, float wall_thick
       z_size(z_size),
       y_size(y_size),
       wall_thickness(wall_thickness),
-      pillar_width(pillar_width){}
+      pillar_width(pillar_width){
+    generate(t, 1, 1, 1);
+}
 
 void Laby3D::displayInScene(gloop::Scene &scene)
 {

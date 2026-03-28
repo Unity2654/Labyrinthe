@@ -14,6 +14,8 @@
 #include "GlOOPLib/Lights/Materials.h"
 #include "GlOOPLib/Textures/Texture.h"
 #include "GlOOPLib/Physics/Physics.h"
+#include "Components/LabyrintheScene.h"
+#include "Laby/tab.h"
 
 // --- window ---
 static int wTx = 480; // size of the window, initially set to 480x480
@@ -28,7 +30,7 @@ static int currentDisplay = 1;
 static int constexpr fps = 60;
 
 
-static gloop::Scene mainScene;
+static LabyrintheScene mainScene;
 
 static void init(void)
 {
