@@ -27,7 +27,7 @@ namespace gloop {
 		// Updates all the entities of the scene
 		void update();
 		// Displays all the objects and entities of the scene
-		void display();
+		virtual void display();
 
 		// Adds objects to the scene
 		template<typename T>
@@ -55,10 +55,13 @@ namespace gloop {
 		}
 
 	protected:
-		// Function triggered at the start of the call of the update method
-		virtual void doUpdate() {};
-		// Function triggered at the start of the call of the display method
-		virtual void doDisplay() {};
+		// Display methods that can be used by inherited classes to display lights and objects at will
+		void displayLights();
+		void displayObjects();
+
+		// Update methods that can be used by inherited classes to update entities and dynamic lights
+		void updateLights();
+		void updateEntities();
 
 	};
 }

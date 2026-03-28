@@ -50,7 +50,6 @@ static void init(void)
 
 static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // TESTS //
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -67,7 +66,6 @@ static void display(void) {
     mainScene.display();
 
     glPopMatrix();
-    glutSwapBuffers();
     int error = glGetError();
     if (error != GL_NO_ERROR)
         printf("Attention erreur %x\n", error);
