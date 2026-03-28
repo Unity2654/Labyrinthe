@@ -1,4 +1,4 @@
-#include "Laby3D/Pillar.h"
+#include "Pillar.h"
 
 #include <GL/glut.h>
 #include <GL/gl.h>

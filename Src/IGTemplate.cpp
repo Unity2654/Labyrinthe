@@ -65,10 +65,11 @@ static gloop::Scene mainScene; // main scene, contains the maze
  * @param b The second number
  * @return The maximum of a and b
  */
-static float max(float a, float b)
+
+/*static float max(float a, float b)
 {
     return a > b ? a : b;
-}
+}*/
 
 /**
  * Returns the minimum of two floating point numbers.
@@ -77,10 +78,10 @@ static float max(float a, float b)
  * @param b The second number
  * @return The minimum of a and b
  */
-static float min(float a, float b)
+/*static float min(float a, float b)
 {
     return a < b ? a : b;
-}
+}*/
 
 /**
  * Normalize a 2D vector.

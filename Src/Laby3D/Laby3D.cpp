@@ -1,11 +1,13 @@
-#include "Laby3D/Laby3D.h"
+#include "Laby3D.h"
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-#include "Laby3D/Wall.h"
-#include "Laby3D/Pillar.h"
-#include "Laby3D/Ground.h"
+#include "Wall.h"
+#include "Pillar.h"
+#include "Ground.h"
+#include "../GlOOPLib/Scenes/Scenes.h"
+#include "../Laby/tab.h"
 
 Laby3D::Laby3D(Tab t, float x_size, float z_size, float y_size, float wall_thickness, float pillar_width)
     : t(t),
@@ -13,9 +15,7 @@ Laby3D::Laby3D(Tab t, float x_size, float z_size, float y_size, float wall_thick
       z_size(z_size),
       y_size(y_size),
       wall_thickness(wall_thickness),
-      pillar_width(pillar_width)
-{
-}
+      pillar_width(pillar_width){}
 
 void Laby3D::displayInScene(gloop::Scene &scene)
 {

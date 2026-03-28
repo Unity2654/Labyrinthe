@@ -1,4 +1,4 @@
-#include "Laby3D/Wall.h"
+#include "Wall.h"
 #include "GL/glut.h"
 #include "GL/gl.h"
 #include "GL/glu.h"

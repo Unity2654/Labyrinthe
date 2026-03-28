@@ -1,7 +1,7 @@
 #pragma once
-#include "Laby/tab.h"
-#include "GlOOPLib/Objects/Object3D.h"
-#include "GlOOPLib/Scenes/Scenes.h"
+#include "../GlOOPLib/Objects/Object3D.h"
+#include "../GlOOPLib/Scenes/Scenes.h"
+#include "../Laby/tab.h"
 
 class Laby3D // construct the 3D model of the maze in the scene
 {

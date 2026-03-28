@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GlOOPLib/Objects/Object3D.h"
+#include "../GlOOPLib/Objects/Object3D.h"
 
 class Ground : public gloop::Object3D
 {

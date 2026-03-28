@@ -1,4 +1,4 @@
-#include "Laby3D/Ground.h"
+#include "Ground.h"
 
 #include <GL/glut.h>
 #include <GL/gl.h>
