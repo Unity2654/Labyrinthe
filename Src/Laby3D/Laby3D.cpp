@@ -18,6 +18,7 @@ Laby3D::Laby3D(Tab t, float x_size, float z_size, float y_size, float wall_thick
       wall_thickness(wall_thickness),
       pillar_width(pillar_width){
     generate(t, 1, 1, 1);
+    maze_show(t);
 }
 
 void Laby3D::displayInScene(gloop::Scene &scene)

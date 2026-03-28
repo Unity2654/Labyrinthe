@@ -51,9 +51,18 @@ static void init(void)
 static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    // TESTS //
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(60.0, (float)wTx / wTy, 0.1, 100.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(
+        7.0, 2.0, 5.0,
+        6.0, 0.0, 0.0, 
+        0.0, 1.0, 0.0);
+    // END OF TESTS //
     glPushMatrix();
-    glRotatef(30, 1.0, 1.0, 0.0);
 
     mainScene.display();
 
