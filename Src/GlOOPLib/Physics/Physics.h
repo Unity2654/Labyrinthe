@@ -23,9 +23,9 @@ namespace gloop {
 	class Physics {
 	private :
 		static constexpr float Skin = 0.0f; // Penetration threshold for a collision to be considered
-		static constexpr float epsilon = 0.0001f; // minimum to avoid float errors
+		static constexpr float epsilon = 0.0f; // minimum to avoid float errors
 		static constexpr float correctionCoeff = 1.2f; // Coefficient for the correction applied to the objects
-		static constexpr float restitution = 0.24f; // "bounciness" coefficient of the objects
+		static constexpr float restitution = 0.02f; // "bounciness" coefficient of the objects
 		
 		struct Penetration {
 			Vector2f normal;

@@ -57,6 +57,7 @@ public :
     virtual void update() override {
         gloop::Vector3f spd = speed;
         const gloop::collisionData data = gloop::Physics::collide(*this, otherElements);
+        std::cout << data.correction.x << " " << data.correction.y << std::endl;
         spd = { spd.x + data.collision.x + data.correction.x, spd.y ,spd.z + data.collision.y + data.correction.y };
         position = position + spd;
     }
