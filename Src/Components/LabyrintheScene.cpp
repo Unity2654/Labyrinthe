@@ -4,6 +4,6 @@
 #include "../Laby/generation.h"
 
 LabyrintheScene::LabyrintheScene()
-	:	laby(tab_start(width, height, false), x_size, z_size, y_size, wall_thickness, pillar_width) {
+	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH) {
 	laby.displayInScene(*this);
 }
