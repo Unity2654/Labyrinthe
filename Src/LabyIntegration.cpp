@@ -169,6 +169,7 @@ static void drawMap(bool fullscreen)
     glutSolidSphere(0.5, 10, 10);
     glPopMatrix();
 }
+
 static void display(void)
 {
     // first viewport

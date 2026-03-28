@@ -274,7 +274,7 @@ static void keyboard(unsigned char key, int x, int y) {
     }
     return;
 }
-
+/*
 int main(int argc, char** argv) {
 
     atexit(clean); // exécution d'une fonction (static void clean(void)) lorsque l'application est interrompue par exécution de la fonction standard void exit(int)
@@ -294,4 +294,4 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     // affichage de la fenêtre de visualisation et lancement de la boucle infinie de gestion des événements
     glutMainLoop();
-}
+}*/
