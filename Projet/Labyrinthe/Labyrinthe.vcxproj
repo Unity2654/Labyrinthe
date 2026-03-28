@@ -54,7 +54,7 @@
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Objects\Object3D.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
-    <ClCompile Include="..\..\Src\IGTemplate.cpp" />
+    <ClCompile Include="..\..\Src\LabyIntegration.cpp" />
     <ClCompile Include="..\..\Src\Laby3D\Ground.cpp" />
     <ClCompile Include="..\..\Src\Laby3D\Laby3D.cpp" />
     <ClCompile Include="..\..\Src\Laby3D\Pillar.cpp" />
