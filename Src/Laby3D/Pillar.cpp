@@ -4,7 +4,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-//#define SHOW_HITBOX
+#define SHOW_HITBOX
 
 Pillar::Pillar(float posX, float posZ, float thickness, float height) : posX(posX), posZ(posZ), thickness(thickness), height(height)
 {
@@ -12,13 +12,13 @@ Pillar::Pillar(float posX, float posZ, float thickness, float height) : posX(pos
 
 void Pillar::render()
 {
+    displayMaterial.apply(GL_FRONT_AND_BACK);
 #ifdef SHOW_HITBOX // Show hitbox for debug purposes
-
+    Collidable::drawHitbox(height);
 #else
     glPushMatrix();
     glTranslatef(posX, height / 2, posZ);
     glScalef(thickness, height, thickness);
-    displayMaterial.apply(GL_FRONT_AND_BACK);
     glutSolidCube(1.0);
     glPopMatrix();
 
