@@ -1,4 +1,6 @@
 #include "Collidable.h"
+#include <GL/gl.h>
+#include <iostream>
 
 namespace gloop{
 	Rectangle::Rectangle(Vector2f position, float width, float height) :
@@ -38,5 +40,48 @@ namespace gloop{
 
 	Vector2f Rectangle::getDiagonal() const{
 		return Vector2f::absolute(Vector2f{ position.x + width, position.y - height } - position);
+	}
+
+	void Collidable::drawHitbox(float height) const{
+		Rectangle hb = getCollisionBox();
+		glPushMatrix();
+		std::cout << hb.position.x << " " << hb.position.y << std::endl << std::endl;
+		glTranslatef(hb.position.x, 0.0, hb.position.y);
+		glScalef(hb.width, height, hb.height);
+
+		int polygonMode[2];
+		glGetIntegerv(GL_POLYGON_MODE, polygonMode);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		glBegin(GL_QUADS);
+		glNormal3f(-1.0, 0.0, 0.0);
+		glVertex3f(0.0, 0.0, 0.0);
+		glVertex3f(0.0, 0.0, 1.0);
+		glVertex3f(0.0, 1.0, 1.0);
+		glVertex3f(0.0, 1.0, 0.0);
+
+		glNormal3f(1.0, 0.0, 0.0);
+		glVertex3f(1.0, 0.0, 0.0);
+		glVertex3f(1.0, 0.0, 1.0);
+		glVertex3f(1.0, 1.0, 1.0);
+		glVertex3f(1.0, 1.0, 0.0);
+
+		glNormal3f(0.0, 0.0, -1.0);
+		glVertex3f(0.0, 0.0, 0.0);
+		glVertex3f(1.0, 0.0, 0.0);
+		glVertex3f(1.0, 1.0, 0.0);
+		glVertex3f(0.0, 1.0, 0.0);
+
+		glNormal3f(0.0, 0.0, 1.0);
+		glVertex3f(0.0, 0.0, 1.0);
+		glVertex3f(1.0, 0.0, 1.0);
+		glVertex3f(1.0, 1.0, 1.0);
+		glVertex3f(0.0, 1.0, 1.0);
+		glEnd();
+
+		glPolygonMode(GL_FRONT, polygonMode[0]);
+		glPolygonMode(GL_BACK, polygonMode[1]);
+
+		glPopMatrix();
 	}
 }

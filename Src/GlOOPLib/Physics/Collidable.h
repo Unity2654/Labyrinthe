@@ -46,5 +46,7 @@ namespace gloop {
 		virtual Rectangle getCollisionBox() const = 0;
 
 		virtual Vector2f getSpeed() const { return Vector2f{ 0,0 }; };
+
+		void drawHitbox(float height) const;
 	};
 }

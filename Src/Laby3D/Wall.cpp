@@ -13,10 +13,6 @@ Wall::Wall(float posX, float posZ, float width, float thickness, float height, f
 void Wall::drawCube(int facettesX, int facettesY) const
 {
     glPushMatrix();
-    displayMaterial.apply(GL_FRONT_AND_BACK);
-#ifdef SHOW_HITBOX // Show hitbox for debug purposes
-    drawHitbox();
-#else
     
     glBegin(GL_QUADS);
     for (int i = 0; i < facettesX; i++)
@@ -49,47 +45,15 @@ void Wall::drawCube(int facettesX, int facettesY) const
         }
     }
     glEnd();
-#endif
     glPopMatrix();
-}
-
-void Wall::drawHitbox() const{
-    int polygonMode[2];
-    glGetIntegerv(GL_POLYGON_MODE, polygonMode);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-    glBegin(GL_QUADS);
-    glNormal3f(1.0, 0.0, 0.0);
-    glVertex3f(0.5, 0.5, 0.5);
-    glVertex3f(0.5, 0.5, -0.5);
-    glVertex3f(0.5, -0.5, -0.5);
-    glVertex3f(0.5, -0.5, 0.5);
-
-    glNormal3f(-1.0, 0.0, 0.0);
-    glVertex3f(-0.5, 0.5, 0.5);
-    glVertex3f(-0.5, 0.5, -0.5);
-    glVertex3f(-0.5, -0.5, -0.5);
-    glVertex3f(-0.5, -0.5, 0.5);
-
-    glNormal3f(0.0, 0.0, 1.0);
-    glVertex3f(0.5, 0.5, 0.5);
-    glVertex3f(-0.5, 0.5, 0.5);
-    glVertex3f(-0.5, -0.5, 0.5);
-    glVertex3f(0.5, -0.5, 0.5);
-
-    glNormal3f(0.0, 0.0, -1.0);
-    glVertex3f(0.5, 0.5, -0.5);
-    glVertex3f(-0.5, 0.5, -0.5);
-    glVertex3f(-0.5, -0.5, -0.5);
-    glVertex3f(0.5, -0.5, -0.5);
-
-    glEnd();
-    glPolygonMode(GL_FRONT, polygonMode[0]);
-    glPolygonMode(GL_BACK, polygonMode[1]);
 }
 
 void Wall::render()
 {
+    displayMaterial.apply(GL_FRONT_AND_BACK);
+#ifdef SHOW_HITBOX
+    Collidable::drawHitbox(height);
+#else
     glPushMatrix();
     glTranslatef(posX, height / 2, posZ);
     glRotatef(rotation, 0, 1, 0);
@@ -98,8 +62,14 @@ void Wall::render()
 
     drawCube(10, 10);
     glPopMatrix();
+#endif
 }
 
 gloop::Rectangle Wall::getCollisionBox() const{
+    gloop::Vector2f pos{
+        posX * cos(rotation) - posZ * sin(rotation),
+        posX * sin(rotation) + posZ * cos(rotation)
+    };
+
     return gloop::Rectangle::fromCenter({posX, posZ}, width, thickness);
 }
