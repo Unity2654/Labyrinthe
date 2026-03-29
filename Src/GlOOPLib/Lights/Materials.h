@@ -35,13 +35,13 @@ namespace gloop {
 
         // Applies the material to the scene
         void apply(GLenum face) const {
-            float colorA[4] = { ambientReflexion.r, ambientReflexion.g, ambientReflexion.b, ambientReflexion.alpha };
+            float colorA[4] = {ambientReflexion.r, ambientReflexion.g, ambientReflexion.b, ambientReflexion.alpha};
             glMaterialfv(face, GL_AMBIENT, colorA);
             float colorD[4] = { specularReflexion.r, specularReflexion.g, specularReflexion.b, specularReflexion.alpha };
             glMaterialfv(face, GL_SPECULAR, colorD);
-            float colorS[4] = { diffuseReflexion.r, diffuseReflexion.g, diffuseReflexion.b, diffuseReflexion.alpha };
+            float colorS[4] = {diffuseReflexion.r, diffuseReflexion.g, diffuseReflexion.b, diffuseReflexion.alpha};
             glMaterialfv(face, GL_DIFFUSE, colorS);
-            float colorE[4] = { emissionColor.r, emissionColor.g, emissionColor.b, emissionColor.alpha };
+            float colorE[4] = {emissionColor.r, emissionColor.g, emissionColor.b, emissionColor.alpha};
             glMaterialfv(face, GL_EMISSION, colorE);
             glMaterialf(face, GL_SHININESS, shininess);
         }

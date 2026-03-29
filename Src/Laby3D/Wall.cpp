@@ -7,9 +7,18 @@
 #include "../GlOOPLib/Maths/Utils.h"
 #define SHOW_HITBOX
 
-Wall::Wall(float posX, float posZ, float width, float thickness, float height, float rotation) : posX(posX), posZ(posZ), width(width), thickness(thickness), height(height), rotation(rotation)
-{
-}
+Wall::Wall(float posX, float posZ, float width, float thickness, float height, float rotation) : 
+    posX(posX), 
+    posZ(posZ), 
+    width(width), 
+    thickness(thickness), 
+    height(height), 
+    rotation(rotation),
+    hitbox(gloop::Rectangle::fromCenter(
+        { posX, posZ },
+        width * cos(gloop::degToRad(rotation)) + thickness * sin(gloop::degToRad(rotation)),
+        width * sin(gloop::degToRad(rotation)) + thickness * cos(gloop::degToRad(rotation)))
+    ){}
 
 void Wall::drawCube(int facettesX, int facettesY) const
 {
@@ -67,9 +76,5 @@ void Wall::render()
 }
 
 gloop::Rectangle Wall::getCollisionBox() const{
-    return gloop::Rectangle::fromCenter(
-        { posX, posZ },
-        width* cos(gloop::degToRad(rotation)) + thickness * sin(gloop::degToRad(rotation)),
-        width * sin(gloop::degToRad(rotation)) + thickness * cos(gloop::degToRad(rotation))
-    );
+    return hitbox;
 }
