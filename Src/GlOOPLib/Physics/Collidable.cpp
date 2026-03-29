@@ -45,7 +45,7 @@ namespace gloop{
 	void Collidable::drawHitbox(float height) const{
 		Rectangle hb = getCollisionBox();
 		glPushMatrix();
-		std::cout << hb.position.x << " " << hb.position.y << std::endl << std::endl;
+		//std::cout << hb.position.x << " " << hb.position.y << std::endl << std::endl;
 		glTranslatef(hb.position.x, 0.0, hb.position.y);
 		glScalef(hb.width, height, hb.height);
 

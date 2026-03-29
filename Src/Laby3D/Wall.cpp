@@ -4,6 +4,7 @@
 #include "GL/glu.h"
 #include <stdlib.h>
 #include <iostream>
+#include "../GlOOPLib/Maths/Utils.h"
 #define SHOW_HITBOX
 
 Wall::Wall(float posX, float posZ, float width, float thickness, float height, float rotation) : posX(posX), posZ(posZ), width(width), thickness(thickness), height(height), rotation(rotation)
@@ -66,10 +67,9 @@ void Wall::render()
 }
 
 gloop::Rectangle Wall::getCollisionBox() const{
-    gloop::Vector2f pos{
-        posX * cos(rotation) - posZ * sin(rotation),
-        posX * sin(rotation) + posZ * cos(rotation)
-    };
-
-    return gloop::Rectangle::fromCenter({posX, posZ}, width, thickness);
+    return gloop::Rectangle::fromCenter(
+        { posX, posZ },
+        width* cos(gloop::degToRad(rotation)) + thickness * sin(gloop::degToRad(rotation)),
+        width * sin(gloop::degToRad(rotation)) + thickness * cos(gloop::degToRad(rotation))
+    );
 }
