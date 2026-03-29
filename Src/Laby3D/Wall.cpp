@@ -4,7 +4,7 @@
 #include "GL/glu.h"
 #include <stdlib.h>
 #include <iostream>
-//#define SHOW_HITBOX
+#define SHOW_HITBOX
 
 Wall::Wall(float posX, float posZ, float width, float thickness, float height, float rotation) : posX(posX), posZ(posZ), width(width), thickness(thickness), height(height), rotation(rotation)
 {
@@ -13,10 +13,10 @@ Wall::Wall(float posX, float posZ, float width, float thickness, float height, f
 void Wall::drawCube(int facettesX, int facettesY) const
 {
     glPushMatrix();
+    displayMaterial.apply(GL_FRONT_AND_BACK);
 #ifdef SHOW_HITBOX // Show hitbox for debug purposes
     drawHitbox();
 #else
-    displayMaterial.apply(GL_FRONT_AND_BACK);
     
     glBegin(GL_QUADS);
     for (int i = 0; i < facettesX; i++)
@@ -56,7 +56,6 @@ void Wall::drawCube(int facettesX, int facettesY) const
 void Wall::drawHitbox() const{
     int polygonMode[2];
     glGetIntegerv(GL_POLYGON_MODE, polygonMode);
-    hitboxMaterial.apply(GL_FRONT_AND_BACK);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     glBegin(GL_QUADS);
