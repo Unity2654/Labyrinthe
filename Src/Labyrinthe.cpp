@@ -17,6 +17,8 @@
 #include "Components/LabyrintheScene.h"
 #include "Laby/tab.h"
 
+#define SHOW_HITBOX
+
 // --- window ---
 static int wTx = 480; // size of the window, initially set to 480x480
 static int wTy = 480;
@@ -92,6 +94,13 @@ static void keyboard(unsigned char key, int x, int y) {
         break;
     }
     return;
+}
+
+static void showDebugs() {
+#ifdef SHOW_HITBOX
+    std::cout << "debug : hitbox displayed" << std::endl;
+#endif // SHOW_HITBOX
+
 }
 
 int main(int argc, char** argv) {

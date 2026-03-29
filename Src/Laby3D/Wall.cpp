@@ -8,43 +8,82 @@ Wall::Wall(float posX, float posZ, float width, float thickness, float height, f
 {
 }
 
-void Wall::drawCube(int facettesX, int facettesY)
+void Wall::drawCube(int facettesX, int facettesY) const
 {
-    float red[] = {1.0, 0.0, 0.0, 1.0};
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);
+    displayMaterial.apply(GL_FRONT_AND_BACK);
     glPushMatrix();
 
+    glBegin(GL_QUADS);
     for (int i = 0; i < facettesX; i++)
     {
-        glBegin(GL_QUADS);
+        //glBegin(GL_QUADS);
         glNormal3f(0.0, 1.0, 0.0);
         glVertex3f(0.5, 0.5, 0.5);
         glVertex3f(0.5, 0.5, -0.5);
         glVertex3f(-0.5, 0.5, -0.5);
         glVertex3f(-0.5, 0.5, 0.5);
-        glEnd();
+        //glEnd();
 
         for (int j = 0; j < facettesY; j++)
         {
-            glBegin(GL_QUADS);
+            //glBegin(GL_QUADS);
             glNormal3f(0.0, 0.0, 1.0);
             glVertex3f(-0.5 + i * (1.0 / facettesX), -0.5 + j * (1.0 / facettesY), 0.5);
             glVertex3f(-0.5 + i * (1.0 / facettesX), -0.5 + (j + 1) * (1.0 / facettesY), 0.5);
             glVertex3f(-0.5 + (i + 1) * (1.0 / facettesX), -0.5 + (j + 1) * (1.0 / facettesY), 0.5);
             glVertex3f(-0.5 + (i + 1) * (1.0 / facettesX), -0.5 + j * (1.0 / facettesY), 0.5);
-            glEnd();
+            //glEnd();
 
-            glBegin(GL_QUADS);
+            //glBegin(GL_QUADS);
             glNormal3f(0.0, 0.0, -1.0);
             glVertex3f(-0.5 + i * (1.0 / facettesX), -0.5 + j * (1.0 / facettesY), -0.5);
             glVertex3f(-0.5 + i * (1.0 / facettesX), -0.5 + (j + 1) * (1.0 / facettesY), -0.5);
             glVertex3f(-0.5 + (i + 1) * (1.0 / facettesX), -0.5 + (j + 1) * (1.0 / facettesY), -0.5);
             glVertex3f(-0.5 + (i + 1) * (1.0 / facettesX), -0.5 + j * (1.0 / facettesY), -0.5);
-            glEnd();
+            //glEnd();
         }
     }
+    glEnd();
+
+#ifdef SHOW_HITBOX // Show hitbox for debug purposes
+    drawHitbox();
+#endif
 
     glPopMatrix();
+}
+
+void Wall::drawHitbox() const{
+    int polygonMode;
+    glGetIntegerv(GL_POLYGON_MODE, &polygonMode);
+    glPolygonMode(GL_FRONT, GL_LINE);
+
+    glBegin(GL_QUADS);
+    glNormal3f(1.0, 0.0, 0.0);
+    glVertex3f(0.5, 0.5, 0.5);
+    glVertex3f(0.5, 0.5, -0.5);
+    glVertex3f(0.5, -0.5, -0.5);
+    glVertex3f(0.5, -0.5, 0.5);
+
+    glNormal3f(-1.0, 0.0, 0.0);
+    glVertex3f(-0.5, 0.5, 0.5);
+    glVertex3f(-0.5, 0.5, -0.5);
+    glVertex3f(-0.5, -0.5, -0.5);
+    glVertex3f(-0.5, -0.5, 0.5);
+
+    glNormal3f(0.0, 0.0, 1.0);
+    glVertex3f(0.5, 0.5, 0.5);
+    glVertex3f(-0.5, 0.5, 0.5);
+    glVertex3f(-0.5, -0.5, 0.5);
+    glVertex3f(0.5, -0.5, 0.5);
+
+    glNormal3f(0.0, 0.0, -1.0);
+    glVertex3f(0.5, 0.5, -0.5);
+    glVertex3f(-0.5, 0.5, -0.5);
+    glVertex3f(-0.5, -0.5, -0.5);
+    glVertex3f(0.5, -0.5, -0.5);
+
+    glEnd();
+    glPolygonMode(GL_FRONT, polygonMode);
 }
 
 void Wall::render()
@@ -57,4 +96,8 @@ void Wall::render()
 
     drawCube(10, 10);
     glPopMatrix();
+}
+
+gloop::Rectangle Wall::getCollisionBox() const{
+    return gloop::Rectangle::fromCenter({posX, posZ}, width, thickness);
 }

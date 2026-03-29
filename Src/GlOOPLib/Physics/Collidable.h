@@ -43,11 +43,8 @@ namespace gloop {
 
 	class Collidable {
 	public :
-		virtual double getMass() const { return 0; }
-
-		virtual Rectangle getCollisionBox() const { return Rectangle(gloop::Vector2f{ 0.0,0.0 }, 0.0, 0.0); }
+		virtual Rectangle getCollisionBox() const = 0;
 
 		virtual Vector2f getSpeed() const { return Vector2f{ 0,0 }; };
 	};
-
 }
