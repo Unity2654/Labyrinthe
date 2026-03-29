@@ -41,6 +41,7 @@ static void init(void)
     glDepthFunc(GL_LESS);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
+    glPolygonMode(GL_FRONT, GL_FILL);
 
     float globalAmbient[4] = { 0.15, 0.15, 0.15, 1.0 };
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbient);
