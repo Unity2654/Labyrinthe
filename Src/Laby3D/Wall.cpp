@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "../GlOOPLib/Maths/Utils.h"
-#define SHOW_HITBOX
+//#define SHOW_HITBOX
 
 Wall::Wall(float posX, float posZ, float width, float thickness, float height, float rotation) : 
     posX(posX), 

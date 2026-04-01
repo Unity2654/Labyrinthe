@@ -4,7 +4,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-#define SHOW_HITBOX
+//#define SHOW_HITBOX
 
 Pillar::Pillar(float posX, float posZ, float thickness, float height) : posX(posX), posZ(posZ), thickness(thickness), height(height)
 {
