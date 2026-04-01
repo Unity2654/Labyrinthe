@@ -224,9 +224,6 @@
     <ClCompile Include="..\..\Src\Laby3D\Laby3D.cpp">
       <Filter>Fichiers sources\Laby</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\LabyIntegration.cpp">
-      <Filter>Fichiers sources\Laby</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Laby\lst_co.c">
       <Filter>Fichiers sources\Laby</Filter>
     </ClCompile>
@@ -250,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Utils.cpp">
       <Filter>Fichiers sources\glOOP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\LabyIntegration.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

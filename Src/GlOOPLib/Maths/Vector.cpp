@@ -60,6 +60,12 @@ namespace gloop {
 		return sqrt(x*x + y*y + z*z);
 	}
 
+	Vector3f Vector3f::normalize() const{
+		if (norm() == 0)
+			return *this;
+		return *this / norm();
+	}
+
 	Vector3f Vector3f::absolute(const Vector3f& other){
 		return Vector3f(abs(other.x), abs(other.y), abs(other.z));
 	}
@@ -104,6 +110,12 @@ namespace gloop {
 
 	float Vector2f::norm() const{
 		return sqrt(x * x + y * y);
+	}
+
+	Vector2f Vector2f::normalize() const{
+		if (norm() == 0)
+			return *this;
+		return *this / norm();
 	}
 
 	Vector2f Vector2f::absolute(const Vector2f& other){

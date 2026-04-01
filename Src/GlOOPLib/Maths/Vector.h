@@ -25,6 +25,8 @@ namespace gloop {
 		float dot(const Vector2f& other) const; // scalar product
 		float isOrthogonal(const Vector2f& other) const;
 		float norm() const;
+		
+		Vector2f normalize() const;
 
 		static Vector2f absolute(const Vector2f& other);
 	};
@@ -56,6 +58,8 @@ namespace gloop {
 		Vector3f vectorial(const Vector3f& other) const; // vectorial product
 		float isOrthogonal(const Vector3f& other) const;
 		float norm() const;
+
+		Vector3f normalize() const;
 
 		static Vector3f absolute(const Vector3f& other);
 	};

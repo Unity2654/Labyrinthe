@@ -31,6 +31,36 @@ static int displayCount = 3;
 static int currentDisplay = 1;
 static int constexpr fps = 60;
 
+/********************************************************************/
+/************* TEMPORARY CONTENT FOR FIRST DEPOSIT ******************/
+/********************************************************************/
+// --- constants ---
+#define MOUSE_SENS 0.003f         // mouse sensitivity
+#define MOVEMENT_SPEED 0.05f      // movement speed
+#define SPRINT_SPEED 0.05f        // sprint speed, added to MOVEMENT_SPEED
+#define GRAVITY 0.01f             // gravity (used for the jump)
+#define JUMP_FORCE 0.2f           // force of the jump
+#define CAM_SHAKE_AMPLITUDE 0.03f // used for the camera animation
+#define CAM_SHAKE_SPEED 0.02f     // used for the camera animation
+
+// --- camera ---
+static int old_x = 0; // used to detect mouse movement
+static int old_y = 0;
+static float rotate_x = 0.0f; // used to store the angle of rotation
+static float rotate_y = 0.0f;
+static gloop::Vector3f looking_at(0.0, 0.0, -1.0); // direction of the camera
+static gloop::Vector3f pos(1.0, 1.75, 1.0);        // position of the camera
+static int camera = 0;                             // 0 = 1st person, 1 = map open
+static float cam_shake = 0.0f;                     // used for the camera animation
+
+// --- movement ---
+static float jump = 0.0f;             // used to detect if the player is jumping
+static int moving[4] = { 0, 0, 0, 0 }; // up, down, left, right
+static bool isSprinting = 0;          // if the player is sprinting
+/**********************************************************/
+/************* END OF TEMPORARY CONTENT  ******************/
+/**********************************************************/
+
 
 static LabyrintheScene mainScene;
 
@@ -59,10 +89,13 @@ static void display(void) {
     gluPerspective(60.0, (float)wTx / wTy, 0.1, 100.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
     gluLookAt(
-        7.0, 2.0, 5.0,
-        6.0, 0.0, 0.0, 
+        pos.x, pos.y + sin(cam_shake) * CAM_SHAKE_AMPLITUDE, pos.z,       // position caméra
+        pos.x + looking_at.x, pos.y + looking_at.y, pos.z + looking_at.z, // point regardé
         0.0, 1.0, 0.0);
+
+    cam_shake += CAM_SHAKE_SPEED;
     // END OF TESTS //
     glPushMatrix();
 
@@ -76,6 +109,43 @@ static void display(void) {
 
 static void timer(int value) {
     mainScene.update();
+
+    gloop::Vector2f vect{ looking_at.x, looking_at.z };
+
+    gloop::Vector2f speed{ 0,0 };
+    if (moving[0])
+    {
+        speed.x += vect.x;
+        speed.y += vect.y;
+    }
+    if (moving[1])
+    {
+        speed.x -= vect.x;
+        speed.y -= vect.y;
+    }
+    if (moving[2])
+    {
+        speed.x += vect.y;
+        speed.y -= vect.x;
+    }
+    if (moving[3])
+    {
+        speed.x -= vect.y;
+        speed.y += vect.x;
+    }
+    speed = speed.normalize() * (MOVEMENT_SPEED + isSprinting * SPRINT_SPEED);
+    pos = { pos.x + speed.x, pos.y, pos.z + speed.y };
+
+    if (pos.y >= 1.75f){
+        pos.y += jump;
+        jump -= GRAVITY;
+    }
+    else
+    {
+        jump = 0.0f;
+        pos.y = 1.75f;
+    }
+
     glutPostRedisplay();
     glutTimerFunc(1000 / fps, timer, 0);
 }
@@ -85,16 +155,143 @@ static void reshape(int wx, int wy){
 }
 
 static void keyboard(unsigned char key, int x, int y) {
-    printf("K  %x %4d %4d\n", key, x, y);
-    switch (key) {
-    case 0x1B: // escape
-        exit(0);
+    (void)x;
+    (void)y;
+
+    switch (key){
+    case 'c':
+        camera = (camera + 1) % 2;
         break;
-    case 0x20: // space
+    case 'z':
+        moving[0] = 1;
+        break;
+    case 's':
+        moving[1] = 1;
+        break;
+    case 'q':
+        moving[2] = 1;
+        break;
+    case 'd':
+        moving[3] = 1;
+        break;
+    case 'a':
+        isSprinting = !isSprinting;
+        break;
+    case ' ':
+        if (pos.y <= 1.75f)
+            jump = JUMP_FORCE;
+        break;
+    case 'r':
         currentDisplay = (currentDisplay + 1) % displayCount;
         break;
     }
-    return;
+}
+
+static void keyboardUp(unsigned char key, int x, int y){
+    (void)x;
+    (void)y;
+    switch (key)
+    {
+    case 'z':
+        moving[0] = 0;
+        break;
+    case 's':
+        moving[1] = 0;
+        break;
+    case 'q':
+        moving[2] = 0;
+        break;
+    case 'd':
+        moving[3] = 0;
+        break;
+    }
+}
+
+static void special(int specialKey, int x, int y){
+    (void)x;
+    (void)y;
+
+    switch (specialKey)
+    {
+    case GLUT_KEY_UP:
+        moving[0] = 1;
+        break;
+    case GLUT_KEY_DOWN:
+        moving[1] = 1;
+        break;
+    case GLUT_KEY_LEFT:
+        moving[2] = 1;
+        break;
+    case GLUT_KEY_RIGHT:
+        moving[3] = 1;
+        break;
+    }
+
+    glutPostRedisplay();
+}
+
+static void mouse(int button, int state, int x, int y){
+    (void)button;
+    (void)state;
+    old_x = x;
+    old_y = y;
+    // glfwDisable(GLFW_MOUSE_CURSOR);
+    glutPostRedisplay();
+}
+
+/* Fonction executee lors du passage            */
+/* de la souris sur la fenetre                  */
+/* avec un bouton presse                        */
+static void mouseMotion(int x, int y)
+{
+    // rotate_x += x - old_x;
+    // rotate_y += y - old_y;
+    // old_x = x;
+    // old_y = y;
+    // glutPostRedisplay();
+
+    float dx = (x - old_x) * MOUSE_SENS;
+    float dy = (y - old_y) * MOUSE_SENS;
+
+    old_x = x;
+    old_y = y;
+
+    rotate_x += dx;
+    rotate_y += dy;
+
+    // printf("rotate_x = %f, rotate_y = %f\n", rotate_x, rotate_y);
+
+    looking_at.x = cos(rotate_y) * sin(rotate_x);
+    looking_at.y = -sin(rotate_y);
+    looking_at.z = -cos(rotate_y) * cos(rotate_x);
+}
+
+static int warp = 0;
+
+static void passiveMouseMotion(int x, int y)
+{
+    if (warp)
+    {
+        warp = 0;
+        return;
+    }
+
+    float dx = (x - wTx / 2) * MOUSE_SENS;
+    float dy = (y - wTy / 2) * MOUSE_SENS;
+
+    rotate_x += dx;
+    rotate_y += dy;
+
+    looking_at.x = cos(rotate_y) * sin(rotate_x);
+    looking_at.y = -sin(rotate_y);
+    looking_at.z = -cos(rotate_y) * cos(rotate_x);
+
+    warp = 1;
+    glutWarpPointer(wTx / 2, wTy / 2);
+}
+
+static void clean(void)
+{
 }
 
 static void showDebugs() {
@@ -105,11 +302,15 @@ static void showDebugs() {
 }
 
 int main(int argc, char** argv) {
+    atexit(clean);
     // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme
     init();
     // programmation de la gestion des événements
     glutKeyboardFunc(keyboard);
+    glutKeyboardUpFunc(keyboardUp);
+    glutSpecialFunc(special);
     glutReshapeFunc(reshape);
+    glutPassiveMotionFunc(passiveMouseMotion);
     glutTimerFunc(1000 / fps, timer, 0); // Using a timer instead of idle to sync with the computer clock
                                          // More work will have to be done using this, to incorporate a delta, for slow computers
     glutDisplayFunc(display);
