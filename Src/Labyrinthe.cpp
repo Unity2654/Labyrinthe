@@ -171,6 +171,8 @@ static void timer(int value)
 
 static void reshape(int wx, int wy)
 {
+    wTx = wx;
+    wTy = wy;
     mainScene.reshape(wx, wy);
 }
 
