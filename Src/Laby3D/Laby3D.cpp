@@ -97,3 +97,7 @@ void Laby3D::displayInScene(gloop::Scene &scene)
         }
     }
 }
+
+Laby3D::~Laby3D(){
+    free_tab(t);
+}

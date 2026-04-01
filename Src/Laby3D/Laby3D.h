@@ -17,4 +17,6 @@ public:
     Laby3D(Tab t, float x_size, float z_size, float y_size, float wall_thickness, float pillar_width);
 
     void displayInScene(gloop::Scene &scene);
+
+    ~Laby3D();
 };

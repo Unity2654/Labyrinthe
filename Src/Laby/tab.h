@@ -3,6 +3,11 @@
 
 #include <stdbool.h>
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 typedef enum
 {
   normal,
@@ -72,10 +77,6 @@ void free_tab(Tab tab);
  */
 void print_tab(Tab tab);
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
   /**
    * @brief Prints the given Tab struct as a maze in the console
    *
@@ -92,9 +93,6 @@ extern "C"
    * when printing the maze.
    */
   void maze_show(Tab tab);
-#ifdef __cplusplus
-}
-#endif
 
 /**
  * @brief Converts a type_cell enum value to a string representation
@@ -105,4 +103,9 @@ extern "C"
  */
 char *type_to_str(type_cell type);
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif // TAB_H
+
