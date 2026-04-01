@@ -40,7 +40,7 @@ static int wPx = 50; // initial position of the window (50x50)
 static int wPy = 50;
 
 // --- display ---
-static GLenum displays[3] = { GL_LINE, GL_FILL, GL_POINT };
+static GLenum displays[3] = {GL_LINE, GL_FILL, GL_POINT};
 static int displayCount = 3;
 static int currentDisplay = 1;
 static int constexpr fps = 60;
@@ -68,13 +68,12 @@ static int camera = 0;                             // 0 = 1st person, 1 = map op
 static float cam_shake = 0.0f;                     // used for the camera animation
 
 // --- movement ---
-static float jump = 0.0f;             // used to detect if the player is jumping
-static int moving[4] = { 0, 0, 0, 0 }; // up, down, left, right
-static bool isSprinting = 0;          // if the player is sprinting
+static float jump = 0.0f;            // used to detect if the player is jumping
+static int moving[4] = {0, 0, 0, 0}; // up, down, left, right
+static bool isSprinting = 0;         // if the player is sprinting
 /**********************************************************/
 /************* END OF TEMPORARY CONTENT  ******************/
 /**********************************************************/
-
 
 static LabyrintheScene mainScene;
 
@@ -87,7 +86,7 @@ static void init(void)
     glEnable(GL_NORMALIZE);
     glPolygonMode(GL_FRONT, GL_FILL);
 
-    float globalAmbient[4] = { 0.15, 0.15, 0.15, 1.0 };
+    float globalAmbient[4] = {0.15, 0.15, 0.15, 1.0};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbient);
 
     glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -98,7 +97,8 @@ static void init(void)
     glutSetCursor(GLUT_CURSOR_NONE);
 }
 
-static void display(void) {
+static void display(void)
+{
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
     // TESTS //
     glMatrixMode(GL_PROJECTION);
@@ -124,12 +124,13 @@ static void display(void) {
         printf("Attention erreur %x\n", error);
 }
 
-static void timer(int value) {
+static void timer(int value)
+{
     mainScene.update();
 
-    gloop::Vector2f vect{ looking_at.x, looking_at.z };
+    gloop::Vector2f vect{looking_at.x, looking_at.z};
 
-    gloop::Vector2f speed{ 0,0 };
+    gloop::Vector2f speed{0, 0};
     if (moving[0])
     {
         speed.x += vect.x;
@@ -151,9 +152,10 @@ static void timer(int value) {
         speed.y += vect.x;
     }
     speed = speed.normalize() * (MOVEMENT_SPEED + isSprinting * SPRINT_SPEED);
-    pos = { pos.x + speed.x, pos.y, pos.z + speed.y };
+    pos = {pos.x + speed.x, pos.y, pos.z + speed.y};
 
-    if (pos.y >= 1.75f){
+    if (pos.y >= 1.75f)
+    {
         pos.y += jump;
         jump -= GRAVITY;
     }
@@ -167,15 +169,18 @@ static void timer(int value) {
     glutTimerFunc(1000 / fps, timer, 0);
 }
 
-static void reshape(int wx, int wy){
+static void reshape(int wx, int wy)
+{
     mainScene.reshape(wx, wy);
 }
 
-static void keyboard(unsigned char key, int x, int y) {
+static void keyboard(unsigned char key, int x, int y)
+{
     (void)x;
     (void)y;
 
-    switch (key){
+    switch (key)
+    {
     case 'c':
         camera = (camera + 1) % 2;
         break;
@@ -204,7 +209,8 @@ static void keyboard(unsigned char key, int x, int y) {
     }
 }
 
-static void keyboardUp(unsigned char key, int x, int y){
+static void keyboardUp(unsigned char key, int x, int y)
+{
     (void)x;
     (void)y;
     switch (key)
@@ -224,7 +230,8 @@ static void keyboardUp(unsigned char key, int x, int y){
     }
 }
 
-static void special(int specialKey, int x, int y){
+static void special(int specialKey, int x, int y)
+{
     (void)x;
     (void)y;
 
@@ -247,7 +254,8 @@ static void special(int specialKey, int x, int y){
     glutPostRedisplay();
 }
 
-static void mouse(int button, int state, int x, int y){
+static void mouse(int button, int state, int x, int y)
+{
     (void)button;
     (void)state;
     old_x = x;
@@ -311,11 +319,11 @@ static void clean(void)
 {
 }
 
-static void showDebugs() {
+static void showDebugs()
+{
 #ifdef SHOW_HITBOX
     std::cout << "debug : hitbox displayed" << std::endl;
 #endif // SHOW_HITBOX
-
 }
 
 int main(int argc, char** argv) {

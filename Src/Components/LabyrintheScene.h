@@ -1,6 +1,6 @@
 #include "../GlOOPLib/Scenes/Scenes.h"
 #include "../Laby3D/Laby3D.h"
-#include "../GlOOPLib/Display.h"
+#include "../GlOOPLib/Display/Display.h"
 
 // The scene the labyrinthe is displayed in
 class LabyrintheScene: public gloop::Scene {

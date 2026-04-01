@@ -19,7 +19,7 @@ void LabyrintheScene::display(){
 	displayObjects();
 	
 	// Minimap
-	float map_size = max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
+	float map_size = std::max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
 	glViewport(0, window.getSizeY() - map_size, map_size, map_size);
 
 	glMatrixMode(GL_PROJECTION);

@@ -2,6 +2,8 @@
 #include <GL/glut.h>
 
 gloop::Display::Display(int wx, int wy, int px, int py, std::string name) : wx(wx), wy(wy){
+    int i = 1;
+    glutInit(&i, NULL);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
     glutInitWindowSize(wx, wy);
     glutInitWindowPosition(wx, wy);

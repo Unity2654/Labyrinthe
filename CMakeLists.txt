@@ -17,9 +17,20 @@ file(GLOB LABY "Src/Laby/*.c")
 
 file(GLOB LABY3D "Src/Laby3D/*.cpp")
 
+file(GLOB COMPO "Src/Components/*.cpp")
+
+file(GLOB MATHS "Src/GlOOPLib/Maths/*.cpp")
+
+file(GLOB DISPLAY "Src/GlOOPLib/Display/*.cpp")
+
+file(GLOB OBJECTS "Src/GlOOPLib/Objects/*.cpp")
+
+file(GLOB PHYSICS "Src/GlOOPLib/Physics/*.cpp")
+
+
 
 add_executable(Labyrinthe
-  Src/IGTemplate.cpp
+  Src/Labyrinthe.cpp
   Src/GlOOPLib/Maths/Vector.cpp
   Src/GlOOPLib/Objects/Entity3D.h
   Src/GlOOPLib/Objects/Object3D.cpp
@@ -27,11 +38,21 @@ add_executable(Labyrinthe
   Src/GlOOPLib/Lights/Lights.h
   Src/GlOOPLib/Lights/Colors.h
 
+  ${PHYSICS}
+
+  ${OBJECTS}
+
+  ${DISPLAY}
+
+  ${MATHS}
+
   ${LABY}
 
   ${LABY3D}
 
   ${SPNG}
+
+  ${COMPO}
 )
 
 add_dependencies(Labyrinthe
@@ -50,6 +71,7 @@ target_link_libraries(Labyrinthe
     OpenGL::OpenGL
     GLUT::GLUT
     OpenGL::GLU
+
 )
 
 target_compile_options(Labyrinthe
