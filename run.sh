@@ -4,12 +4,22 @@ mkdir Temp >/dev/null 2>/dev/null
 cd Temp
 if !(test -f MakeFile && test ../CMakeList.txt -nt MakeFile);
 then
-	cmake ..;
+	if !(cmake ..);
+	then
+			echo "\nrun : cmake command failed !";
+			exit 1;
+	fi
 fi
-make
+if !(make);
+then
+	echo "\nrun : make command failed !";
+	exit 1;
+fi
 cd ..
 
 mkdir Bin >/dev/null 2>/dev/null
 cp Temp/Labyrinthe Bin
 
-Bin/Labyrinthe
+clear
+cd Bin
+./Labyrinthe
