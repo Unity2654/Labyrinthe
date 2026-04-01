@@ -18,6 +18,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <vector>
+#include <cmath>
 
 #include "GlOOPLib/Scenes/Scenes.h"
 #include "GlOOPLib/Objects/Entity3D.h"
@@ -90,6 +91,9 @@ static void init(void)
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbient);
 
     glClearColor(0.0, 0.0, 0.0, 1.0);
+
+    // Loading a texture for test purposes
+    gloop::Texture tex = gloop::Texture("../Resources/orange.png");
 
     glutSetCursor(GLUT_CURSOR_NONE);
 }
