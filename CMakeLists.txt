@@ -27,7 +27,9 @@ file(GLOB OBJECTS "Src/GlOOPLib/Objects/*.cpp")
 
 file(GLOB PHYSICS "Src/GlOOPLib/Physics/*.cpp")
 
+file(GLOB SCENES "Src/GlOOPLib/Scenes/*.cpp")
 
+file(GLOB TEXTURES "Src/GlOOPLib/Textures/*.cpp")
 
 add_executable(Labyrinthe
   Src/Labyrinthe.cpp
@@ -43,6 +45,10 @@ add_executable(Labyrinthe
   ${OBJECTS}
 
   ${DISPLAY}
+
+  ${SCENES}
+
+  ${TEXTURES}
 
   ${MATHS}
 

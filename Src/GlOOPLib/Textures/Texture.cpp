@@ -14,7 +14,7 @@ namespace gloop {
 		spng_ctx* ctx = NULL;
 		unsigned char* image = NULL;
 
-		fopen_s(&png, path.c_str(), "rb");
+		png = std::fopen(path.c_str(), "rb");
 		if (png == NULL) {
 			std::cerr << "Failed to load " << path << std::endl;
 			exit(1);
@@ -30,7 +30,7 @@ namespace gloop {
 		
 		struct spng_ihdr ihdr;
 		ret = spng_get_ihdr(ctx, &ihdr);
-		unsigned int size;
+		size_t size;
 		ret = spng_decoded_image_size(ctx, SPNG_FMT_PNG, &size);
 		image = (unsigned char*)malloc(size);
 
