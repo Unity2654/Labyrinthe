@@ -1,15 +1,15 @@
-// Memory checking
-#if defined(WIN32) || defined(WIN64)
-#define _CRTDBG_MAP_ALLOC
-#if defined(_DEBUG)
-#define _AFXDLL
-#include <afx.h>
-#endif
-#endif
-#include <stdlib.h>
-#if defined(WIN32) || defined(WIN64)
-#include <crtdbg.h>
-#endif
+//// Memory checking
+//#if defined(WIN32) || defined(WIN64)
+//#define _CRTDBG_MAP_ALLOC
+//#if defined(_DEBUG)
+//#define _AFXDLL
+//#include <afx.h>
+//#endif
+//#endif
+//#include <stdlib.h>
+//#if defined(WIN32) || defined(WIN64)
+//#include <crtdbg.h>
+//#endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -329,10 +329,10 @@ static void showDebugs()
 }
 
 int main(int argc, char** argv) {
-#if defined(WIN32) || defined(WIN64)
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    _crtBreakAlloc = 634;
-#endif
+//#if defined(WIN32) || defined(WIN64)
+//    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+//    _crtBreakAlloc = 634;
+//#endif
     //for test : malloc(10);
 
     atexit(clean);

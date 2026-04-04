@@ -3,7 +3,8 @@
 
 gloop::Display::Display(int wx, int wy, int px, int py, std::string name) : wx(wx), wy(wy){
     int i = 1;
-    glutInit(&i, NULL);
+    char* whatever[] = { "hello", "world" };
+    glutInit(&i, whatever);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
     glutInitWindowSize(wx, wy);
     glutInitWindowPosition(wx, wy);

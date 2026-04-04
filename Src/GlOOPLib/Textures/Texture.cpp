@@ -14,7 +14,11 @@ namespace gloop {
 		spng_ctx* ctx = NULL;
 		unsigned char* image = NULL;
 
+#if defined(WIN32) || defined(WIN64)
+		int _ = fopen_s(&png, path.c_str(),"rb");
+#else
 		png = std::fopen(path.c_str(), "rb");
+#endif
 		if (png == NULL) {
 			std::cerr << "Failed to load " << path << std::endl;
 			exit(1);
