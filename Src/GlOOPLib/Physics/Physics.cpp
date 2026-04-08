@@ -46,15 +46,16 @@ namespace gloop {
         res.correction = p.normal * -std::max(p.depth - 0.1f, 0.0f) * correctionCoeff;
 
         // Collision resolution
-        Vector2f relativeVelocity = -mainObject.speed;
-        const float velocityAlongNormal = relativeVelocity.dot(p.normal);
-        if (velocityAlongNormal > 0) {
-            return res;
-        }
         res.collisionOccured = true;
         res.addFlags(otherObject.flags);
         if (!otherObject.isSolid) { // Don't resolve the collision if the other object is not solid
             res.correction = { 0.0,0.0 };
+            return res;
+        }
+
+        Vector2f relativeVelocity = -mainObject.speed;
+        const float velocityAlongNormal = relativeVelocity.dot(p.normal);
+        if (velocityAlongNormal > 0) {
             return res;
         }
 
@@ -74,7 +75,7 @@ namespace gloop {
                 res += collision;
             }
 		}
-        return (nbCollide > 0) ? collisionData{res.collision / nbCollide, res.correction / nbCollide, true} : res;
+        return (nbCollide > 0) ? collisionData{res.collision / nbCollide, res.correction / nbCollide, true, res.flags} : res;
 	}
 
 }

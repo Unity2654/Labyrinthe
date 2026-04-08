@@ -39,6 +39,11 @@ public :
         speed = speed + data.collision + data.correction;
         position = position + speed;
         isColliding = data.flags.find(gloop::CollisionFlag::TESTFLAG) != data.flags.end();
+        
+        /*std::cout << "{";
+        for (auto& f : data.flags)
+            std::cout << f << " ";
+        std::cout << "}" << std::endl;*/
     }
 
     virtual void render() override {
@@ -53,7 +58,7 @@ public :
     }
 
     virtual gloop::CollisionBox getCollisionBox() const override {
-        return { gloop::Rectangle::fromCenter({ position.x, position.z }, scale, scale), true, {}, getSpeed() };
+        return { gloop::Rectangle::fromCenter({ position.x, position.z }, scale, scale), true, {gloop::CollisionFlag::TESTFLAG}, getSpeed() };
     }
 
     virtual gloop::Vector2f getSpeed() const {
