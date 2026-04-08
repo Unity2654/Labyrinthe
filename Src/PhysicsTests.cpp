@@ -15,7 +15,7 @@
 #include "GlOOPLib/Textures/Texture.h"
 #include "GlOOPLib/Physics/Physics.h"
 
-#define TEST
+//#define TEST
 
 #ifdef TEST
 

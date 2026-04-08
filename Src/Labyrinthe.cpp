@@ -32,7 +32,7 @@
 #include "Laby/tab.h"
 
 #define SHOW_HITBOX
-#define TEST
+//#define TEST
 
 #ifndef TEST
 
