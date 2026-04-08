@@ -19,5 +19,5 @@ public:
 
     void render() override;
 
-    gloop::Rectangle getCollisionBox() const override;
+    gloop::CollisionBox getCollisionBox() const override;
 };

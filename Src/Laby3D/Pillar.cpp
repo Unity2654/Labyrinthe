@@ -36,6 +36,6 @@ void Pillar::render()
 #endif
 }
 
-gloop::Rectangle Pillar::getCollisionBox() const{
-    return gloop::Rectangle::fromCenter({ posX, posZ }, thickness, thickness);
+gloop::CollisionBox Pillar::getCollisionBox() const{
+    return { gloop::Rectangle::fromCenter({ posX, posZ }, thickness, thickness) };
 }

@@ -14,7 +14,7 @@ private:
     float height;
     float rotation;
     const gloop::Material displayMaterial{ gloop::Color{1.0,0.0,0.0,1.0}, gloop::Color{1.0,0.0,0.0,1.0} };
-    const gloop::Rectangle hitbox;
+    const gloop::CollisionBox hitbox;
 
     void drawCube(int facettesX, int facettesY) const;
 
@@ -23,5 +23,5 @@ public:
 
     void render() override;
 
-    gloop::Rectangle getCollisionBox() const override;
+    gloop::CollisionBox getCollisionBox() const override;
 };
