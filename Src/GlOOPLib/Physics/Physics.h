@@ -1,6 +1,7 @@
 #pragma once
 #include "Collidable.h"
 #include <vector>
+#include <set>
 
 namespace gloop {
 	/** Data returned by the physics collision methods
@@ -11,12 +12,20 @@ namespace gloop {
 		Vector2f collision{ 0,0 };
 		Vector2f correction{ 0,0 };
 		bool collisionOccured = false;
+		std::set<CollisionFlag> flags = {};
 
 		collisionData& operator+=(collisionData& other) {
 			collision = collision + other.collision;
 			correction = collision + other.correction;
 			collisionOccured = collisionOccured || other.collisionOccured;
+			for (auto& f : other.flags)
+				flags.insert(f);
 			return *this;
+		}
+
+		void addFlags(std::set<CollisionFlag> flags) {
+			for (auto& f : flags)
+				this->flags.insert(f);
 		}
 	};
 
@@ -41,8 +50,8 @@ namespace gloop {
 		// Methods
 
 		// Collision between two objects. The data only concerns the main object.
-		static collisionData collide(const Collidable& mainObject, const Rectangle& otherObject);
+		static collisionData collide(const CollisionBox& mainObject, const CollisionBox& otherObject);
 		// Collision between one object, and muliple others.
-		static collisionData collide(const Collidable& mainObject, const std::vector<Rectangle>& otherObjects);
+		static collisionData collide(const CollisionBox& mainObject, const std::vector<CollisionBox> otherObjects);
 	};
 }
