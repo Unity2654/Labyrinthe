@@ -17,6 +17,7 @@ namespace gloop
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		displayLights();
 		displayObjects();
+		glFlush();
 		glutSwapBuffers();
 	}
 
@@ -42,7 +43,6 @@ namespace gloop
 		{
 			e->render();
 		}
-		glFlush();
 	}
 
 	void Scene::updateLights(){

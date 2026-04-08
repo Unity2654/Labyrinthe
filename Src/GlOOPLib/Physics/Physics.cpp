@@ -53,8 +53,10 @@ namespace gloop {
         }
         res.collisionOccured = true;
         res.addFlags(otherObject.flags);
-        if (!otherObject.isSolid) // Don't resolve the collision if the other object is not solid
+        if (!otherObject.isSolid) { // Don't resolve the collision if the other object is not solid
+            res.correction = { 0.0,0.0 };
             return res;
+        }
 
         const float impulseScalar = (1 + restitution) * velocityAlongNormal;
         res.collision = p.normal * impulseScalar;

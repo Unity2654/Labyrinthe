@@ -30,7 +30,7 @@ public :
     std::vector<gloop::CollisionBox> otherElements;
     float scale;
     bool isColliding = false;
-    //gloop::Material red{ gloop::Color{1.0,0.0,0.0,1.0}, gloop::Color{1.0,0.0,0.0,1.0} };
+    gloop::Material red{ gloop::Color{1.0,0.0,0.0,1.0}, gloop::Color{1.0,0.0,0.0,1.0} };
 
     MovingCube(gloop::Vector3f position, gloop::Vector3f speed, float scale) : position(position), speed(speed), scale(scale){}
 
@@ -42,14 +42,14 @@ public :
     }
 
     virtual void render() override {
-        //gloop::Material old = gloop::Material::getCurrentMaterial(GL_FRONT);
+        gloop::Material old = gloop::Material::getCurrentMaterial(GL_FRONT);
         glPushMatrix();
-        /*if (isColliding)
-            red.apply(GL_FRONT);*/
+        if (isColliding)
+            red.apply(GL_FRONT);
         glTranslatef(position.x, position.y, position.z);
         glutSolidCube(scale);
         glPopMatrix();
-        //old.apply(GL_FRONT);
+        old.apply(GL_FRONT);
     }
 
     virtual gloop::CollisionBox getCollisionBox() const override {
@@ -77,7 +77,7 @@ public :
     virtual void update() override {
         gloop::Vector3f spd = speed;
         const gloop::collisionData data = gloop::Physics::collide(this->getCollisionBox(), otherElements);
-        std::cout << data.correction.x << " " << data.correction.y << std::endl;
+        //std::cout << data.correction.x << " " << data.correction.y << std::endl;
         spd = { spd.x + data.collision.x + data.correction.x, spd.y ,spd.z + data.collision.y + data.correction.y };
         position = position + spd;
     }
@@ -264,7 +264,6 @@ static void clean(void) {
 
 static void display(void) {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glPushMatrix();
     glRotatef(30, 1.0, 1.0, 0.0);
@@ -272,7 +271,6 @@ static void display(void) {
     handler.render();
 
     glPopMatrix();
-    glutSwapBuffers();
     int error = glGetError();
     if (error != GL_NO_ERROR)
         printf("Attention erreur %x\n", error);
