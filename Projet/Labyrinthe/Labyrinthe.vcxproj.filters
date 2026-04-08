@@ -138,6 +138,9 @@
     <ClInclude Include="..\..\Src\GlOOPLib\Maths\Utils.h">
       <Filter>Fichiers d%27en-tête\glOOP</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Display\Display.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp">
@@ -148,9 +151,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp">
       <Filter>Fichiers sources\glOOP</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\IGTemplate.cpp">
-      <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\spng\spng.c">
       <Filter>Fichiers sources\spng</Filter>
@@ -209,9 +209,6 @@
     <ClCompile Include="..\..\Src\GlOOPLib\Physics\Collidable.cpp">
       <Filter>Fichiers sources\glOOP</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\PhysicsTests.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Labyrinthe.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -242,13 +239,13 @@
     <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp">
       <Filter>Fichiers sources\Main</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\GlOOPLib\Display.cpp">
-      <Filter>Fichiers sources\glOOP</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Utils.cpp">
       <Filter>Fichiers sources\glOOP</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\LabyIntegration.cpp">
+    <ClCompile Include="..\..\Src\GlOOPLib\Display\Display.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\PhysicsTests.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -45,7 +45,7 @@ namespace gloop {
 	// Collision flags
 	// Add more flags to this enum when necessary.
 	enum CollisionFlag {
-
+		TESTFLAG, // Flag used for testing puposes, don't use in practice
 	};
 
 	// Hitbox of an object

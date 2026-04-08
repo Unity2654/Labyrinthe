@@ -76,6 +76,7 @@
     <ClCompile Include="..\..\Src\Laby\lst_co.c" />
     <ClCompile Include="..\..\Src\Laby\tab.c" />
     <ClCompile Include="..\..\Src\Laby\tools.c" />
+    <ClCompile Include="..\..\Src\PhysicsTests.cpp" />
     <ClCompile Include="..\..\Src\spng\adler32.c" />
     <ClCompile Include="..\..\Src\spng\compress.c" />
     <ClCompile Include="..\..\Src\spng\crc32.c" />

@@ -32,6 +32,9 @@
 #include "Laby/tab.h"
 
 #define SHOW_HITBOX
+#define TEST
+
+#ifndef TEST
 
 // --- window ---
 static int wTx = 480; // size of the window, initially set to 480x480
@@ -351,3 +354,5 @@ int main(int argc, char** argv) {
     glutMainLoop();
     return 0;
 }
+
+#endif TEST

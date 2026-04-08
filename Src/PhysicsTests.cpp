@@ -15,6 +15,10 @@
 #include "GlOOPLib/Textures/Texture.h"
 #include "GlOOPLib/Physics/Physics.h"
 
+#define TEST
+
+#ifdef TEST
+
 /***************/
 /* TEST SCENES */
 /***************/
@@ -23,30 +27,46 @@ class MovingCube : public gloop::Entity3D, public gloop::Collidable {
 public :
     gloop::Vector3f speed{ 0,0,0 };
     gloop::Vector3f position{ 0,0,0 };
-    std::vector<gloop::Rectangle> otherElements;
+    std::vector<gloop::CollisionBox> otherElements;
     float scale;
+    bool isColliding = false;
+    //gloop::Material red{ gloop::Color{1.0,0.0,0.0,1.0}, gloop::Color{1.0,0.0,0.0,1.0} };
 
     MovingCube(gloop::Vector3f position, gloop::Vector3f speed, float scale) : position(position), speed(speed), scale(scale){}
 
     virtual void update() override {
-        const gloop::collisionData data = gloop::Physics::collide(*this, otherElements);
+        const gloop::collisionData data = gloop::Physics::collide(this->getCollisionBox(), otherElements);
         speed = speed + data.collision + data.correction;
         position = position + speed;
+        isColliding = data.flags.find(gloop::CollisionFlag::TESTFLAG) != data.flags.end();
     }
 
     virtual void render() override {
+        //gloop::Material old = gloop::Material::getCurrentMaterial(GL_FRONT);
         glPushMatrix();
+        /*if (isColliding)
+            red.apply(GL_FRONT);*/
         glTranslatef(position.x, position.y, position.z);
         glutSolidCube(scale);
         glPopMatrix();
+        //old.apply(GL_FRONT);
     }
 
-    virtual gloop::Rectangle getCollisionBox() const override {
-        return gloop::Rectangle::fromCenter({ position.x, position.z }, scale, scale);
+    virtual gloop::CollisionBox getCollisionBox() const override {
+        return { gloop::Rectangle::fromCenter({ position.x, position.z }, scale, scale), true, {}, getSpeed() };
     }
 
-    virtual gloop::Vector2f getSpeed() const override {
+    virtual gloop::Vector2f getSpeed() const {
         return { speed.x, speed.z };
+    }
+};
+
+class NonSolidCube : public MovingCube {
+public:
+    using MovingCube::MovingCube;
+
+    virtual gloop::CollisionBox getCollisionBox() const override {
+        return { gloop::Rectangle::fromCenter({ position.x, position.z }, scale, scale), false, { gloop::CollisionFlag::TESTFLAG }, getSpeed() };
     }
 };
 
@@ -56,7 +76,7 @@ public :
 
     virtual void update() override {
         gloop::Vector3f spd = speed;
-        const gloop::collisionData data = gloop::Physics::collide(*this, otherElements);
+        const gloop::collisionData data = gloop::Physics::collide(this->getCollisionBox(), otherElements);
         std::cout << data.correction.x << " " << data.correction.y << std::endl;
         spd = { spd.x + data.collision.x + data.correction.x, spd.y ,spd.z + data.collision.y + data.correction.y };
         position = position + spd;
@@ -70,6 +90,19 @@ public :
     MovingCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 }, 0.5 };
 
     Collision_Simple() {
+        cube1.otherElements.push_back(cube2.getCollisionBox());
+        addEntity(cube1);
+        addObject(cube2);
+    }
+};
+
+// A Cube is sliding towards an non-solid cube, giving a flag turning the first cube red on collision
+class Collision_Flag : public gloop::Scene {
+public:
+    MovingCube cube1{ { 0.9, 0.0, 0.0 }, {-0.01,0.0,0.0 }, 0.5 };
+    NonSolidCube cube2{ { -0.9, 0.0, 0.0 }, { 0.0,0.0,0.0 }, 0.5 };
+
+    Collision_Flag() {
         cube1.otherElements.push_back(cube2.getCollisionBox());
         addEntity(cube1);
         addObject(cube2);
@@ -174,6 +207,7 @@ struct SceneHandler {
     std::shared_ptr < gloop::Scene > sc5 = std::make_shared<gloop::Scene>(Collision_Force());
     std::shared_ptr < gloop::Scene > sc6 = std::make_shared<gloop::Scene>(Collision_Diagonal());
     std::shared_ptr < gloop::Scene > sc7 = std::make_shared<gloop::Scene>(Collision_Force_Diagonal());
+    std::shared_ptr < gloop::Scene > sc8 = std::make_shared<gloop::Scene>(Collision_Flag());
 
     SceneHandler(){
         Scenes.push_back(sc1);
@@ -183,6 +217,7 @@ struct SceneHandler {
         Scenes.push_back(sc5);
         Scenes.push_back(sc6);
         Scenes.push_back(sc7);
+        Scenes.push_back(sc8);
     }
 
     void next() {
@@ -274,7 +309,7 @@ static void keyboard(unsigned char key, int x, int y) {
     }
     return;
 }
-/*
+
 int main(int argc, char** argv) {
 
     atexit(clean); // exécution d'une fonction (static void clean(void)) lorsque l'application est interrompue par exécution de la fonction standard void exit(int)
@@ -294,4 +329,5 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     // affichage de la fenêtre de visualisation et lancement de la boucle infinie de gestion des événements
     glutMainLoop();
-}*/
+}
+#endif // TEST
