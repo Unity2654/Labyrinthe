@@ -68,7 +68,6 @@
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Textures\Texture.cpp" />
     <ClCompile Include="..\..\Src\Labyrinthe.cpp" />
-    <ClCompile Include="..\..\Src\PhysicsTests.cpp" />
     <ClCompile Include="..\..\Src\Laby3D\Ground.cpp" />
     <ClCompile Include="..\..\Src\Laby3D\Laby3D.cpp" />
     <ClCompile Include="..\..\Src\Laby3D\Pillar.cpp" />

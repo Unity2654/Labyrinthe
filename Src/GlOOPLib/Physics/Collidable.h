@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <set>
 #include "../Maths/Vector.h"
 
 
@@ -48,5 +49,16 @@ namespace gloop {
 		virtual Vector2f getSpeed() const { return Vector2f{ 0,0 }; };
 
 		void drawHitbox(float height) const;
+	};
+
+	enum CollisionFlag {
+
+	};
+
+	struct CollisionBox {	
+		const Rectangle hitbox;
+		const Vector2f speed;
+		const bool isSolid;
+		const std::set<CollisionFlag> flags;
 	};
 }
