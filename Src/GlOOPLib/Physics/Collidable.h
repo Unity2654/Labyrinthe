@@ -44,9 +44,7 @@ namespace gloop {
 
 	class Collidable {
 	public :
-		virtual Rectangle getCollisionBox() const = 0;
-
-		virtual Vector2f getSpeed() const { return Vector2f{ 0,0 }; };
+		virtual CollisionBox getCollisionBox() const = 0;
 
 		void drawHitbox(float height) const;
 	};
@@ -57,8 +55,8 @@ namespace gloop {
 
 	struct CollisionBox {	
 		const Rectangle hitbox;
-		const Vector2f speed;
-		const bool isSolid;
-		const std::set<CollisionFlag> flags;
+		const bool isSolid = true;
+		const std::set<CollisionFlag> flags = {};
+		const Vector2f speed{ 0.0,0.0 };
 	};
 }
