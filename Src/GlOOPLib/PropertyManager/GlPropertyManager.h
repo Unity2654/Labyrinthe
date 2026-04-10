@@ -9,8 +9,8 @@ namespace gloop {
 
 		//SceneManager
 		//Mouse
-		Display window;
-		static GlPropertyManager& _get();
+		Display* window;
+		static inline GlPropertyManager& get();
 		GlPropertyManager();
 
 	public :
@@ -20,6 +20,8 @@ namespace gloop {
 		static void init(int argc, char** argv, Rectangle windowDimensions, std::string windowName);
 
 		static Display& getDisplay();
+
+		~GlPropertyManager();
 	};
 }
 

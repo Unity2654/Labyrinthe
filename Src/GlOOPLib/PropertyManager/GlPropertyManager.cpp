@@ -3,20 +3,29 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-gloop::GlPropertyManager& gloop::GlPropertyManager::_get(){
+gloop::GlPropertyManager* gloop::GlPropertyManager::instance = nullptr;
+
+gloop::GlPropertyManager& gloop::GlPropertyManager::get(){
 	if (instance == nullptr)
 		instance = new GlPropertyManager();
 	return *instance;
 }
 
-void gloop::GlPropertyManager::init(int argc, char** argv, Rectangle windowDimensions, std::string windowName){
-	GlPropertyManager& man = _get();
+gloop::GlPropertyManager::GlPropertyManager() : window(nullptr) {}
 
-	man.window = Display(windowDimensions, windowName);
+void gloop::GlPropertyManager::init(int argc, char** argv, Rectangle windowDimensions, std::string windowName){
+	GlPropertyManager& man = get();
+
+	man.window = new Display(windowDimensions, windowName);
 	glutInit(&argc, argv);
-	man.window.createWindow();
+	man.window->createWindow();
 }
 
 gloop::Display& gloop::GlPropertyManager::getDisplay(){
-	return _get().window;
+	return *(get().window);
+}
+
+gloop::GlPropertyManager::~GlPropertyManager(){
+	if(window != nullptr)
+		delete window;
 }
