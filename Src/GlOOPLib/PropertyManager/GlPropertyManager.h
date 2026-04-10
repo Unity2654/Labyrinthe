@@ -2,6 +2,9 @@
 #include "Display.h"
 #include "../Maths/Rectangle.h"
 
+/* Class made to allow to manage general properties of the application, and allow their access from a static context.
+   The class mostly contains static methods, and implements the Singleton design pattern.
+*/
 namespace gloop {
 	class GlPropertyManager {
 	private:

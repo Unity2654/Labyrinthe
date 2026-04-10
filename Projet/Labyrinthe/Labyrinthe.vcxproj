@@ -35,6 +35,7 @@
     <ClInclude Include="..\..\Src\GlOOPLib\Physics\Physics.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\Display.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\GlPropertyManager.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\SceneManager.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Textures\Texture.h" />
     <ClInclude Include="..\..\Src\Laby3D\Ground.h" />
@@ -68,6 +69,7 @@
     <ClCompile Include="..\..\Src\GlOOPLib\Physics\Physics.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\Display.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\GlPropertyManager.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\SceneManager.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Textures\Texture.cpp" />
     <ClCompile Include="..\..\Src\Labyrinthe.cpp" />
