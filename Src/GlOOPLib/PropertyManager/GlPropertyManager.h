@@ -1,6 +1,7 @@
 #pragma once
 #include "Display.h"
 #include "../Maths/Rectangle.h"
+#include "SceneManager.h"
 
 /* Class made to allow to manage general properties of the application, and allow their access from a static context.
    The class mostly contains static methods, and implements the Singleton design pattern.
@@ -10,8 +11,8 @@ namespace gloop {
 	private:
 		static GlPropertyManager* instance;
 
-		//SceneManager
 		//Mouse
+		SceneManager* sceneManager;
 		Display* window;
 		static inline GlPropertyManager& get();
 		GlPropertyManager();
@@ -23,6 +24,7 @@ namespace gloop {
 		static void init(int argc, char** argv, Rectangle windowDimensions, std::string windowName);
 
 		static Display& getDisplay();
+		static SceneManager& getSceneManager();
 
 		~GlPropertyManager();
 	};
