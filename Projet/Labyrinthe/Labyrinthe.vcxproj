@@ -24,7 +24,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\Components\LabyrintheScene.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Display.h" />
-    <ClInclude Include="..\..\Src\GlOOPLib\Display\Display.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Colors.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Lights.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Materials.h" />
@@ -34,6 +33,8 @@
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Object3D.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Physics\Collidable.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Physics\Physics.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\Display.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\GlPropertyManager.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Textures\Texture.h" />
     <ClInclude Include="..\..\Src\Laby3D\Ground.h" />
@@ -59,12 +60,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp" />
-    <ClCompile Include="..\..\Src\GlOOPLib\Display\Display.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Utils.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Objects\Object3D.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Physics\Collidable.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Physics\Physics.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\Display.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\GlPropertyManager.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Textures\Texture.cpp" />
     <ClCompile Include="..\..\Src\Labyrinthe.cpp" />

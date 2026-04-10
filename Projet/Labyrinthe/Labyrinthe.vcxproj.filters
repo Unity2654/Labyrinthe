@@ -138,8 +138,11 @@
     <ClInclude Include="..\..\Src\GlOOPLib\Maths\Utils.h">
       <Filter>Fichiers d%27en-tête\glOOP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\GlOOPLib\Display\Display.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\Display.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\GlPropertyManager.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -242,11 +245,14 @@
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Utils.cpp">
       <Filter>Fichiers sources\glOOP</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\GlOOPLib\Display\Display.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\PhysicsTests.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\Display.cpp">
+      <Filter>Fichiers sources\glOOP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\GlPropertyManager.cpp">
+      <Filter>Fichiers sources\glOOP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
