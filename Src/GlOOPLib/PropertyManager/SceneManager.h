@@ -6,11 +6,13 @@
 /* Class to allow to manage multiple scenes based on a stack principle
 *  If the manager is paused, the current scene won't be updated.
 *  Some methods are implemented in the header due to the use of templates
+* 
+* Only the main active scene is updated
 */
 namespace gloop {
 	class SceneManager {
 	private :
-		std::stack<std::unique_ptr<Scene>> scenes;
+		std::stack<std::shared_ptr<Scene>> scenes;
 		bool paused = false;
 
 	public :
@@ -20,8 +22,8 @@ namespace gloop {
 
 		/* Adds a scene on the top of the stack */
 		template<typename S>
-		void pushScene(S scene) {
-			scenes.push(std::make_unique<Scene>(scene));
+		void pushScene(S& scene) {
+			scenes.push(std::make_shared<Scene>(scene));
 		}
 
 		/* Remove the scene on the top of the stack */

@@ -79,8 +79,6 @@ static bool isSprinting = 0;         // if the player is sprinting
 /************* END OF TEMPORARY CONTENT  ******************/
 /**********************************************************/
 
-static LabyrintheScene mainScene;
-
 static void init(void)
 {
     glEnable(GL_LIGHTING);
@@ -120,7 +118,7 @@ static void display(void)
     // END OF TESTS //
     glPushMatrix();
 
-    mainScene.display();
+    prop::getSceneManager().display();
 
     glPopMatrix();
     int error = glGetError();
@@ -130,7 +128,7 @@ static void display(void)
 
 static void timer(int value)
 {
-    mainScene.update();
+    prop::getSceneManager().update();
 
     gloop::Vector2f vect{looking_at.x, looking_at.z};
 
@@ -339,6 +337,7 @@ int main(int argc, char** argv) {
 //#endif
     //for test : malloc(10);
     prop::init(argc, argv, gloop::Rectangle({0,0},480, 480), "Labyrinthe");
+    prop::getSceneManager().pushScene(LabyrintheScene());
 
     atexit(clean);
     // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme

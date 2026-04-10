@@ -23,11 +23,11 @@ namespace gloop
 
 	void Scene::displayLights(){
 		// Displaying the lights to the scene
-		for (std::unique_ptr<Light>& l : staticLights)
+		for (std::shared_ptr<Light>& l : staticLights)
 		{
 			l->render();
 		}
-		for (std::unique_ptr<Light>& l : dynamicLights)
+		for (std::shared_ptr<Light>& l : dynamicLights)
 		{
 			l->render();
 		}
@@ -35,11 +35,11 @@ namespace gloop
 
 	void Scene::displayObjects(){
 		// Displaying the content of the scene
-		for (std::unique_ptr<Object3D>& o : objects)
+		for (std::shared_ptr<Object3D>& o : objects)
 		{
 			o->render();
 		}
-		for (std::unique_ptr<Entity3D>& e : entities)
+		for (std::shared_ptr<Entity3D>& e : entities)
 		{
 			e->render();
 		}
@@ -47,7 +47,7 @@ namespace gloop
 
 	void Scene::updateLights(){
 		// Updating every lights of the scene
-		for (std::unique_ptr<Light>& l : dynamicLights)
+		for (std::shared_ptr<Light>& l : dynamicLights)
 		{
 			l->update();
 		}
@@ -55,7 +55,7 @@ namespace gloop
 
 	void Scene::updateEntities(){
 		// Updating every entity in the scene
-		for (std::unique_ptr<Entity3D>& e : entities)
+		for (std::shared_ptr<Entity3D>& e : entities)
 		{
 			e->update();
 		}

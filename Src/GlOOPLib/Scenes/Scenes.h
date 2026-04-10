@@ -14,10 +14,10 @@ namespace gloop {
 	 */
 	class Scene {
 	private :
-		std::vector<std::unique_ptr<Object3D>> objects;
-		std::vector<std::unique_ptr<Entity3D>> entities;
-		std::vector<std::unique_ptr<Light>> staticLights;
-		std::vector<std::unique_ptr<Light>> dynamicLights;
+		std::vector<std::shared_ptr<Object3D>> objects;
+		std::vector<std::shared_ptr<Entity3D>> entities;
+		std::vector<std::shared_ptr<Light>> staticLights;
+		std::vector<std::shared_ptr<Light>> dynamicLights;
 
 	public:
 		// Constructors 
@@ -32,13 +32,13 @@ namespace gloop {
 		// Adds objects to the scene
 		template<typename T>
 		void addObject(T o) {
-			objects.push_back(std::make_unique<T>(o));
+			objects.push_back(std::make_shared<T>(o));
 		}
 
 		// Adds entities to the scene
 		template<typename T>
 		void addEntity(T e) {
-			entities.push_back(std::make_unique<T>(e));
+			entities.push_back(std::make_shared<T>(e));
 		}
 
 		
@@ -46,12 +46,12 @@ namespace gloop {
 		// Static lights are not updated, while dynamic ones are.
 		template<typename T>
 		void addStaticLight(T l) {
-			staticLights.push_back(std::make_unique<T>(l));
+			staticLights.push_back(std::make_shared<T>(l));
 		}
 		
 		template<typename T>
 		void addDynamicLight(T l) {
-			dynamicLights.push_back(std::make_unique<T>(l));
+			dynamicLights.push_back(std::make_shared<T>(l));
 		}
 
 	protected:
