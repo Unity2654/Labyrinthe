@@ -23,10 +23,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Components\LabyrintheScene.h" />
-    <ClInclude Include="..\..\Src\GlOOPLib\Display.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Colors.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Lights.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Materials.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Maths\Rectangle.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Maths\Utils.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Maths\Vector.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Objects\Entity3D.h" />
@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Maths\Rectangle.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Utils.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Objects\Object3D.cpp" />

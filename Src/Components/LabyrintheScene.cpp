@@ -4,14 +4,15 @@
 #include "../Laby/generation.h"
 #include <GL/glut.h>
 #include <cmath>
+#include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
 
 LabyrintheScene::LabyrintheScene()
-	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH),
-		window(480,480,50,50,"Labyrinthe") {
+	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH) {
 	laby.displayInScene(*this);
 }
 
 void LabyrintheScene::display(){
+	auto& window = prop::getDisplay();
 	// Main scene
 	window.displayViewPort();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -40,8 +41,4 @@ void LabyrintheScene::display(){
 	glPopMatrix();
 
 	glutSwapBuffers();
-}
-
-void LabyrintheScene::reshape(int wx, int wy){
-	window.reshape(wx, wy);
 }

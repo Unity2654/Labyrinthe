@@ -1,14 +1,17 @@
 #include "../Maths/Vector.h"
+#include "../Maths/Rectangle.h"
 #include <string>
 
 namespace gloop {
 	class Display {
 	private:
-		int wx;
-		int wy;
+		Rectangle dimensions;
+		std::string name;
 
 	public:
-		Display(int wx, int wy, int px, int py, std::string name);
+		Display(Rectangle dimensions, std::string name);
+
+		void createWindow();
 
 		void reshape(int wx, int wy);
 

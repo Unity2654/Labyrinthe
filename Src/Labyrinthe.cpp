@@ -28,6 +28,7 @@
 #include "GlOOPLib/Lights/Materials.h"
 #include "GlOOPLib/Textures/Texture.h"
 #include "GlOOPLib/Physics/Physics.h"
+#include "GlOOPLib/PropertyManager/GlPropertyManager.h"
 #include "Components/LabyrintheScene.h"
 #include "Laby/tab.h"
 
@@ -176,7 +177,7 @@ static void reshape(int wx, int wy)
 {
     wTx = wx;
     wTy = wy;
-    mainScene.reshape(wx, wy);
+    prop::getDisplay().reshape(wx, wy);
 }
 
 static void keyboard(unsigned char key, int x, int y)
@@ -337,6 +338,7 @@ int main(int argc, char** argv) {
 //    _crtBreakAlloc = 634;
 //#endif
     //for test : malloc(10);
+    prop::init(argc, argv, gloop::Rectangle({0,0},480, 480), "Labyrinthe");
 
     atexit(clean);
     // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme
