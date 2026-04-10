@@ -20,5 +20,3 @@ float gloop::degSin(float angle){
 float gloop::degTan(float angle){
 	return radToDeg(tan(degToRad(angle)));
 }
-
-
