@@ -23,7 +23,7 @@ namespace gloop {
 		/* Adds a scene on the top of the stack */
 		template<typename S>
 		void pushScene(S& scene) {
-			scenes.push(std::make_shared<Scene>(scene));
+			scenes.push(std::make_shared<S>(scene));
 		}
 
 		/* Remove the scene on the top of the stack */
