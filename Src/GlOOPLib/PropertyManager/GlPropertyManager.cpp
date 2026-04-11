@@ -11,13 +11,14 @@ gloop::GlPropertyManager& gloop::GlPropertyManager::get(){
 	return *instance;
 }
 
-gloop::GlPropertyManager::GlPropertyManager() : window(nullptr), sceneManager(nullptr) {}
+gloop::GlPropertyManager::GlPropertyManager() : window(nullptr), sceneManager(nullptr), mouse(nullptr) {}
 
 void gloop::GlPropertyManager::init(int argc, char** argv, Rectangle windowDimensions, std::string windowName){
 	GlPropertyManager& man = get();
 
 	man.window = new Display(windowDimensions, windowName);
 	man.sceneManager = new SceneManager();
+	man.mouse = new Mouse();
 
 	glutInit(&argc, argv);
 	man.window->createWindow();
@@ -31,9 +32,15 @@ gloop::SceneManager& gloop::GlPropertyManager::getSceneManager(){
 	return (*get().sceneManager);
 }
 
+gloop::Mouse& gloop::GlPropertyManager::getMouse(){
+	return (*get().mouse);
+}
+
 gloop::GlPropertyManager::~GlPropertyManager(){
 	if(window != nullptr)
 		delete window;
 	if (sceneManager != nullptr)
 		delete sceneManager;
+	if (mouse != nullptr)
+		delete mouse;
 }
