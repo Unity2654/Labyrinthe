@@ -30,6 +30,7 @@
 #include "GlOOPLib/Physics/Physics.h"
 #include "GlOOPLib/PropertyManager/GlPropertyManager.h"
 #include "Components/LabyrintheScene.h"
+#include "Components/MenuScene.h"
 #include "Laby/tab.h"
 
 #define SHOW_HITBOX
@@ -358,6 +359,7 @@ int main(int argc, char** argv) {
     //for test : malloc(10);
     prop::init(argc, argv, gloop::Rectangle({0,0},480, 480), "Labyrinthe");
     prop::getSceneManager().pushScene(LabyrintheScene());
+    //prop::getSceneManager().pushScene(MenuScene());
 
     atexit(clean);
     // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme
