@@ -75,6 +75,10 @@ static float cam_shake = 0.0f;                     // used for the camera animat
 static float jump = 0.0f;            // used to detect if the player is jumping
 static int moving[4] = {0, 0, 0, 0}; // up, down, left, right
 static bool isSprinting = 0;         // if the player is sprinting
+
+// --- scenes ---
+static bool isMainScene = true;
+
 /**********************************************************/
 /************* END OF TEMPORARY CONTENT  ******************/
 /**********************************************************/
@@ -102,20 +106,22 @@ static void init(void)
 static void display(void)
 {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
-    // TESTS //
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(60.0, (float)wTx / wTy, 0.1, 100.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    if (isMainScene) {
+        // TESTS //
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluPerspective(60.0, (float)wTx / wTy, 0.1, 100.0);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
 
-    gluLookAt(
-        pos.x, pos.y + sin(cam_shake) * CAM_SHAKE_AMPLITUDE, pos.z,       // position caméra
-        pos.x + looking_at.x, pos.y + looking_at.y, pos.z + looking_at.z, // point regardé
-        0.0, 1.0, 0.0);
+        gluLookAt(
+            pos.x, pos.y + sin(cam_shake) * CAM_SHAKE_AMPLITUDE, pos.z,       // position caméra
+            pos.x + looking_at.x, pos.y + looking_at.y, pos.z + looking_at.z, // point regardé
+            0.0, 1.0, 0.0);
 
-    cam_shake += CAM_SHAKE_SPEED;
-    // END OF TESTS //
+        cam_shake += CAM_SHAKE_SPEED;
+        // END OF TESTS //
+    }
     glPushMatrix();
 
     prop::getSceneManager().display();
@@ -130,41 +136,43 @@ static void timer(int value)
 {
     prop::getSceneManager().update();
 
-    gloop::Vector2f vect{looking_at.x, looking_at.z};
+    if (isMainScene) {
+        gloop::Vector2f vect{ looking_at.x, looking_at.z };
 
-    gloop::Vector2f speed{0, 0};
-    if (moving[0])
-    {
-        speed.x += vect.x;
-        speed.y += vect.y;
-    }
-    if (moving[1])
-    {
-        speed.x -= vect.x;
-        speed.y -= vect.y;
-    }
-    if (moving[2])
-    {
-        speed.x += vect.y;
-        speed.y -= vect.x;
-    }
-    if (moving[3])
-    {
-        speed.x -= vect.y;
-        speed.y += vect.x;
-    }
-    speed = speed.normalize() * (MOVEMENT_SPEED + isSprinting * SPRINT_SPEED);
-    pos = {pos.x + speed.x, pos.y, pos.z + speed.y};
+        gloop::Vector2f speed{ 0, 0 };
+        if (moving[0])
+        {
+            speed.x += vect.x;
+            speed.y += vect.y;
+        }
+        if (moving[1])
+        {
+            speed.x -= vect.x;
+            speed.y -= vect.y;
+        }
+        if (moving[2])
+        {
+            speed.x += vect.y;
+            speed.y -= vect.x;
+        }
+        if (moving[3])
+        {
+            speed.x -= vect.y;
+            speed.y += vect.x;
+        }
+        speed = speed.normalize() * (MOVEMENT_SPEED + isSprinting * SPRINT_SPEED);
+        pos = { pos.x + speed.x, pos.y, pos.z + speed.y };
 
-    if (pos.y >= 1.75f)
-    {
-        pos.y += jump;
-        jump -= GRAVITY;
-    }
-    else
-    {
-        jump = 0.0f;
-        pos.y = 1.75f;
+        if (pos.y >= 1.75f)
+        {
+            pos.y += jump;
+            jump -= GRAVITY;
+        }
+        else
+        {
+            jump = 0.0f;
+            pos.y = 1.75f;
+        }
     }
 
     glutPostRedisplay();
@@ -258,16 +266,6 @@ static void special(int specialKey, int x, int y)
     glutPostRedisplay();
 }
 
-static void mouse(int button, int state, int x, int y)
-{
-    (void)button;
-    (void)state;
-    old_x = x;
-    old_y = y;
-    // glfwDisable(GLFW_MOUSE_CURSOR);
-    glutPostRedisplay();
-}
-
 /* Fonction executee lors du passage            */
 /* de la souris sur la fenetre                  */
 /* avec un bouton presse                        */
@@ -278,6 +276,10 @@ static void mouseMotion(int x, int y)
     // old_x = x;
     // old_y = y;
     // glutPostRedisplay();
+    prop::getMouse().update(gloop::Vector2f{ (float)x ,(float)y });
+
+    if (!isMainScene)
+        return;
 
     float dx = (x - old_x) * MOUSE_SENS;
     float dy = (y - old_y) * MOUSE_SENS;
@@ -299,6 +301,10 @@ static int warp = 0;
 
 static void passiveMouseMotion(int x, int y)
 {
+    prop::getMouse().update({ (float)x,(float)y });
+    if (!isMainScene)
+        return;
+
     if (warp)
     {
         warp = 0;
@@ -317,6 +323,20 @@ static void passiveMouseMotion(int x, int y)
 
     warp = 1;
     glutWarpPointer(wTx / 2, wTy / 2);
+}
+
+static void mouseFunction(int button, int state, int x, int y) {
+    auto& mouse = prop::getMouse();
+    if (button == GLUT_LEFT_BUTTON)
+        if (state == GLUT_DOWN)
+            mouse.click();
+        else
+            mouse.releaseClick();
+    else
+        if (state == GLUT_DOWN)
+            mouse.rightClick();
+        else
+            mouse.releaseRightClick();
 }
 
 static void clean(void)
@@ -345,6 +365,7 @@ int main(int argc, char** argv) {
     // programmation de la gestion des événements
     glutKeyboardFunc(keyboard);
     glutKeyboardUpFunc(keyboardUp);
+    glutMouseFunc(mouseFunction);
     glutSpecialFunc(special);
     glutReshapeFunc(reshape);
     glutPassiveMotionFunc(passiveMouseMotion);

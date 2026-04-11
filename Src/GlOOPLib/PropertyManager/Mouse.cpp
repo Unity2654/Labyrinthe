@@ -4,7 +4,7 @@ namespace gloop {
 
 	Mouse::Mouse() : position(0.0,0.0), previousPosition(0.0,0.0){}
 
-	void Mouse::update(Vector2f& newPosition){
+	void Mouse::update(Vector2f newPosition){
 		previousPosition = position;
 		position = newPosition;
 		if (buttonsState.leftButton == RELEASE)

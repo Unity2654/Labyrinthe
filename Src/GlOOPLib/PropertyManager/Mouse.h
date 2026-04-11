@@ -27,7 +27,7 @@ namespace gloop {
 		Mouse();
 
 		// Update state
-		void update(Vector2f& newPosition);
+		void update(Vector2f newPosition);
 
 		void click();
 		void rightClick();
