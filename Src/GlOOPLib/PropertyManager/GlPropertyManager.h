@@ -17,8 +17,9 @@ namespace gloop {
 		Display* window;
 		static inline GlPropertyManager& get();
 		GlPropertyManager();
-
 	public :
+		const constexpr static int FPS = 60;
+		
 		void operator=(const GlPropertyManager&) = delete;
 		GlPropertyManager(const GlPropertyManager&) = delete;
 

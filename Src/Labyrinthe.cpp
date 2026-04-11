@@ -48,7 +48,6 @@ static int wPy = 50;
 static GLenum displays[3] = {GL_LINE, GL_FILL, GL_POINT};
 static int displayCount = 3;
 static int currentDisplay = 1;
-static int constexpr fps = 60;
 
 /********************************************************************/
 /************* TEMPORARY CONTENT FOR FIRST DEPOSIT ******************/
@@ -177,7 +176,7 @@ static void timer(int value)
     }
 
     glutPostRedisplay();
-    glutTimerFunc(1000 / fps, timer, 0);
+    glutTimerFunc(1000 / prop::FPS, timer, 0);
 }
 
 static void reshape(int wx, int wy)
@@ -371,7 +370,7 @@ int main(int argc, char** argv) {
     glutSpecialFunc(special);
     glutReshapeFunc(reshape);
     glutPassiveMotionFunc(passiveMouseMotion);
-    glutTimerFunc(1000 / fps, timer, 0); // Using a timer instead of idle to sync with the computer clock
+    glutTimerFunc(1000 / prop::FPS, timer, 0); // Using a timer instead of idle to sync with the computer clock
                                          // More work will have to be done using this, to incorporate a delta, for slow computers
     glutDisplayFunc(display);
     // affichage de la fenêtre de visualisation et lancement de la boucle infinie de gestion des événements
