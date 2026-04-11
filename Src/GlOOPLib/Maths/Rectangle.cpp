@@ -26,6 +26,16 @@ namespace gloop {
 	Vector2f Rectangle::getCenter() const {
 		return Vector2f{ position.x + width / 2, position.y - height / 2 };
 	}
+	bool Rectangle::isWithin(const Vector2f& position) const{
+		// X axis
+		if (position.x < this->position.x || position.x > this->position.x)
+			return false;
+		// Y axis
+		if (position.y < this->position.y || position.y > this->position.y)
+			return false;
+		return true;
+	}
+
 	std::vector<Vector2f> Rectangle::getCorners() const {
 		return std::vector<Vector2f>{
 			position, // Top left

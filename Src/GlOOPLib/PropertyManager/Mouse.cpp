@@ -2,7 +2,7 @@
 
 namespace gloop {
 
-	Mouse::Mouse() : position(0.0,0.0), previousPosition(0.0,0.0){}
+	Mouse::Mouse() : position(0.0,0.0), previousPosition(0.0,0.0), clickStartPosition(0.0,0.0){}
 
 	void Mouse::update(Vector2f newPosition){
 		previousPosition = position;
@@ -15,6 +15,7 @@ namespace gloop {
 
 	void Mouse::click(){
 		buttonsState.leftButton = DOWN;
+		clickStartPosition = position;
 	}
 
 	void Mouse::rightClick(){
@@ -35,6 +36,10 @@ namespace gloop {
 
 	const Vector2f& Mouse::getPreviousPosition() const{
 		return previousPosition;
+	}
+
+	const Vector2f& Mouse::getClickStartPosition() const{
+		return clickStartPosition;
 	}
 
 	const Vector2f& Mouse::getMovement() const{

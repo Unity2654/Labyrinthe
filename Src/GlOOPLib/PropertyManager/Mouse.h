@@ -21,6 +21,11 @@ namespace gloop {
 		Vector2f position;
 		Vector2f previousPosition;
 
+		// Position of the mouse when the user starts clicking
+		// Can be important for when the user : starts clicking on a box -> drags its mouse outside of the box -> stops clicking
+		// Relevant only if the state of a button is "Released"
+		Vector2f clickStartPosition;
+
 		MouseState buttonsState;
 
 	public :
@@ -38,6 +43,8 @@ namespace gloop {
 		const Vector2f& getPosition() const;
 
 		const Vector2f& getPreviousPosition() const;
+
+		const Vector2f& getClickStartPosition() const;
 
 		const Vector2f& getMovement() const;
 
