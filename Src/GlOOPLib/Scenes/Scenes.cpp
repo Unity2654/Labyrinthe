@@ -14,7 +14,6 @@ namespace gloop
 	}
 
 	void Scene::display(){
-		std::cout << " ta putain de race " << std::endl;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		displayLights();
 		displayObjects();

@@ -78,7 +78,7 @@ static int moving[4] = {0, 0, 0, 0}; // up, down, left, right
 static bool isSprinting = 0;         // if the player is sprinting
 
 // --- scenes ---
-static bool isMainScene = true;
+static bool isMainScene = false;
 
 /**********************************************************/
 /************* END OF TEMPORARY CONTENT  ******************/
@@ -358,8 +358,8 @@ int main(int argc, char** argv) {
 //#endif
     //for test : malloc(10);
     prop::init(argc, argv, gloop::Rectangle({0,0},480, 480), "Labyrinthe");
-    prop::getSceneManager().pushScene(LabyrintheScene());
-    //prop::getSceneManager().pushScene(MenuScene());
+    //prop::getSceneManager().pushScene(LabyrintheScene());
+    prop::getSceneManager().pushScene(MenuScene());
 
     atexit(clean);
     // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme

@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Components\LabyrintheScene.h" />
+    <ClInclude Include="..\..\Src\Components\MenuElements.h" />
     <ClInclude Include="..\..\Src\Components\MenuScene.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\GUI.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\GUIElement.h" />
@@ -65,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp" />
+    <ClCompile Include="..\..\Src\Components\MenuElements.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuScene.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\GUI.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\GUIElement.cpp" />
