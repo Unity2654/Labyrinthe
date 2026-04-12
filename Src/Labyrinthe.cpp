@@ -83,8 +83,7 @@ static bool isMainScene = false;
 /************* END OF TEMPORARY CONTENT  ******************/
 /**********************************************************/
 
-static void init(void)
-{
+static void init(void){
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glDepthFunc(GL_LESS);

@@ -13,12 +13,10 @@
 MenuScene::MenuScene(){
 	addObject(Ground(3,50));
 
-	gloop::Vector2f initialPosition = { 1.5, -2.5 };
-	gloop::Vector2f finalPosition = { 1.5,20.0 };
 	int nbWalls = (finalPosition - initialPosition).norm() / Z_SIZE;
 	auto wallOffset = (finalPosition - initialPosition) / nbWalls;
 	gloop::Vector2f pillarOffset = { 0.0, Z_SIZE / 2 };
-	gloop::Vector2f symmetryFactor = { -1.0,1.0 };
+	addStaticLight(light);
 
 	for (int i = 0; i < nbWalls; i++) {
 		auto wallpos = initialPosition + wallOffset * i;
