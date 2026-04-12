@@ -14,26 +14,19 @@ namespace gloop {
 		Vector2f mpos = translateCoordinates(mouse.getPosition());
 		Vector2f mclstart = translateCoordinates(mouse.getClickStartPosition());
 
-		//std::cout << "============" << std::endl;
-		std::cout << components.size() << std::endl;
 		for (auto e :components) {
-			std::cout <<  "UI : " << e << std::endl;
 			e->reset();
-			//std::cout << e.isEnabled() << std::endl;
 			if (!e->isEnabled())
 				continue;
 			Rectangle cb = e->getClickBox();
-			//std::cout << cb.isWithin(mpos) << std::endl;
 			if (cb.isWithin(mpos)) {
 				e->hover();
-				//std::cout << e.isHovered() << std::endl;
 				if (mouse.getState().leftButton == RELEASE) {
 					if (cb.isWithin(mclstart) && cb.isWithin(mpos))
 						e->click();
 				}
 			}
 		}
-		//std::cout << "============" << std::endl;
 	}
 
 	std::shared_ptr<GUIElement> GUI::registerElement(const Rectangle& clickBox){

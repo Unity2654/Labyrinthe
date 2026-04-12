@@ -52,6 +52,10 @@ private :
 	float width;
 	float height;
 
+	gloop::Material default{{0.5, 0.5, 0.5, 1.0}, { 0.5,0.5,0.5,1.0 }};
+	gloop::Material hover{{0.0, 0.0, 1.0, 1.0}, { 0.0,0.0,1.0,1.0 }};
+
+
 public :
 	MenuButton(gloop::Vector3f position, float width, float height, std::shared_ptr<gloop::GUIElement> interface);
 

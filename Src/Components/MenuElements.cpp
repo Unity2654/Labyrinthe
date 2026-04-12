@@ -48,17 +48,18 @@ MenuButton::MenuButton(gloop::Vector3f position, float width, float height, std:
 	interface(interface),
 	width(width),
 	height(height)
-{
-	std::cout << "menu : " << interface << std::endl;
-}
+{}
 
 void MenuButton::render(){
 	glPushMatrix();
 	glTranslatef(position.x, position.y, position.z);
 	glScalef(width, height, 0.0);
 
-	std::cout << "menu : " << interface << std::endl << std::endl;
-
+	if (interface->isHovered())
+		hover.apply(GL_FRONT);
+	else
+		default.apply(GL_FRONT);
+	
 	glBegin(GL_QUADS);
 	glNormal3f(1.0, 0.0, 0.0);
 	glVertex3f(-0.5, -0.5, 0.0);

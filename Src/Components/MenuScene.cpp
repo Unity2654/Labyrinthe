@@ -30,10 +30,8 @@ MenuScene::MenuScene() : UI(1000,1000) {
 
 	auto element = UI.registerElement(gloop::Rectangle::fromCenter({ 500, 500 }, 100, 100));
 
-	std::cout << "UI : " << element << std::endl;
-
 	MenuButton btn1 = MenuButton(
-		{ POS.x,POS.y, (float)(POS.z + 5) }, 
+		{ POS.x,POS.y, (float)(POS.z + 2) }, 
 		0.2, 
 		0.2, 
 		element
