@@ -9,7 +9,7 @@ private :
 	static constexpr float WALL_THICKNESS = 0.2f; // width of the walls
 	static constexpr float PILLAR_WIDTH = 0.4f;   // width of the pillars
 
-	const gloop::Vector3f POS = gloop::Vector3f(0,1.75,0);
+	const gloop::Vector3f POS = gloop::Vector3f(0, 1.75, 0);
 
 public :
 	MenuScene();

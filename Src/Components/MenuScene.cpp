@@ -11,11 +11,24 @@
 
 
 MenuScene::MenuScene(){
-	//Laby3D laby{ tab_start(10, 10, false), 30, 30, 4.0, 0.2, 0.4 };
-	//laby.displayInScene(*this);
-	addObject(Ground(2,50));
-	addEntity(MovingWall({1,5.0}, {1.0,0.0}, {1,10.0}, 2, Z_SIZE, WALL_THICKNESS, Y_SIZE, 90));
-	addEntity(MovingWall({ -1,5.0 }, { -1,0.0 }, { -1,10.0 }, 2, Z_SIZE, WALL_THICKNESS, Y_SIZE, 90));
+	addObject(Ground(3,50));
+
+	gloop::Vector2f initialPosition = { 1.5, -2.5 };
+	gloop::Vector2f finalPosition = { 1.5,20.0 };
+	int nbWalls = (finalPosition - initialPosition).norm() / Z_SIZE;
+	auto wallOffset = (finalPosition - initialPosition) / nbWalls;
+	gloop::Vector2f pillarOffset = { 0.0, Z_SIZE / 2 };
+	gloop::Vector2f symmetryFactor = { -1.0,1.0 };
+
+	for (int i = 0; i < nbWalls; i++) {
+		auto wallpos = initialPosition + wallOffset * i;
+		auto pillarpos = initialPosition + wallOffset * i + pillarOffset;
+		addEntity(MovingWall(wallpos, initialPosition, finalPosition, 4, Z_SIZE, WALL_THICKNESS, Y_SIZE, 90));
+		addEntity(MovingPillar(pillarpos, initialPosition, finalPosition, 4, PILLAR_WIDTH, Y_SIZE));
+
+		addEntity(MovingWall(wallpos * symmetryFactor, initialPosition * symmetryFactor, finalPosition * symmetryFactor, 4, Z_SIZE, WALL_THICKNESS, Y_SIZE, 90));
+		addEntity(MovingPillar(pillarpos * symmetryFactor, initialPosition * symmetryFactor, finalPosition * symmetryFactor, 4, PILLAR_WIDTH, Y_SIZE));
+	}
 }
 
 void MenuScene::display(){
@@ -23,7 +36,7 @@ void MenuScene::display(){
 	// Camera
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(60.0, (float)window.getSizeX() / window.getSizeY(), 0.1, 100.0);
+	gluPerspective(60.0, (float)window.getSizeX() / window.getSizeY(), 0.1, 17.5);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(POS.x, POS.y, POS.z, POS.x, POS.y, POS.z+1.0, 0.0, 1.0, 0.0);
