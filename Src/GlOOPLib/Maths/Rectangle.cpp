@@ -1,5 +1,6 @@
 #include "Rectangle.h"
 #include <vector>
+#include <iostream>
 
 namespace gloop {
 	Rectangle::Rectangle(Vector2f position, float width, float height) :
@@ -28,10 +29,10 @@ namespace gloop {
 	}
 	bool Rectangle::isWithin(const Vector2f& position) const{
 		// X axis
-		if (position.x < this->position.x || position.x > this->position.x)
+		if (position.x < this->position.x || position.x > (this->position.x + width))
 			return false;
 		// Y axis
-		if (position.y < this->position.y || position.y > this->position.y)
+		if (position.y < this->position.y || position.y > (this->position.y + height))
 			return false;
 		return true;
 	}

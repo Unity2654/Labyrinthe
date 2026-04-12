@@ -27,6 +27,23 @@ MenuScene::MenuScene() : UI(1000,1000) {
 		addEntity(MovingWall(wallpos * symmetryFactor, initialPosition * symmetryFactor, finalPosition * symmetryFactor, 4, Z_SIZE, WALL_THICKNESS, Y_SIZE, 90));
 		addEntity(MovingPillar(pillarpos * symmetryFactor, initialPosition * symmetryFactor, finalPosition * symmetryFactor, 4, PILLAR_WIDTH, Y_SIZE));
 	}
+
+	auto& element = UI.registerElement(gloop::Rectangle::fromCenter({ 500, 500 }, 100, 100));
+
+	std::cout << "UI : " << &element << std::endl;
+
+	MenuButton btn1 = MenuButton(
+		{ POS.x,POS.y, (float)(POS.z + 5) }, 
+		0.2, 
+		0.2, 
+		element
+	);
+	addObject(btn1);
+}
+
+void MenuScene::update(){
+	UI.update();
+	updateEntities();
 }
 
 void MenuScene::display(){
@@ -39,10 +56,10 @@ void MenuScene::display(){
 	glLoadIdentity();
 	gluLookAt(POS.x, POS.y, POS.z, POS.x, POS.y, POS.z+1.0, 0.0, 1.0, 0.0);
 
-	auto mouse = prop::getMouse();
-	std::cout << "mouse : " << std::endl;
-	std::cout << "\t" << "local position : " << UI.translateCoordinates(mouse.getPosition()).x << " " << UI.translateCoordinates(mouse.getPosition()).y << std::endl;
-	std::cout << "\t" << "position : " << mouse.getPosition().x << " " << mouse.getPosition().y << std::endl << std::endl;
+	//auto mouse = prop::getMouse();
+	//std::cout << "mouse : " << std::endl;
+	//std::cout << "\t" << "local position : " << UI.translateCoordinates(mouse.getPosition()).x << " " << UI.translateCoordinates(mouse.getPosition()).y << std::endl;
+	//std::cout << "\t" << "position : " << mouse.getPosition().x << " " << mouse.getPosition().y << std::endl << std::endl;
 
 
 	// Main scene

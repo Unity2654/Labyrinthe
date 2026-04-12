@@ -2,6 +2,9 @@
 #include "../Laby3D/Wall.h"
 #include "../GlOOPLib/Objects/Entity3D.h"
 #include "../Laby3D/Pillar.h"
+#include "../GlOOPLib/GUI/GUIElement.h"
+#include "../GlOOPLib/GUI/GUI.h"
+#include <memory>
 
 
 // A wall that moves
@@ -39,5 +42,18 @@ public:
 	MovingPillar(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float thickness, float height);
 
 	void update() override;
+	void render() override;
+};
+
+class MenuButton : public gloop::Object3D {
+private :
+	gloop::GUIElement& interface;
+	gloop::Vector3f position;
+	float width;
+	float height;
+
+public :
+	MenuButton(gloop::Vector3f position, float width, float height, gloop::GUIElement& interface);
+
 	void render() override;
 };

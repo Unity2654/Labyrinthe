@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "GUIElement.h"
+#include <memory>
 
 namespace gloop {
 
@@ -27,7 +28,6 @@ namespace gloop {
 		void update();
 
 		// Adds an element to the interface
-		void addElement(GUIElement& element);
-
+		GUIElement& registerElement(const Rectangle& clickBox);
 	};
 }

@@ -99,7 +99,7 @@ static void init(void){
     // Loading a texture for test purposes
     gloop::Texture tex = gloop::Texture("../Resources/orange.png");
 
-    glutSetCursor(GLUT_CURSOR_NONE);
+    //glutSetCursor(GLUT_CURSOR_NONE);
 }
 
 static void display(void)

@@ -25,7 +25,7 @@ namespace gloop {
 
 		/// Methods
 		// Updates all the entities of the scene
-		void update();
+		virtual void update();
 		// Displays all the objects and entities of the scene
 		virtual void display();
 

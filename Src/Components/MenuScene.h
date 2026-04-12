@@ -26,5 +26,6 @@ private :
 public :
 	MenuScene();
 
+	virtual void update() override;
 	virtual void display() override;
 };
