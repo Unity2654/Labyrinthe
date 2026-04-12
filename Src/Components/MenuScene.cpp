@@ -10,7 +10,7 @@
 
 
 
-MenuScene::MenuScene(){
+MenuScene::MenuScene() : UI(1000,1000) {
 	addObject(Ground(3,50));
 
 	int nbWalls = (finalPosition - initialPosition).norm() / Z_SIZE;
@@ -38,6 +38,12 @@ void MenuScene::display(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(POS.x, POS.y, POS.z, POS.x, POS.y, POS.z+1.0, 0.0, 1.0, 0.0);
+
+	auto mouse = prop::getMouse();
+	std::cout << "mouse : " << std::endl;
+	std::cout << "\t" << "local position : " << UI.translateCoordinates(mouse.getPosition()).x << " " << UI.translateCoordinates(mouse.getPosition()).y << std::endl;
+	std::cout << "\t" << "position : " << mouse.getPosition().x << " " << mouse.getPosition().y << std::endl << std::endl;
+
 
 	// Main scene
 	window.displayViewPort();

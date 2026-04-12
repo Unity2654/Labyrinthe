@@ -1,5 +1,6 @@
 #pragma once
 #include "../GlOOPLib/Scenes/Scenes.h"
+#include "../GlOOPLib/GUI/GUI.h"
 
 class MenuScene : public gloop::Scene {
 private :
@@ -19,6 +20,8 @@ private :
 		GL_LIGHT0,
 		gloop::LightData{ {0.0,0.0,0.0,1.0}, {0.7,0.7,0.7,1.0} },
 		{ 0.0,0.0,0.0 });
+
+	gloop::GUI UI;
 
 public :
 	MenuScene();

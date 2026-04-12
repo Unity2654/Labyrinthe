@@ -18,6 +18,8 @@ namespace gloop {
 		int getSizeX() const;
 		int getSizeY() const;
 
+		const Vector2f& getDimensions() const;
+
 		void displayViewPort() const;
 	};
 }
