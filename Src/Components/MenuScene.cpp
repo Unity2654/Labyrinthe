@@ -8,19 +8,14 @@
 #include "../Laby3D/Wall.h"
 #include "MenuElements.h"
 
+
+
 MenuScene::MenuScene(){
 	//Laby3D laby{ tab_start(10, 10, false), 30, 30, 4.0, 0.2, 0.4 };
 	//laby.displayInScene(*this);
-	addObject(Ground(3,50));
-	addEntity(MovingWall({1,5.0}, {1.0,0.0}, {1,10.0}, 10, 1.0, WALL_THICKNESS, Y_SIZE, 90));
-	addObject(Wall(1,5.0,1.0, WALL_THICKNESS,Y_SIZE,90));
-	/*scene.addObject(Wall(x_min,
-		z_min + size_cell_z * i + size_cell_z / 2,
-		wall_width,
-		wall_thickness,
-		y_size,
-		90));*/
-
+	addObject(Ground(2,50));
+	addEntity(MovingWall({1,5.0}, {1.0,0.0}, {1,10.0}, 2, Z_SIZE, WALL_THICKNESS, Y_SIZE, 90));
+	addEntity(MovingWall({ -1,5.0 }, { -1,0.0 }, { -1,10.0 }, 2, Z_SIZE, WALL_THICKNESS, Y_SIZE, 90));
 }
 
 void MenuScene::display(){

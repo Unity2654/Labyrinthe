@@ -1,11 +1,12 @@
 #pragma once
 #include "../Laby3D/Wall.h"
 #include "../GlOOPLib/Objects/Entity3D.h"
+#include "../Laby3D/Pillar.h"
 
 
 // A wall that moves
-// The wall moves from minPosition to maxPosition in a given time in seconds
-// min and max positions must not overlap
+// The wall moves from maxPosition to minPosition in a given time in seconds
+// min and max positions must not overlap, and the time must be a positive integer
 class MovingWall : public Wall, public gloop::Entity3D {
 private :
 	gloop::Vector2f minPosition;
@@ -16,6 +17,26 @@ private :
 public :
 
 	MovingWall(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width, float thickness, float height, float rotation);
+
+	void update() override;
+	void render() override;
+};
+
+// A Pillar that moves 
+// The pillar moves from maxPosition to minPosition in a given time in seconds
+// min and max positions must not overlap, and the time must be a positive integer
+class MovingPillar : public Pillar, public gloop::Entity3D {
+private:
+	gloop::Vector2f minPosition;
+	gloop::Vector2f maxPosition;
+	gloop::Vector2f speed;
+	const float distance;
+
+public:
+
+	// Pillar(float posX, float posZ, float thickness, float height);
+
+	MovingPillar(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float thickness, float height);
 
 	void update() override;
 	void render() override;

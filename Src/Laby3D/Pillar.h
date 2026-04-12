@@ -6,7 +6,7 @@
 
 class Pillar : public gloop::Object3D, public gloop::Collidable
 {
-private:
+protected:
     float posX;
     float posZ;
     float thickness;
