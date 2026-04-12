@@ -17,27 +17,27 @@ namespace gloop {
 		//std::cout << "============" << std::endl;
 		std::cout << components.size() << std::endl;
 		for (auto e :components) {
-			std::cout <<  "UI : " << &e << std::endl;
-			e.reset();
+			std::cout <<  "UI : " << e << std::endl;
+			e->reset();
 			//std::cout << e.isEnabled() << std::endl;
-			if (!e.isEnabled())
+			if (!e->isEnabled())
 				continue;
-			Rectangle cb = e.getClickBox();
+			Rectangle cb = e->getClickBox();
 			//std::cout << cb.isWithin(mpos) << std::endl;
 			if (cb.isWithin(mpos)) {
-				e.hover();
+				e->hover();
 				//std::cout << e.isHovered() << std::endl;
 				if (mouse.getState().leftButton == RELEASE) {
 					if (cb.isWithin(mclstart) && cb.isWithin(mpos))
-						e.click();
+						e->click();
 				}
 			}
 		}
 		//std::cout << "============" << std::endl;
 	}
 
-	GUIElement& GUI::registerElement(const Rectangle& clickBox){
-		components.push_back(GUIElement(clickBox));
+	std::shared_ptr<GUIElement> GUI::registerElement(const Rectangle& clickBox){
+		components.push_back(std::make_shared<GUIElement>(GUIElement(clickBox)));
 		return components.back();
 	}
 }

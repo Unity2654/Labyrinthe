@@ -43,13 +43,13 @@ void MovingPillar::render(){
 	Pillar::render();
 }
 
-MenuButton::MenuButton(gloop::Vector3f position, float width, float height, gloop::GUIElement& interface) :
+MenuButton::MenuButton(gloop::Vector3f position, float width, float height, std::shared_ptr<gloop::GUIElement> interface) :
 	position(position),
 	interface(interface),
 	width(width),
 	height(height)
 {
-	std::cout << "menu : " << &interface << std::endl;
+	std::cout << "menu : " << interface << std::endl;
 }
 
 void MenuButton::render(){
@@ -57,7 +57,7 @@ void MenuButton::render(){
 	glTranslatef(position.x, position.y, position.z);
 	glScalef(width, height, 0.0);
 
-	std::cout << "menu : " << &interface << std::endl << std::endl;
+	std::cout << "menu : " << interface << std::endl << std::endl;
 
 	glBegin(GL_QUADS);
 	glNormal3f(1.0, 0.0, 0.0);

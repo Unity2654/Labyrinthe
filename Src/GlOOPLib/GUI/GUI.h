@@ -12,7 +12,7 @@ namespace gloop {
 	// UI elements coordinates must be using those coordinates
 	class GUI {
 	private :
-		std::vector<GUIElement> components;
+		std::vector<std::shared_ptr<GUIElement>> components;
 		const Vector2f coordinatesSystem;
 	
 	public:
@@ -28,6 +28,6 @@ namespace gloop {
 		void update();
 
 		// Adds an element to the interface
-		GUIElement& registerElement(const Rectangle& clickBox);
+		std::shared_ptr<GUIElement> registerElement(const Rectangle& clickBox);
 	};
 }

@@ -47,13 +47,13 @@ public:
 
 class MenuButton : public gloop::Object3D {
 private :
-	gloop::GUIElement& interface;
+	std::shared_ptr<gloop::GUIElement> interface;
 	gloop::Vector3f position;
 	float width;
 	float height;
 
 public :
-	MenuButton(gloop::Vector3f position, float width, float height, gloop::GUIElement& interface);
+	MenuButton(gloop::Vector3f position, float width, float height, std::shared_ptr<gloop::GUIElement> interface);
 
 	void render() override;
 };
