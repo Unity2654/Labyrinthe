@@ -30,13 +30,14 @@ MenuScene::MenuScene() : UI(1000,1000) {
 
 	auto element = UI.registerElement(gloop::Rectangle::fromCenter({ 500, 500 }, 100, 100));
 
-	MenuButton btn1 = MenuButton(
+	/*MenuButton btn1 = MenuButton(
 		{ POS.x,POS.y, (float)(POS.z + 2) }, 
 		0.2, 
 		0.2, 
 		element
 	);
-	addObject(btn1);
+	addObject(btn1);*/
+	addObject(TitleText({ POS.x,POS.y, (float)(POS.z + 2) }));
 }
 
 void MenuScene::update(){

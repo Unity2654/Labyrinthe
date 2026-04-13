@@ -47,17 +47,18 @@ void gloop::glyphs::A(){
 }
 
 void gloop::glyphs::B(){
+
 	glBegin(GL_QUADS);
-	
-	glVertex2f(0.38, -0.5);
-	glVertex2f(0.3, -0.5);
-	glVertex2f(0.3, 0.5);
-	glVertex2f(0.38, 0.5);
+
+	glVertex2f(0.18, -0.5);
+	glVertex2f(0.1, -0.5);
+	glVertex2f(0.1, 0.5);
+	glVertex2f(0.18, 0.5);
 
 	glEnd();
 
-	crescent(0.2,-0.25,0.5);
-	crescent(0.2, 0.25, 0.5);
+	crescent(0,-0.25,0.5);
+	crescent(0, 0.25, 0.5);
 }
 
 void gloop::glyphs::C(){
@@ -175,34 +176,35 @@ void gloop::glyphs::N(){
 void gloop::glyphs::Y(){
 	glBegin(GL_QUADS);
 
-	glVertex2f(-0.5, 0.5);
 	glVertex2f(-0.4, 0.5);
-	glVertex2f(0.05, -0.5);
-	glVertex2f(-0.05,-0.5);
+	glVertex2f(-0.3, 0.5);
+	glVertex2f(0.15, -0.5);
+	glVertex2f(0.05,-0.5);
 
-	glVertex2f(-0.3, 0);
 	glVertex2f(-0.2, 0);
-	glVertex2f(0.3,0.5);
-	glVertex2f(0.2, 0.5);
+	glVertex2f(-0.1, 0);
+	glVertex2f(0.4,0.5);
+	glVertex2f(0.3, 0.5);
 
 	glEnd();
 }
 
 void gloop::glyphs::R(){
+
 	glBegin(GL_QUADS);
 
-	glVertex2f(0.38, -0.5);
-	glVertex2f(0.3, -0.5);
-	glVertex2f(0.3, 0.5);
-	glVertex2f(0.38, 0.5);
+	glVertex2f(0.18, -0.5);
+	glVertex2f(0.1, -0.5);
+	glVertex2f(0.1, 0.5);
+	glVertex2f(0.18, 0.5);
 
-	glVertex2f(0.3, 0);
-	glVertex2f(0.2, 0);
-	glVertex2f(-0.3, -0.5);
-	glVertex2f(-0.2, -0.5);
+	glVertex2f(0.1, 0);
+	glVertex2f(0.0, 0);
+	glVertex2f(-0.5, -0.5);
+	glVertex2f(-0.4, -0.5);
 
 	glEnd();
-	crescent(0.2, 0.25, 0.5);
+	crescent(0.0, 0.25, 0.5);
 }
 
 void gloop::glyphs::T(){
