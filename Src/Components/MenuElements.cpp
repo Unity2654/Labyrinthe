@@ -121,6 +121,8 @@ StartButton::StartButton(gloop::Vector3f position, float width, float height, st
 	height(height){}
 
 void StartButton::render(){
+	gloop::Material old = gloop::Material::getCurrentMaterial(GL_FRONT);
+
 	// Text
 	gloop::Vector3f pos = position;
 	auto w = width/6;
@@ -152,7 +154,8 @@ void StartButton::render(){
 	glPushMatrix();
 
 	glTranslatef(pos.x, pos.y, pos.z);
-	glScalef(width, height,0.0);
+	glRotatef(rotation, 1.0, 0.0, 0.0);
+	glScalef(width, height, height);
 
 	if (interface->isHovered())
 		hover.apply(GL_FRONT);
@@ -161,4 +164,14 @@ void StartButton::render(){
 
 	glPopMatrix();
 
+	old.apply(GL_FRONT);
+
+}
+
+void StartButton::update(){
+	if (interface->isHovered())
+		rotationspeed = HOVER_ROTATION_SPEED;
+	else
+		rotationspeed = DEFAULT_ROTATION_SPEED;
+	rotation += rotationspeed;
 }

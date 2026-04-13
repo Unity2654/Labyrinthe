@@ -36,7 +36,7 @@ MenuScene::MenuScene() : UI(1000,1000) {
 		0.2, 
 		element
 	);
-	addObject(start);
+	addEntity(start);
 	addObject(TitleText({ POS.x,POS.y+0.65f, (float)(POS.z + 2.0f) }));
 }
 
