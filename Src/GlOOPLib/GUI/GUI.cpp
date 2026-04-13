@@ -6,7 +6,16 @@ namespace gloop {
 
 	Vector2f GUI::translateCoordinates(const Vector2f& position){ 
 		Vector2f abs = prop::getDisplay().getDimensions();
-		return position * coordinatesSystem / abs;
+		float ratio = coordinatesSystem.x / coordinatesSystem.y;
+		float absratio = abs.x / abs.y;
+		Vector2f offset = { (abs.x - abs.y * ratio) / 2, 0.0 };
+		if (absratio > ratio) {
+			abs.x = abs.y / ratio;
+		}
+		else if (absratio < ratio) {
+			abs.x = ratio * abs.y;
+		}
+		return (position-offset) * coordinatesSystem / abs;
 	}
 
 	void GUI::update(){
