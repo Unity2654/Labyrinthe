@@ -31,6 +31,12 @@ file(GLOB SCENES "Src/GlOOPLib/Scenes/*.cpp")
 
 file(GLOB TEXTURES "Src/GlOOPLib/Textures/*.cpp")
 
+file(GLOB GUI "Src/GlOOPLib/GUI/*.cpp")
+
+file(GLOB GUI "Src/GlOOPLib/GUI/*.cpp")
+
+file(GLOB PROPMAN "Src/GlOOPLib/GUI/*")
+
 add_executable(Labyrinthe
   Src/Labyrinthe.cpp
   Src/GlOOPLib/Maths/Vector.cpp
@@ -39,6 +45,7 @@ add_executable(Labyrinthe
   Src/GlOOPLib/Scenes/Scenes.cpp
   Src/GlOOPLib/Lights/Lights.h
   Src/GlOOPLib/Lights/Colors.h
+  Src/GlOOPLib/GUI/GUI.h
 
   ${PHYSICS}
 
@@ -59,6 +66,8 @@ add_executable(Labyrinthe
   ${SPNG}
 
   ${COMPO}
+
+  ${GUI}
 )
 
 add_dependencies(Labyrinthe
