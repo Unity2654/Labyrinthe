@@ -28,16 +28,16 @@ MenuScene::MenuScene() : UI(1000,1000) {
 		addEntity(MovingPillar(pillarpos * symmetryFactor, initialPosition * symmetryFactor, finalPosition * symmetryFactor, 4, PILLAR_WIDTH, Y_SIZE));
 	}
 
-	auto element = UI.registerElement(gloop::Rectangle::fromCenter({ 500, 500 }, 100, 100));
+	auto element = UI.registerElement(gloop::Rectangle::fromCenter({ 500, 500 }, 300, 100));
 
-	/*MenuButton btn1 = MenuButton(
+	StartButton start = StartButton(
 		{ POS.x,POS.y, (float)(POS.z + 2) }, 
-		0.2, 
+		0.7, 
 		0.2, 
 		element
 	);
-	addObject(btn1);*/
-	addObject(TitleText({ POS.x-0.1f,POS.y+0.65f, (float)(POS.z + 2.0f) }));
+	addObject(start);
+	addObject(TitleText({ POS.x,POS.y+0.65f, (float)(POS.z + 2.0f) }));
 }
 
 void MenuScene::update(){
@@ -55,20 +55,11 @@ void MenuScene::display(){
 	glLoadIdentity();
 	gluLookAt(POS.x, POS.y, POS.z, POS.x, POS.y, POS.z+1.0, 0.0, 1.0, 0.0);
 
-	//auto mouse = prop::getMouse();
-	//std::cout << "mouse : " << std::endl;
-	//std::cout << "\t" << "local position : " << UI.translateCoordinates(mouse.getPosition()).x << " " << UI.translateCoordinates(mouse.getPosition()).y << std::endl;
-	//std::cout << "\t" << "position : " << mouse.getPosition().x << " " << mouse.getPosition().y << std::endl << std::endl;
-
-
 	// Main scene
 	window.displayViewPort();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	displayLights();
 	displayObjects();
-
-	glTranslatef(0.0, 0.0,3.0);
-	glutSolidSphere(0.05, 20, 20);
 
 	glutSwapBuffers();
 }

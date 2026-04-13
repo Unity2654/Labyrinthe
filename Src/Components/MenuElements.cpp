@@ -1,6 +1,7 @@
 #include "MenuElements.h"
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
 #include "../GlOOPLib/GUI/Text.h"
+#include <GL/glut.h>
 
 MovingWall::MovingWall(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width, float thickness, float height, float rotation):
 	Wall(basePosition.x, basePosition.y, width, thickness, height, rotation),
@@ -63,7 +64,7 @@ void MenuButton::render(){
 	else
 		default.apply(GL_FRONT);
 	
-	gloop::glyphs::E();
+	gloop::glyphs::S();
 
 	glPopMatrix();
 }
@@ -78,7 +79,7 @@ void TitleText::render(){
 
 		glTranslatef(pos.x, pos.y, pos.z);
 		glScalef(0.2, 0.2, 0.0);
-		glTranslatef((5*letterSpace), 0.0, 0.0);
+		glTranslatef((4.5*letterSpace), 0.0, 0.0);
 		// L
 		gloop::glyphs::L();
 		// A
@@ -113,3 +114,51 @@ void TitleText::render(){
 	});
 }
 
+StartButton::StartButton(gloop::Vector3f position, float width, float height, std::shared_ptr<gloop::GUIElement> interface) :
+	position(position),
+	interface(interface),
+	width(width),
+	height(height){}
+
+void StartButton::render(){
+	// Text
+	gloop::Vector3f pos = position;
+	auto w = width/6;
+	default.apply(GL_FRONT);
+	float letterSpace = 1.0f;
+	glPushMatrix();
+
+	glTranslatef(pos.x, pos.y, pos.z);
+	glScalef(w, w, 0.0);
+	glTranslatef((2 * letterSpace), 0.0, 0.0);
+	// S
+	gloop::glyphs::S();
+	// T
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::T();
+	// A
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::A();
+	// R
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::R();
+	// T
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::T();
+
+	glPopMatrix();
+
+	// Rectangle
+	glPushMatrix();
+
+	glTranslatef(pos.x, pos.y, pos.z);
+	glScalef(width, height,0.0);
+
+	if (interface->isHovered())
+		hover.apply(GL_FRONT);
+
+	glutWireCube(1.0);
+
+	glPopMatrix();
+
+}

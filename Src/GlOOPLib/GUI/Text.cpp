@@ -207,6 +207,11 @@ void gloop::glyphs::R(){
 	crescent(0.0, 0.25, 0.5);
 }
 
+void gloop::glyphs::S(){
+	crescent(0, -0.25, 0.5);
+	crescent(0, 0.25, 0.5,-1);
+}
+
 void gloop::glyphs::T(){
 	glBegin(GL_QUADS);
 
