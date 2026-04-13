@@ -63,7 +63,14 @@ void MenuButton::render(){
 	else
 		default.apply(GL_FRONT);
 	
-	gloop::glyphs::A();
+	gloop::glyphs::E();
 
 	glPopMatrix();
 }
+
+TitleText::TitleText(gloop::Vector3f position) : position{position.x, position.y, position.z}{}
+
+void TitleText::render()
+{
+}
+

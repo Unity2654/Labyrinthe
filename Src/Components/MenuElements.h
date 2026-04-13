@@ -62,3 +62,14 @@ public :
 
 	void render() override;
 };
+
+class TitleText : public gloop::Object3D {
+private :
+	gloop::Vector3f position;
+	gloop::Material TextMaterial{ {0.0, 0.0, 0.0, 1.0}, { 0.0,0.0,0.0,1.0 }, { 0.0,0.0,0.0,1.0 }, { 1.0,1.0,1.0,1.0 } };
+
+public :
+	TitleText(gloop::Vector3f position);
+
+	void render() override;
+};
