@@ -9,5 +9,7 @@ namespace gloop {
 		void B();
 
 		void C();
+
+		void D();
 	}
 }

@@ -63,7 +63,7 @@ void MenuButton::render(){
 	else
 		default.apply(GL_FRONT);
 	
-	gloop::glyphs::B();
+	gloop::glyphs::A();
 
 	glPopMatrix();
 }
