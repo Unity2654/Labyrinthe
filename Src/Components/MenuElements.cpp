@@ -1,5 +1,6 @@
 #include "MenuElements.h"
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
+#include "../GlOOPLib/GUI/Text.h"
 
 MovingWall::MovingWall(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width, float thickness, float height, float rotation):
 	Wall(basePosition.x, basePosition.y, width, thickness, height, rotation),
@@ -62,13 +63,7 @@ void MenuButton::render(){
 	else
 		default.apply(GL_FRONT);
 	
-	glBegin(GL_QUADS);
-	glNormal3f(1.0, 0.0, 0.0);
-	glVertex3f(-0.5, -0.5, 0.0);
-	glVertex3f(0.5, -0.5, 0.0);
-	glVertex3f(0.5, 0.5, 0.0);
-	glVertex3f(-0.5, 0.5, 0.0);
-	glEnd();
+	gloop::glyphs::B();
 
 	glPopMatrix();
 }
