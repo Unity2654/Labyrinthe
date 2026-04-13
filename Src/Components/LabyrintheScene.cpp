@@ -11,6 +11,11 @@ LabyrintheScene::LabyrintheScene()
 	laby.displayInScene(*this);
 }
 
+void LabyrintheScene::onLoad(){
+	glutSetCursor(GLUT_CURSOR_NONE);
+	prop::setMainScene();
+}
+
 void LabyrintheScene::display(){
 	auto& window = prop::getDisplay();
 	// Main scene

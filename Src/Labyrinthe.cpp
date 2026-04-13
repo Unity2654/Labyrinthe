@@ -76,9 +76,6 @@ static float jump = 0.0f;            // used to detect if the player is jumping
 static int moving[4] = {0, 0, 0, 0}; // up, down, left, right
 static bool isSprinting = 0;         // if the player is sprinting
 
-// --- scenes ---
-static bool isMainScene = false;
-
 /**********************************************************/
 /************* END OF TEMPORARY CONTENT  ******************/
 /**********************************************************/
@@ -90,6 +87,7 @@ static void init(void){
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
     glPolygonMode(GL_FRONT, GL_FILL);
+    //glEnable(GL_CULL_FACE); // TODO : change the way the faces are drawn, then re-enable this
 
     float globalAmbient[4] = {0.15, 0.15, 0.15, 1.0};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbient);
@@ -98,14 +96,12 @@ static void init(void){
 
     // Loading a texture for test purposes
     gloop::Texture tex = gloop::Texture("../Resources/orange.png");
-
-    //glutSetCursor(GLUT_CURSOR_NONE);
 }
 
 static void display(void)
 {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
-    if (isMainScene) {
+    if (prop::isMainScene()) {
         // TESTS //
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
@@ -135,7 +131,7 @@ static void timer(int value)
 {
     prop::getSceneManager().update();
 
-    if (isMainScene) {
+    if (prop::isMainScene()) {
         gloop::Vector2f vect{ looking_at.x, looking_at.z };
 
         gloop::Vector2f speed{ 0, 0 };
@@ -277,7 +273,7 @@ static void mouseMotion(int x, int y)
     // glutPostRedisplay();
     prop::getMouse().update(gloop::Vector2f{ (float)x ,(float)y });
 
-    if (!isMainScene)
+    if (!prop::isMainScene())
         return;
 
     float dx = (x - old_x) * MOUSE_SENS;
@@ -301,7 +297,7 @@ static int warp = 0;
 static void passiveMouseMotion(int x, int y)
 {
     prop::getMouse().update({ (float)x,(float)y });
-    if (!isMainScene)
+    if (!prop::isMainScene())
         return;
 
     if (warp)

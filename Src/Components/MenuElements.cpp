@@ -2,6 +2,7 @@
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
 #include "../GlOOPLib/GUI/Text.h"
 #include <GL/glut.h>
+#include "LabyrintheScene.h"
 
 MovingWall::MovingWall(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width, float thickness, float height, float rotation):
 	Wall(basePosition.x, basePosition.y, width, thickness, height, rotation),
@@ -169,7 +170,9 @@ void StartButton::render(){
 }
 
 void StartButton::update(){
-	if (interface->isHovered())
+	if (interface->isClicked())
+		prop::getSceneManager().pushScene(LabyrintheScene());
+	else if (interface->isHovered())
 		rotationspeed = HOVER_ROTATION_SPEED;
 	else
 		rotationspeed = DEFAULT_ROTATION_SPEED;

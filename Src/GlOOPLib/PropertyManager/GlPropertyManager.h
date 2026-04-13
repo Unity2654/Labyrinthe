@@ -19,6 +19,7 @@ namespace gloop {
 		GlPropertyManager();
 	public :
 		const constexpr static int FPS = 60;
+		bool mainScene = false; // TODO : Remove this once the main scene works properly
 		
 		void operator=(const GlPropertyManager&) = delete;
 		GlPropertyManager(const GlPropertyManager&) = delete;
@@ -28,6 +29,8 @@ namespace gloop {
 		static Display& getDisplay();
 		static SceneManager& getSceneManager();
 		static Mouse& getMouse();
+		static bool isMainScene() { return get().mainScene; } // TODO : This as well
+		static void setMainScene() { get().mainScene = true; } // TODO : This as well
 
 		~GlPropertyManager();
 	};

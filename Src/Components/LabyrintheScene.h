@@ -22,6 +22,8 @@ public:
 
 	LabyrintheScene();
 
+	virtual void onLoad() override;
+
 	virtual void display() override;
 
 };
