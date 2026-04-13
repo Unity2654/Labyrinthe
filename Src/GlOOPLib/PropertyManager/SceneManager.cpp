@@ -2,6 +2,9 @@
 
 void gloop::SceneManager::popScene(){
 	scenes.pop();
+	if (scenes.empty())
+		exit(1);
+	scenes.top()->onLoad();
 }
 
 bool gloop::SceneManager::isPaused() const{

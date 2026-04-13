@@ -28,6 +28,8 @@ namespace gloop {
 		virtual void update();
 		// Displays all the objects and entities of the scene
 		virtual void display();
+		// Called by the scene manager when the current scene is changed to be this one
+		virtual void onLoad() {}
 
 		// Adds objects to the scene
 		template<typename T>

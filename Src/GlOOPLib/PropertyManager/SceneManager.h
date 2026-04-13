@@ -24,6 +24,7 @@ namespace gloop {
 		template<typename S>
 		void pushScene(S& scene) {
 			scenes.push(std::make_shared<S>(scene));
+			scenes.top()->onLoad();
 		}
 
 		/* Remove the scene on the top of the stack */
