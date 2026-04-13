@@ -55,7 +55,9 @@ void MenuButton::render(){
 	glTranslatef(position.x, position.y, position.z);
 	glScalef(width, height, 0.0);
 
-	if (interface->isHovered())
+	if (interface->isClicked())
+		click.apply(GL_FRONT);
+	else if (interface->isHovered())
 		hover.apply(GL_FRONT);
 	else
 		default.apply(GL_FRONT);

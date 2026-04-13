@@ -54,6 +54,7 @@ private :
 
 	gloop::Material default{{0.5, 0.5, 0.5, 1.0}, { 0.5,0.5,0.5,1.0 }};
 	gloop::Material hover{{0.0, 0.0, 1.0, 1.0}, { 0.0,0.0,1.0,1.0 }};
+	gloop::Material click{{1.0, 0.0, 0.0, 1.0}, { 1.0,0.0,0.0,1.0 }};
 
 
 public :

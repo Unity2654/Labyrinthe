@@ -27,6 +27,7 @@
     <ClInclude Include="..\..\Src\Components\MenuScene.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\GUI.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\GUIElement.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\GUI\Text.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Colors.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Lights.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Materials.h" />
@@ -70,6 +71,7 @@
     <ClCompile Include="..\..\Src\Components\MenuScene.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\GUI.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\GUIElement.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\GUI\Text.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Rectangle.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Utils.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
