@@ -33,9 +33,7 @@ file(GLOB TEXTURES "Src/GlOOPLib/Textures/*.cpp")
 
 file(GLOB GUI "Src/GlOOPLib/GUI/*.cpp")
 
-file(GLOB GUI "Src/GlOOPLib/GUI/*.cpp")
-
-file(GLOB PROPMAN "Src/GlOOPLib/GUI/*")
+file(GLOB PROPMAN "Src/GlOOPLib/PropertyManager/*")
 
 add_executable(Labyrinthe
   Src/Labyrinthe.cpp
@@ -68,6 +66,8 @@ add_executable(Labyrinthe
   ${COMPO}
 
   ${GUI}
+  
+  ${PROPMAN}
 )
 
 add_dependencies(Labyrinthe

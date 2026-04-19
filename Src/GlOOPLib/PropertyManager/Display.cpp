@@ -23,8 +23,8 @@ int gloop::Display::getSizeY() const{
     return dimensions.getHeight();
 }
 
-const gloop::Vector2f& gloop::Display::getDimensions() const{
-    return dimensions.getDiagonal();
+const gloop::Rectangle& gloop::Display::getDimensions() const{
+    return dimensions;
 }
 
 void gloop::Display::displayViewPort() const{

@@ -63,7 +63,7 @@ void MenuButton::render(){
 	else if (interface->isHovered())
 		hover.apply(GL_FRONT);
 	else
-		default.apply(GL_FRONT);
+		defaultMaterial.apply(GL_FRONT);
 	
 	gloop::glyphs::S();
 
@@ -127,7 +127,7 @@ void StartButton::render(){
 	// Text
 	gloop::Vector3f pos = position;
 	auto w = width/6;
-	default.apply(GL_FRONT);
+	defaultMaterial.apply(GL_FRONT);
 	float letterSpace = 1.0f;
 	glPushMatrix();
 
@@ -170,8 +170,10 @@ void StartButton::render(){
 }
 
 void StartButton::update(){
-	if (interface->isClicked())
-		prop::getSceneManager().pushScene(LabyrintheScene());
+	if (interface->isClicked()){
+		LabyrintheScene lb;
+		prop::getSceneManager().pushScene(lb);
+	}
 	else if (interface->isHovered())
 		rotationspeed = HOVER_ROTATION_SPEED;
 	else

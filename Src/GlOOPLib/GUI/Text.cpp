@@ -1,6 +1,5 @@
 #include "Text.h"
 #include <GL/gl.h>
-#include <corecrt_math_defines.h>
 #include <cmath>
 #include "../Lights/Materials.h"
 #include <iostream>

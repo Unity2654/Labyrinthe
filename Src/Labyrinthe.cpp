@@ -353,7 +353,8 @@ int main(int argc, char** argv) {
     //for test : malloc(10);
     prop::init(argc, argv, gloop::Rectangle({0,0},480, 480), "Labyrinthe");
     //prop::getSceneManager().pushScene(LabyrintheScene());
-    prop::getSceneManager().pushScene(MenuScene());
+    MenuScene ms;
+    prop::getSceneManager().pushScene(ms);
 
     atexit(clean);
     // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme

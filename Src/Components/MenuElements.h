@@ -52,7 +52,7 @@ private :
 	float width;
 	float height;
 
-	gloop::Material default{{0.5, 0.5, 0.5, 1.0}, { 0.5,0.5,0.5,1.0 }};
+	gloop::Material defaultMaterial{{0.5, 0.5, 0.5, 1.0}, { 0.5,0.5,0.5,1.0 }};
 	gloop::Material hover{{0.0, 0.0, 1.0, 1.0}, { 0.0,0.0,1.0,1.0 }};
 	gloop::Material click{{1.0, 0.0, 0.0, 1.0}, { 1.0,0.0,0.0,1.0 }};
 
@@ -87,7 +87,7 @@ private:
 	static constexpr float DEFAULT_ROTATION_SPEED = 0.5;
 	static constexpr float HOVER_ROTATION_SPEED = -1.0;
 
-	gloop::Material default{ {0.0, 0.0, 0.0, 1.0}, { 0.0,0.0,0.0,1.0 }, { 0.0,0.0,0.0,1.0 }, { 1.0,1.0,1.0,1.0 } };
+	gloop::Material defaultMaterial{ {0.0, 0.0, 0.0, 1.0}, { 0.0,0.0,0.0,1.0 }, { 0.0,0.0,0.0,1.0 }, { 1.0,1.0,1.0,1.0 } };
 	gloop::Material hover{ {0.0, 0.0, 0.0, 1.0}, { 0.0,0.0,0.0,1.0 }, { 0.0,0.0,0.0,1.0 }, { 1.0,0.0,0.0,0.0 } };
 
 

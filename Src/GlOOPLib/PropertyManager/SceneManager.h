@@ -33,15 +33,10 @@ namespace gloop {
 		// Active scene of the manager
 
 		/* Returns the scene at the top of the stack */
-		template<typename S>
+		/*template<typename S>
 		S& getActiveScene() {
 			return std::dynamic_cast<S>(*(scenes.top()));
-		}
-
-		template<>
-		Scene& getActiveScene<Scene>() {
-			return *scenes.top();
-		}
+		}*/
 
 		// Status of the manager
 		bool isPaused() const;
