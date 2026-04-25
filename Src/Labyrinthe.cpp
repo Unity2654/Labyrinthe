@@ -87,7 +87,8 @@ static void init(void){
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
     glPolygonMode(GL_FRONT, GL_FILL);
-    //glEnable(GL_CULL_FACE); // TODO : change the way the text is drawn, then re-enable this
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_CULL_FACE); // TODO : change the way the text is drawn, then re-enable this
 
     float globalAmbient[4] = {0.15, 0.15, 0.15, 1.0};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbient);

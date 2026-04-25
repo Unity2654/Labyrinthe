@@ -28,6 +28,11 @@ void Wall::drawCube(int facettesX, int facettesY) const
     glPushMatrix();
 
     texture.bind();
+
+    GLint width = 0, height = 0;
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+
     glBegin(GL_QUADS);
     for (int i = 0; i < facettesX; i++)
     {
@@ -57,13 +62,13 @@ void Wall::drawCube(int facettesX, int facettesY) const
 
             //glBegin(GL_QUADS);
             glNormal3f(0.0, 0.0, -1.0);
-            glTexCoord2f((i + 1) * ratioX, j * ratioY);
-            glVertex3f(-0.5 + i * ratioX, -0.5 + j * ratioY, -0.5);
-            glTexCoord2f((i + 1) * ratioX, (j + 1) * ratioY);
-            glVertex3f(-0.5 + i * ratioX, -0.5 + (j + 1) * ratioY, -0.5);
-            glTexCoord2f(i * ratioX, (j + 1) * ratioY);
-            glVertex3f(-0.5 + (i + 1) * ratioX, -0.5 + (j + 1) * ratioY, -0.5);
             glTexCoord2f(i * ratioX, j * ratioY);
+            glVertex3f(-0.5 + i * ratioX, -0.5 + j * ratioY, -0.5);
+            glTexCoord2f(i * ratioX, (j + 1) * ratioY);
+            glVertex3f(-0.5 + i * ratioX, -0.5 + (j + 1) * ratioY, -0.5);
+            glTexCoord2f((i+1) * ratioX, (j + 1) * ratioY);
+            glVertex3f(-0.5 + (i + 1) * ratioX, -0.5 + (j + 1) * ratioY, -0.5);
+            glTexCoord2f((i+1) * ratioX, j * ratioY);
             glVertex3f(-0.5 + (i + 1) * ratioX, -0.5 + j * ratioY, -0.5);
             //glEnd();
         }

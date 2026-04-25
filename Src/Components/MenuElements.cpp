@@ -9,7 +9,8 @@ MovingWall::MovingWall(gloop::Vector2f basePosition, gloop::Vector2f minPosition
 	minPosition(minPosition),
 	maxPosition(maxPosition),
 	speed((minPosition - maxPosition) / time / prop::FPS),
-	distance((minPosition - maxPosition).norm()){}
+	distance((minPosition - maxPosition).norm()){
+}
 
 void MovingWall::update(){
 	posX = posX + speed.x;

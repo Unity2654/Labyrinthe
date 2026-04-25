@@ -14,7 +14,8 @@ protected:
     float thickness;
     float height;
     float rotation;
-    const gloop::Material displayMaterial{ gloop::Color{1.0,0.0,0.0,1.0}, gloop::Color{1.0,0.0,0.0,1.0} };
+    //const gloop::Material displayMaterial{ gloop::Color{1.0,0.0,0.0,1.0}, gloop::Color{1.0,0.0,0.0,1.0} };
+    const gloop::Material displayMaterial{ gloop::Color{1.0,1.0,1.0,1.0}, gloop::Color{1.0,1.0,1.0,1.0} };
     const gloop::CollisionBox hitbox;
     const gloop::Texture texture;
 
