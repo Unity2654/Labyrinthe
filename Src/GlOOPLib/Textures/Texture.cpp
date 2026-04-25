@@ -71,4 +71,14 @@ namespace gloop {
 	void Texture::bind() const{
 		glBindTexture(GL_TEXTURE_2D, texID);
 	}
+
+	Texture& TextureManager::load(const std::string path) {
+		auto& tex = loadedTextures.find(path);
+		if (tex != loadedTextures.end()) {
+			return Texture(tex->second);
+		}
+		Texture t = Texture(path);
+		loadedTextures.emplace(path, t);
+		return t;
+	}
 }
