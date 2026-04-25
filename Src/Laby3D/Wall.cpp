@@ -29,10 +29,6 @@ void Wall::drawCube(int facettesX, int facettesY) const
 
     texture.bind();
 
-    GLint width = 0, height = 0;
-    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
-    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
-
     glBegin(GL_QUADS);
     for (int i = 0; i < facettesX; i++)
     {
