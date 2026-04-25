@@ -6,6 +6,7 @@
 namespace gloop {
 
 	Texture::Texture(std::string path) : path(path) {
+		std::cout << "called default" << std::endl;
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 		glGenTextures(1, &texID);
 		
@@ -66,7 +67,26 @@ namespace gloop {
 		free(image);
 	}
 
-	std::string Texture::getPath() const{
+	Texture::Texture(const Texture& other): texID(other.getTextureID()),path(other.getPath()) {}
+
+	Texture::Texture(Texture&& other) {
+		std::swap(other.texID, texID);
+		std::swap(other.path, path);
+	}
+
+	Texture& Texture::operator=(const Texture& other){
+		this->texID = other.texID;
+		this->path = other.path;
+		return *this;
+	}
+
+	Texture& Texture::operator=(Texture&& other){
+		std::swap(other.texID, texID);
+		std::swap(other.path, path);
+		return *this;
+	}
+
+	const std::string Texture::getPath() const{
 		return std::string();
 	}
 
@@ -80,7 +100,7 @@ namespace gloop {
 
 	std::map <std::string, Texture> TextureManager::loadedTextures{};
 
-	Texture& TextureManager::load(const std::string path) {
+	Texture TextureManager::load(const std::string path) {
 		auto& tex = loadedTextures.find(path);
 		if (tex != loadedTextures.end()) {
 			return Texture(tex->second);

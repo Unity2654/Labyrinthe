@@ -8,16 +8,21 @@ namespace gloop {
 	class Texture {
 	private : 
 		unsigned int texID = 0;
-		const std::string path;
+		std::string path;
 
 	public :
 
 		// Constructors 
 		Texture() = delete;
 		Texture(std::string path);
+		Texture(const Texture& other);
+		Texture(Texture&& other);
+
+		Texture& operator=(const Texture& other);
+		Texture& operator=(Texture&& other);
 
 		// Getters
-		std::string getPath() const;
+		const std::string getPath() const;
 		unsigned int getTextureID() const;
 
 		// Binds the texture to use it
@@ -32,6 +37,6 @@ namespace gloop {
 	public:
 		TextureManager() = delete;
 
-		static Texture& load(std::string path);
+		static Texture load(std::string path);
 	};
 }

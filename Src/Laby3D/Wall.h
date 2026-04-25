@@ -16,7 +16,7 @@ protected:
     float rotation;
     const gloop::Material displayMaterial{ gloop::Color{1.0,0.0,0.0,1.0}, gloop::Color{1.0,0.0,0.0,1.0} };
     const gloop::CollisionBox hitbox;
-    const gloop::Texture& texture;
+    const gloop::Texture texture;
 
     void drawCube(int facettesX, int facettesY) const;
 
