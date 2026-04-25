@@ -4,6 +4,7 @@
 #include <iostream>
 
 namespace gloop {
+
 	Texture::Texture(std::string path) : path(path) {
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 		glGenTextures(1, &texID);
@@ -34,15 +35,20 @@ namespace gloop {
 		
 		struct spng_ihdr ihdr;
 		ret = spng_get_ihdr(ctx, &ihdr);
+		if (ret) {
+			std::cerr << "Failed to decode image " << path << " : " << spng_strerror(ret) << std::endl; exit(1);
+		}
 		size_t size;
-		ret = spng_decoded_image_size(ctx, SPNG_FMT_PNG, &size);
+		ret = spng_decoded_image_size(ctx, SPNG_FMT_RGBA8, &size);
+		if (ret) {
+			std::cerr << "Failed to decode image " << path << " : " << spng_strerror(ret) << std::endl; exit(1);
+		}
 		image = (unsigned char*)malloc(size);
 
 		// Decoding the image
 		ret = spng_decode_image(ctx, image, size, SPNG_FMT_RGBA8, 0);
 		if (ret) {
-			std::cerr << "Failed to decode image " << path << std::endl;
-			exit(1);
+			std::cerr << "Failed to decode image " << path << " : " << spng_strerror(ret) << std::endl; exit(1);
 		}
 		unsigned int img_width = ihdr.width;
 		unsigned int img_height = ihdr.height;
@@ -71,6 +77,8 @@ namespace gloop {
 	void Texture::bind() const{
 		glBindTexture(GL_TEXTURE_2D, texID);
 	}
+
+	std::map <std::string, Texture> TextureManager::loadedTextures{};
 
 	Texture& TextureManager::load(const std::string path) {
 		auto& tex = loadedTextures.find(path);

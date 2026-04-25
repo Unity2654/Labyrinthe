@@ -95,7 +95,7 @@ static void init(void){
     glClearColor(0.0, 0.0, 0.0, 1.0);
 
     // Loading a texture for test purposes
-    gloop::Texture tex = gloop::Texture("../Resources/orange.png");
+    //gloop::Texture tex = gloop::Texture("../Resources/orange.png");
 }
 
 static void display(void)
