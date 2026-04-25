@@ -3,6 +3,7 @@
 #include "../GlOOPLib/Objects/Object3D.h"
 #include "../GlOOPLib/Physics/Collidable.h"
 #include "../GlOOPLib/Lights/Materials.h"
+#include "../GlOOPLib/Textures/Texture.h"
 
 class Wall : public gloop::Object3D, public gloop::Collidable
 {
@@ -15,6 +16,7 @@ protected:
     float rotation;
     const gloop::Material displayMaterial{ gloop::Color{1.0,0.0,0.0,1.0}, gloop::Color{1.0,0.0,0.0,1.0} };
     const gloop::CollisionBox hitbox;
+    const gloop::Texture& texture;
 
     void drawCube(int facettesX, int facettesY) const;
 

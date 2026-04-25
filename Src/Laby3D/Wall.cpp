@@ -19,7 +19,8 @@ Wall::Wall(float posX, float posZ, float width, float thickness, float height, f
         { posX, posZ },
         width * cos(gloop::degToRad(rotation)) + thickness * sin(gloop::degToRad(rotation)),
         width * sin(gloop::degToRad(rotation)) + thickness * cos(gloop::degToRad(rotation)))
-    } {
+    },
+    texture(gloop::TextureManager::load("../Resources/walls.png")) {
 }
 
 void Wall::drawCube(int facettesX, int facettesY) const
