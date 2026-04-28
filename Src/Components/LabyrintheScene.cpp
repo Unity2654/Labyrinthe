@@ -13,7 +13,7 @@ LabyrintheScene::LabyrintheScene()
 }
 
 void LabyrintheScene::onLoad(){
-	glutSetCursor(GLUT_CURSOR_NONE);
+	//glutSetCursor(GLUT_CURSOR_NONE);
 	prop::setMainScene();
 	prop::getMouse().isWarpEnabled = true;
 }

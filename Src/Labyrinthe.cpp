@@ -148,7 +148,6 @@ static void specialUp(int specialKey, int x, int y)
 static void mouseMotion(int x, int y)
 {
     prop::getMouse().moveTo(gloop::Vector2f{ (float)x ,(float)y });
-
 }
 
 static int warp = 0;

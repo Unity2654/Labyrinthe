@@ -25,7 +25,7 @@ namespace gloop {
 	}
 
 	Vector2f Rectangle::getCenter() const {
-		return Vector2f{ position.x + width / 2, position.y - height / 2 };
+		return Vector2f{ position.x + width / 2, position.y + height / 2 };
 	}
 	bool Rectangle::isWithin(const Vector2f& position) const{
 		// X axis

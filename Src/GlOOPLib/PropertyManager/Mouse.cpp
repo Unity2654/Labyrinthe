@@ -8,11 +8,11 @@ namespace gloop {
 	Mouse::Mouse() : position(0.0,0.0), previousPosition(0.0,0.0), clickStartPosition(0.0,0.0){}
 
 	void Mouse::moveTo(Vector2f newPosition){
-		position = newPosition;
 		if (isWarpEnabled) {
-			auto d = prop::getDisplay();
-			glutWarpPointer(d.getSizeX()/ 2, d.getSizeY() / 2);
+			auto c = prop::getDisplay().getDimensions().getCenter();
+			glutWarpPointer(c.x, c.y);
 		}
+		position = newPosition;
 	}
 
 	void Mouse::update(){

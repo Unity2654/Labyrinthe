@@ -6,7 +6,7 @@
 #define SPRINT_SPEED 0.05f
 #define GRAVITY 0.01f
 #define JUMP_FORCE 0.2f
-#define MOUSE_SENS 0.003f
+#define MOUSE_SENS 0.006f
 
 #define SPECIAL_KEY_OFFSET 256 
 
@@ -104,20 +104,12 @@ void Character::setLookingAt(const gloop::Vector3f& dir) {
 
 void Character::updateMouse()
 {
+    auto center = prop::getDisplay().getDimensions().getCenter();
+    center = { std::round(center.x), std::round(center.y) };
+    auto mouseDep = (prop::getMouse().getPosition() - center) * MOUSE_SENS;
 
-    auto mousePos = prop::getMouse().getPosition();
-
-    auto size = prop::getDisplay();
-    //float centerX = 240;
-    //float centerY = 240;
-    float centerX = prop::getDisplay().getSizeX() / 2.0f;
-    float centerY = prop::getDisplay().getSizeY() / 2.0f;
-
-    float dx = (mousePos.x - centerX) * MOUSE_SENS;
-    float dy = (mousePos.y - centerY) * MOUSE_SENS;
-
-    rotate_x += dx;
-    rotate_y += dy;
+    rotate_x += mouseDep.x;
+    rotate_y += mouseDep.y;
 
     const float limit = 1.5f;
     if (rotate_y > limit) rotate_y = limit;
