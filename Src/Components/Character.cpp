@@ -35,7 +35,7 @@ void Character::update(){
 
     camFP.pos = pos;
     camFP.ori = pos + looking_at;
-    camFP.reshape(d.getSizeY(), d.getSizeX() / d.getSizeY());
+    camFP.reshape(d.getSizeX(), d.getSizeX() / d.getSizeY());
 
     camMap.pos = { pos.x, pos.y + 20.0f, pos.z };
     camMap.ori = pos;
