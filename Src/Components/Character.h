@@ -21,6 +21,8 @@ private:
 
     gloop::Vector3f looking_at;
 
+    gloop::Scene* sceneRef = nullptr;
+
     gloop::CameraPerspective camFP;
     gloop::CameraOrtho camMap;
     bool fp; // true = 1st person, false = map
@@ -31,6 +33,7 @@ public:
 
     void updateMovement();
 
+    void setSceneReference(gloop::Scene* ref);
 
     void update() override;
     void render() override;

@@ -17,10 +17,9 @@ Character::Character(gloop::Vector3f pos) :
     rotate_x(0.0f),
     rotate_y(0.0f),
     looking_at(0.0f, 0.0f, -1.0f),
-    camFP(pos, pos + looking_at, {0.0f, 1.0f, 0.0f}, 60.0f, 1.0f, 0.1f, 100.0f),
-    camMap({pos.x, pos.y + 20.0f, pos.z}, pos, {0.0f, 0.0f, -1.0f}, -10, 10, -10, 10, 0.1f, 100.0f),
-    fp(true)
-{
+    camFP(pos, pos + looking_at, { 0.0f, 1.0f, 0.0f }, 60.0f, 1.0f, 0.1f, 100.0f),
+    camMap({ pos.x, pos.y + 20.0f, pos.z }, pos, { 0.0f, 0.0f, -1.0f }, -10, 10, -10, 10, 0.1f, 100.0f),
+    fp(true){
     for (int i = 0; i < 4; i++){
         moving[i] = 0;
     }
@@ -87,6 +86,9 @@ void Character::updateMovement(){
     }
 }
 
+void Character::setSceneReference(gloop::Scene* ref){
+    sceneRef = ref;
+}
 
 void Character::Jump(){
     if (pos.y <= 1.75f){
