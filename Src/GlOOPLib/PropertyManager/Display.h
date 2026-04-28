@@ -20,6 +20,8 @@ namespace gloop {
 
 		const Rectangle& getDimensions() const;
 
+		const Vector2f& getCenter() const;
+
 		void displayViewPort() const;
 	};
 }

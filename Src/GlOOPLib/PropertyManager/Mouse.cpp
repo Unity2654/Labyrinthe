@@ -9,7 +9,7 @@ namespace gloop {
 
 	void Mouse::moveTo(Vector2f newPosition){
 		if (isWarpEnabled) {
-			auto c = prop::getDisplay().getDimensions().getCenter();
+			auto c = prop::getDisplay().getCenter();
 			glutWarpPointer(c.x, c.y);
 		}
 		position = newPosition;

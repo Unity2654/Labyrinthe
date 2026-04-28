@@ -27,6 +27,11 @@ const gloop::Rectangle& gloop::Display::getDimensions() const{
     return dimensions;
 }
 
+const gloop::Vector2f& gloop::Display::getCenter() const{
+    auto& center = dimensions.getCenter();
+    return { (float)floor(center.x), (float)floor(center.y) };
+}
+
 void gloop::Display::displayViewPort() const{
     glViewport(0, 0, dimensions.getWidth(), dimensions.getHeight());
 }
