@@ -19,7 +19,8 @@ Character::Character(gloop::Vector3f pos) :
     looking_at(0.0f, 0.0f, -1.0f),
     camFP(pos, pos + looking_at, { 0.0f, 1.0f, 0.0f }, 60.0f, 1.0f, 0.1f, 100.0f),
     camMap({ pos.x, pos.y + 20.0f, pos.z }, pos, { 0.0f, 0.0f, -1.0f }, -10, 10, -10, 10, 0.1f, 100.0f),
-    fp(true){
+    fp(true),
+    speed(0.0f,0.0f){
     for (int i = 0; i < 4; i++){
         moving[i] = 0;
     }
@@ -48,6 +49,7 @@ void Character::render()
     }else{
         camMap.buildOrthoCamera();
     }
+    drawHitbox(3.0f);
 }
 
 void Character::updateMovement(){
@@ -65,7 +67,7 @@ void Character::updateMovement(){
     }
 
     gloop::Vector2f vect{ looking_at.x, looking_at.z };
-    gloop::Vector2f speed{ 0.0f, 0.0f };
+    speed = { 0.0f,0.0f };
 
     if (moving[0]) { speed.x += vect.x; speed.y += vect.y; }
     if (moving[1]) { speed.x -= vect.x; speed.y -= vect.y; }
@@ -125,4 +127,13 @@ void Character::updateMouse()
     looking_at.x = cos(rotate_y) * sin(rotate_x);
     looking_at.y = -sin(rotate_y);
     looking_at.z = -cos(rotate_y) * cos(rotate_x);
+}
+
+gloop::CollisionBox Character::getCollisionBox() const{
+    return gloop::CollisionBox{
+        gloop::Rectangle::fromCenter({pos.x, pos.z}, 1, 1),
+        true,
+        {},
+        { speed.x, speed.y }
+    };
 }
