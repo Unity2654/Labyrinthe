@@ -1,4 +1,5 @@
 #include "MenuScene.h"
+#include <stdlib.h>
 #include <GL/glut.h>
 #include <cmath>
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"

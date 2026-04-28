@@ -11,9 +11,8 @@
 //#include <crtdbg.h>
 //#endif
 
-#include <stdlib.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -105,6 +104,7 @@ static void display(void)
 static void timer(int value)
 {
     prop::getSceneManager().update();
+    prop::getMouse().update();
 
     glutPostRedisplay();
     glutTimerFunc(1000 / prop::FPS, timer, 0);
@@ -147,7 +147,7 @@ static void specialUp(int specialKey, int x, int y)
 /* avec un bouton presse                        */
 static void mouseMotion(int x, int y)
 {
-    prop::getMouse().update(gloop::Vector2f{ (float)x ,(float)y });
+    prop::getMouse().moveTo(gloop::Vector2f{ (float)x ,(float)y });
 
 }
 
@@ -155,16 +155,7 @@ static int warp = 0;
 
 static void passiveMouseMotion(int x, int y)
 {
-    prop::getMouse().update({ (float)x,(float)y });
-
-    if (warp)
-    {
-        warp = 0;
-        return;
-    }
-
-    warp = 1;
-    glutWarpPointer(wTx / 2, wTy / 2);
+    prop::getMouse().moveTo({ (float)x,(float)y });
 }
 
 static void mouseFunction(int button, int state, int x, int y) {

@@ -2,7 +2,6 @@
 #include "GL/glut.h"
 #include "GL/gl.h"
 #include "GL/glu.h"
-#include <stdlib.h>
 #include <iostream>
 #include "../GlOOPLib/Maths/Utils.h"
 #include "../GlOOPLib/Textures/Texture.h"

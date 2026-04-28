@@ -31,8 +31,13 @@ namespace gloop {
 	public :
 		Mouse();
 
+		// Warp
+		bool isWarpEnabled = false;
+
 		// Update state
-		void update(Vector2f newPosition);
+		void moveTo(Vector2f newPosition);
+
+		void update();
 
 		void click();
 		void rightClick();

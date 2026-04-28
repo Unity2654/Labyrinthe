@@ -4,6 +4,7 @@
 #include "../GlOOPLib/Objects/Entity3D.h"
 #include "../GlOOPLib/Camera/Camera.h"
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
+#include <stdlib.h>
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>

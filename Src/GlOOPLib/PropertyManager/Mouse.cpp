@@ -1,12 +1,22 @@
 #include "Mouse.h"
+#include <stdlib.h>
+#include <GL/glut.h>
+#include "GlPropertyManager.h"
 
 namespace gloop {
 
 	Mouse::Mouse() : position(0.0,0.0), previousPosition(0.0,0.0), clickStartPosition(0.0,0.0){}
 
-	void Mouse::update(Vector2f newPosition){
-		previousPosition = position;
+	void Mouse::moveTo(Vector2f newPosition){
 		position = newPosition;
+		if (isWarpEnabled) {
+			auto d = prop::getDisplay();
+			glutWarpPointer(d.getSizeX()/ 2, d.getSizeY() / 2);
+		}
+	}
+
+	void Mouse::update(){
+		previousPosition = position;
 		if (buttonsState.leftButton == RELEASE)
 			buttonsState.leftButton = NONE;
 		if (buttonsState.rightButton == RELEASE)
