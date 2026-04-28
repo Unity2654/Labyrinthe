@@ -1,5 +1,7 @@
 #include "Character.h"
 #include <cmath>
+#include "../GlOOPLib/Physics/Physics.h"
+#include "LabyrintheScene.h"
 
 
 #define MOVEMENT_SPEED 0.05f
@@ -10,7 +12,7 @@
 
 #define SPECIAL_KEY_OFFSET 256 
 
-Character::Character(gloop::Vector3f pos) :
+Character::Character(gloop::Vector3f pos, LabyrintheScene* sceneRef) :
     pos(pos),
     jump(0.0f),
     isSprinting(false),
@@ -20,7 +22,8 @@ Character::Character(gloop::Vector3f pos) :
     camFP(pos, pos + looking_at, { 0.0f, 1.0f, 0.0f }, 60.0f, 1.0f, 0.1f, 100.0f),
     camMap({ pos.x, pos.y + 20.0f, pos.z }, pos, { 0.0f, 0.0f, -1.0f }, -10, 10, -10, 10, 0.1f, 100.0f),
     fp(true),
-    speed(0.0f,0.0f){
+    speed(0.0f,0.0f),
+    sceneRef(sceneRef){
     for (int i = 0; i < 4; i++){
         moving[i] = 0;
     }
@@ -75,6 +78,11 @@ void Character::updateMovement(){
     if (moving[3]) { speed.x -= vect.y; speed.y += vect.x; }
 
     speed = speed.normalize() * (MOVEMENT_SPEED + isSprinting * SPRINT_SPEED);
+    auto& otherObjects = sceneRef->getNearbyHitboxes(pos);
+    gloop::collisionData data = gloop::Physics::collide(getCollisionBox(), otherObjects);
+
+    speed = speed + data.collision + data.correction;
+
     pos.x += speed.x;
     pos.z += speed.y;
 
@@ -86,10 +94,6 @@ void Character::updateMovement(){
         jump = 0.0f;
         pos.y = 1.75f;
     }
-}
-
-void Character::setSceneReference(gloop::Scene* ref){
-    sceneRef = ref;
 }
 
 void Character::Jump(){

@@ -110,7 +110,7 @@ void Laby3D::displayInScene(gloop::Scene &scene)
     }
 }
 
-const std::vector<gloop::CollisionBox>& Laby3D::getMazeCollisionBox() const{
+const std::vector<gloop::CollisionBox> Laby3D::getMazeCollisionBox() const{
     return objectsHitBoxes;
 }
 

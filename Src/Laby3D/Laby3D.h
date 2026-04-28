@@ -23,7 +23,7 @@ public:
 
     void displayInScene(gloop::Scene &scene);
 
-    const std::vector<gloop::CollisionBox>& getMazeCollisionBox() const;
+    const std::vector<gloop::CollisionBox> getMazeCollisionBox() const;
 
     ~Laby3D();
 };

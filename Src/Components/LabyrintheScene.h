@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../GlOOPLib/Scenes/Scenes.h"
 #include "../Laby3D/Laby3D.h"
 #include "Character.h"
@@ -24,7 +26,7 @@ public:
 
 	LabyrintheScene();
 
-	const std::vector<gloop::CollisionBox>& getNearbyHitboxes(const gloop::Vector2f& position) const;
+	const std::vector<gloop::CollisionBox> getNearbyHitboxes(const gloop::Vector3f& position) const;
 
 	virtual void onLoad() override;
 

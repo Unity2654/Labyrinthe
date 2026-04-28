@@ -5,15 +5,15 @@
 #include <GL/glut.h>
 #include <cmath>
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
+#include "Character.h"
 
 LabyrintheScene::LabyrintheScene()
 	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH),
-	player({1.0f, 1.75f, 1.0f}) {
+	player({1.0f, 1.75f, 1.0f}, this) {
 	laby.displayInScene(*this);
-	player.setSceneReference(this);
 }
 
-const std::vector<gloop::CollisionBox>& LabyrintheScene::getNearbyHitboxes(const gloop::Vector2f& position) const
+const std::vector<gloop::CollisionBox> LabyrintheScene::getNearbyHitboxes(const gloop::Vector3f& position) const
 {
 	return laby.getMazeCollisionBox();
 }
