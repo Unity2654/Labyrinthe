@@ -3,6 +3,10 @@
 #include <cmath>
 #include "../Lights/Materials.h"
 #include <iostream>
+#if defined(WIN32) || defined(WIN32)
+#define M_PI 3.14159
+#endif
+
 
 void crescent(float px, float py, float scale, float rotation = 1.0) {
 	glPushMatrix();

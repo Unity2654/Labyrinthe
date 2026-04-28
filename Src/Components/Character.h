@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GlOOPLib/Maths/Vector.h"
-#include "GlOOPLib/Objects/Entity3D.h"
-#include "GlOOPLib/Camera/Camera.h"
+#include "../GlOOPLib/Maths/Vector.h"
+#include "../GlOOPLib/Objects/Entity3D.h"
+#include "../GlOOPLib/Camera/Camera.h"
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
 #include <GL/glut.h>
 #include <GL/gl.h>

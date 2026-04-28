@@ -80,15 +80,13 @@ static void init(void){
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
     glPolygonMode(GL_FRONT, GL_FILL);
-    //glEnable(GL_CULL_FACE); // TODO : change the way the faces are drawn, then re-enable this
+    glEnable(GL_CULL_FACE); 
+    glEnable(GL_TEXTURE_2D);
 
     float globalAmbient[4] = {0.15, 0.15, 0.15, 1.0};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbient);
 
     glClearColor(0.0, 0.0, 0.0, 1.0);
-
-    // Loading a texture for test purposes
-    gloop::Texture tex = gloop::Texture("../Resources/orange.png");
 }
 
 static void display(void)
@@ -195,7 +193,7 @@ static void showDebugs()
 }
 
 int main(int argc, char** argv) {
-//#if defined(WIN32) || defined(WIN64)
+//#if defined(WIN32) || defined(WIN32)
 //    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 //    _crtBreakAlloc = 634;
 //#endif

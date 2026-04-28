@@ -22,13 +22,14 @@
     <Library Include="..\..\Lib\glut32.ms.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Components\ExitDoor.h" />
+    <ClInclude Include="..\..\Src\Character.h" />
     <ClInclude Include="..\..\Src\Components\LabyrintheScene.h" />
     <ClInclude Include="..\..\Src\Components\MenuElements.h" />
     <ClInclude Include="..\..\Src\Components\MenuScene.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\GUI.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\GUIElement.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\Text.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\KeybordManager\KeybordManager.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Colors.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Lights.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Lights\Materials.h" />
@@ -67,13 +68,14 @@
     <ClInclude Include="..\..\Src\spng\zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Components\ExitDoor.cpp" />
+    <ClCompile Include="..\..\Src\Character.cpp" />
     <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuElements.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuScene.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\GUI.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\GUIElement.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\Text.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\KeybordManager\KeybordManager.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Rectangle.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Utils.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Maths\Vector.cpp" />
