@@ -34,6 +34,7 @@ void LabyrintheScene::display(){
 	
 	// Minimap
 	float map_size = max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
+	auto& cpos = player.getPosition();
 	glViewport(0, window.getSizeY() - map_size, map_size, map_size);
 
 	glMatrixMode(GL_PROJECTION);
@@ -42,14 +43,14 @@ void LabyrintheScene::display(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(
-		0.0, 30.0, 0.0, // position caméra
-		0.0, 0.0, 0.0,  // point regardé
+		cpos.x, 30.0, cpos.z, // position caméra
+		cpos.x, 0.0, cpos.z,  // point regardé
 		0.0, 0.0, -1.0);
 
 	displayLights();
 	displayObjects();
 	glPushMatrix();
-	glTranslatef(7.0, 2.0, 5.0);
+	glTranslatef(cpos.x, 2.0, cpos.z);
 	glutSolidSphere(0.5, 10, 10);
 	glPopMatrix();
 
