@@ -22,10 +22,11 @@
     <Library Include="..\..\Lib\glut32.ms.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Character.h" />
+    <ClInclude Include="..\..\Src\Components\Character.h" />
     <ClInclude Include="..\..\Src\Components\LabyrintheScene.h" />
     <ClInclude Include="..\..\Src\Components\MenuElements.h" />
     <ClInclude Include="..\..\Src\Components\MenuScene.h" />
+    <ClInclude Include="..\..\Src\GlOOPLib\Camera\Camera.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\GUI.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\GUIElement.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\Text.h" />
@@ -68,10 +69,11 @@
     <ClInclude Include="..\..\Src\spng\zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Character.cpp" />
+    <ClCompile Include="..\..\Src\Components\Character.cpp" />
     <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuElements.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuScene.cpp" />
+    <ClCompile Include="..\..\Src\GlOOPLib\Camera\Camera.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\GUI.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\GUIElement.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\Text.cpp" />
