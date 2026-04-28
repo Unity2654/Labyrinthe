@@ -22,6 +22,7 @@
     <Library Include="..\..\Lib\glut32.ms.lib" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Components\ExitDoor.h" />
     <ClInclude Include="..\..\Src\Components\LabyrintheScene.h" />
     <ClInclude Include="..\..\Src\Components\MenuElements.h" />
     <ClInclude Include="..\..\Src\Components\MenuScene.h" />
@@ -66,6 +67,7 @@
     <ClInclude Include="..\..\Src\spng\zutil.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Src\Components\ExitDoor.cpp" />
     <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuElements.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuScene.cpp" />
@@ -138,6 +140,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>

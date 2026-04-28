@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "../GlOOPLib/Maths/Utils.h"
+#include "../GlOOPLib/Textures/Texture.h"
 //#define SHOW_HITBOX
 
 Wall::Wall(float posX, float posZ, float width, float thickness, float height, float rotation) : 
@@ -18,13 +19,16 @@ Wall::Wall(float posX, float posZ, float width, float thickness, float height, f
         { posX, posZ },
         width * cos(gloop::degToRad(rotation)) + thickness * sin(gloop::degToRad(rotation)),
         width * sin(gloop::degToRad(rotation)) + thickness * cos(gloop::degToRad(rotation)))
-    } {
+    },
+    texture(gloop::TextureManager::load("../Resources/walls.png")) {
 }
 
 void Wall::drawCube(int facettesX, int facettesY) const
 {
     glPushMatrix();
-    
+
+    texture.bind();
+
     glBegin(GL_QUADS);
     for (int i = 0; i < facettesX; i++)
     {
@@ -38,20 +42,30 @@ void Wall::drawCube(int facettesX, int facettesY) const
 
         for (int j = 0; j < facettesY; j++)
         {
+            double ratioX = 1.0 / facettesX;
+            double ratioY = 1.0 / facettesY;
             //glBegin(GL_QUADS);
             glNormal3f(0.0, 0.0, 1.0);
-            glVertex3f(-0.5 + i * (1.0 / facettesX), -0.5 + j * (1.0 / facettesY), 0.5);
-            glVertex3f(-0.5 + i * (1.0 / facettesX), -0.5 + (j + 1) * (1.0 / facettesY), 0.5);
-            glVertex3f(-0.5 + (i + 1) * (1.0 / facettesX), -0.5 + (j + 1) * (1.0 / facettesY), 0.5);
-            glVertex3f(-0.5 + (i + 1) * (1.0 / facettesX), -0.5 + j * (1.0 / facettesY), 0.5);
+            glTexCoord2f((i+1)*ratioX, j*ratioY);
+            glVertex3f(-0.5 + (i + 1) * ratioX, -0.5 + j * ratioY, 0.5);
+            glTexCoord2f((i + 1) * ratioX, (j+1) * ratioY);
+            glVertex3f(-0.5 + (i + 1) * ratioX, -0.5 + (j + 1) * ratioY, 0.5);
+            glTexCoord2f(i * ratioX, (j + 1) * ratioY);
+            glVertex3f(-0.5 + i * ratioX, -0.5 + (j + 1) * ratioY, 0.5);
+            glTexCoord2f(i * ratioX, j * ratioY);
+            glVertex3f(-0.5 + i * ratioX, -0.5 + j * ratioY, 0.5);
             //glEnd();
 
             //glBegin(GL_QUADS);
             glNormal3f(0.0, 0.0, -1.0);
-            glVertex3f(-0.5 + i * (1.0 / facettesX), -0.5 + j * (1.0 / facettesY), -0.5);
-            glVertex3f(-0.5 + i * (1.0 / facettesX), -0.5 + (j + 1) * (1.0 / facettesY), -0.5);
-            glVertex3f(-0.5 + (i + 1) * (1.0 / facettesX), -0.5 + (j + 1) * (1.0 / facettesY), -0.5);
-            glVertex3f(-0.5 + (i + 1) * (1.0 / facettesX), -0.5 + j * (1.0 / facettesY), -0.5);
+            glTexCoord2f(i * ratioX, j * ratioY);
+            glVertex3f(-0.5 + i * ratioX, -0.5 + j * ratioY, -0.5);
+            glTexCoord2f(i * ratioX, (j + 1) * ratioY);
+            glVertex3f(-0.5 + i * ratioX, -0.5 + (j + 1) * ratioY, -0.5);
+            glTexCoord2f((i+1) * ratioX, (j + 1) * ratioY);
+            glVertex3f(-0.5 + (i + 1) * ratioX, -0.5 + (j + 1) * ratioY, -0.5);
+            glTexCoord2f((i+1) * ratioX, j * ratioY);
+            glVertex3f(-0.5 + (i + 1) * ratioX, -0.5 + j * ratioY, -0.5);
             //glEnd();
         }
     }
