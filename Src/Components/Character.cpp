@@ -105,8 +105,9 @@ void Character::setLookingAt(const gloop::Vector3f& dir) {
 void Character::updateMouse()
 {
     auto center = prop::getDisplay().getDimensions().getCenter();
-    center = { std::round(center.x), std::round(center.y) };
+    center = { floor(center.x), floor(center.y) };
     auto mouseDep = (prop::getMouse().getPosition() - center) * MOUSE_SENS;
+
 
     rotate_x += mouseDep.x;
     rotate_y += mouseDep.y;
