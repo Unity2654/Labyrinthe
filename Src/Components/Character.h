@@ -10,9 +10,6 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-
-class LabyrintheScene;
-
 class Character : public gloop::Entity3D, public gloop::Collidable
 {
 private:
@@ -26,14 +23,12 @@ private:
 
     gloop::Vector3f looking_at;
 
-    LabyrintheScene* sceneRef;
-
     gloop::CameraPerspective camFP;
     gloop::CameraOrtho camMap;
     bool fp; // true = 1st person, false = map
 
 public:
-    Character(gloop::Vector3f pos, LabyrintheScene* sceneRef);
+    Character(gloop::Vector3f pos);
 
 
     void updateMovement();

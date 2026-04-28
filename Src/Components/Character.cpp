@@ -12,7 +12,7 @@
 
 #define SPECIAL_KEY_OFFSET 256 
 
-Character::Character(gloop::Vector3f pos, LabyrintheScene* sceneRef) :
+Character::Character(gloop::Vector3f pos) :
     pos(pos),
     jump(0.0f),
     isSprinting(false),
@@ -22,8 +22,7 @@ Character::Character(gloop::Vector3f pos, LabyrintheScene* sceneRef) :
     camFP(pos, pos + looking_at, { 0.0f, 1.0f, 0.0f }, 60.0f, 1.0f, 0.1f, 100.0f),
     camMap({ pos.x, pos.y + 20.0f, pos.z }, pos, { 0.0f, 0.0f, -1.0f }, -10, 10, -10, 10, 0.1f, 100.0f),
     fp(true),
-    speed(0.0f,0.0f),
-    sceneRef(sceneRef){
+    speed(0.0f,0.0f){
     for (int i = 0; i < 4; i++){
         moving[i] = 0;
     }
@@ -78,7 +77,7 @@ void Character::updateMovement(){
     if (moving[3]) { speed.x -= vect.y; speed.y += vect.x; }
 
     speed = speed.normalize() * (MOVEMENT_SPEED + isSprinting * SPRINT_SPEED);
-    auto& otherObjects = sceneRef->getNearbyHitboxes(pos);
+    auto& otherObjects = prop::getSceneManager().getActiveScene<LabyrintheScene&>().getNearbyHitboxes(pos);
     gloop::collisionData data = gloop::Physics::collide(getCollisionBox(), otherObjects);
 
     speed = speed + data.collision + data.correction;
