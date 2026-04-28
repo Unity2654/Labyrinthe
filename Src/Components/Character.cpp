@@ -77,10 +77,11 @@ void Character::updateMovement(){
     pos.x += speed.x;
     pos.z += speed.y;
 
-    if (pos.y >= 1.75f){
+    if (jump > 0.0f || pos.y > 1.75f){
         pos.y += jump;
         jump -= GRAVITY;
-    } else {
+    }
+    else{
         jump = 0.0f;
         pos.y = 1.75f;
     }
