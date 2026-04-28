@@ -44,6 +44,9 @@ add_executable(Labyrinthe
   Src/GlOOPLib/Lights/Lights.h
   Src/GlOOPLib/Lights/Colors.h
   Src/GlOOPLib/GUI/GUI.h
+  Src/GlOOPLib/Camera/Camera.cpp
+  Src/GlOOPLib/KeybordManager/KeybordManager.cpp
+
 
   ${PHYSICS}
 

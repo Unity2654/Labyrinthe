@@ -19,6 +19,7 @@ void gloop::GlPropertyManager::init(int argc, char** argv, Rectangle windowDimen
 	man.window = new Display(windowDimensions, windowName);
 	man.sceneManager = new SceneManager();
 	man.mouse = new Mouse();
+	man.key = new KeybordManager();
 
 	glutInit(&argc, argv);
 	man.window->createWindow();
@@ -36,6 +37,10 @@ gloop::Mouse& gloop::GlPropertyManager::getMouse(){
 	return (*get().mouse);
 }
 
+gloop::KeybordManager& gloop::GlPropertyManager::getKey(){
+	return (*get().key);
+}
+
 gloop::GlPropertyManager::~GlPropertyManager(){
 	if(window != nullptr)
 		delete window;
@@ -43,4 +48,6 @@ gloop::GlPropertyManager::~GlPropertyManager(){
 		delete sceneManager;
 	if (mouse != nullptr)
 		delete mouse;
+	if (key != nullptr)
+		delete key;
 }

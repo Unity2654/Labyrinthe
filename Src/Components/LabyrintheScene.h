@@ -1,5 +1,6 @@
 #include "../GlOOPLib/Scenes/Scenes.h"
 #include "../Laby3D/Laby3D.h"
+#include "Character.h"
 
 // The scene the labyrinthe is displayed in
 class LabyrintheScene: public gloop::Scene {
@@ -17,6 +18,7 @@ private:
 	static constexpr int HEIGHT = 10;
 
 	Laby3D laby;
+	Character player;
 
 public:
 
@@ -25,5 +27,7 @@ public:
 	virtual void onLoad() override;
 
 	virtual void display() override;
+
+	virtual void update() override;
 
 };

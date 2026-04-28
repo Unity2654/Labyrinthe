@@ -7,7 +7,8 @@
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
 
 LabyrintheScene::LabyrintheScene()
-	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH) {
+	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH),
+	player({1.0f, 1.75f, 1.0f}) {
 	laby.displayInScene(*this);
 }
 
@@ -16,11 +17,17 @@ void LabyrintheScene::onLoad(){
 	prop::setMainScene();
 }
 
+void LabyrintheScene::update(){
+	player.update();
+	Scene::update();
+}
+
 void LabyrintheScene::display(){
 	auto& window = prop::getDisplay();
 	// Main scene
 	window.displayViewPort();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	player.render();
 	displayLights();
 	displayObjects();
 	

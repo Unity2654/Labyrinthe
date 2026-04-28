@@ -1,0 +1,129 @@
+#include "Character.h"
+#include <cmath>
+
+
+#define MOVEMENT_SPEED 0.05f
+#define SPRINT_SPEED 0.05f
+#define GRAVITY 0.01f
+#define JUMP_FORCE 0.2f
+#define MOUSE_SENS 0.003f
+
+#define SPECIAL_KEY_OFFSET 256 
+
+Character::Character(gloop::Vector3f pos) :
+    pos(pos),
+    jump(0.0f),
+    isSprinting(false),
+    rotate_x(0.0f),
+    rotate_y(0.0f),
+    looking_at(0.0f, 0.0f, -1.0f),
+    camFP(pos, pos + looking_at, {0.0f, 1.0f, 0.0f}, 60.0f, 1.0f, 0.1f, 100.0f),
+    camMap({pos.x, pos.y + 20.0f, pos.z}, pos, {0.0f, 0.0f, -1.0f}, -10, 10, -10, 10, 0.1f, 100.0f),
+    fp(true)
+{
+    for (int i = 0; i < 4; i++){
+        moving[i] = 0;
+    }
+
+}
+
+void Character::update(){
+    updateMouse();
+    updateMovement();
+
+    camFP.pos = pos;
+    camFP.ori = pos + looking_at;
+
+    camMap.pos = { pos.x, pos.y + 20.0f, pos.z };
+    camMap.ori = pos;
+}
+
+void Character::render()
+{
+    if (fp){
+        camFP.buildPerspectiveCamera();
+    }else{
+        camMap.buildOrthoCamera();
+    }
+}
+
+void Character::updateMovement(){
+    auto& key = prop::getKey();
+
+    moving[0] = key.getKeyState('z') || key.getKeyState(SPECIAL_KEY_OFFSET + GLUT_KEY_UP);
+    moving[1] = key.getKeyState('s') || key.getKeyState(SPECIAL_KEY_OFFSET + GLUT_KEY_DOWN);
+    moving[2] = key.getKeyState('q') || key.getKeyState(SPECIAL_KEY_OFFSET + GLUT_KEY_LEFT);
+    moving[3] = key.getKeyState('d') || key.getKeyState(SPECIAL_KEY_OFFSET + GLUT_KEY_RIGHT);
+
+    isSprinting = key.getKeyState('a');
+
+    if (key.getKeyState(' ') && pos.y <= 1.75f){
+        Jump();
+    }
+
+    gloop::Vector2f vect{ looking_at.x, looking_at.z };
+    gloop::Vector2f speed{ 0.0f, 0.0f };
+
+    if (moving[0]) { speed.x += vect.x; speed.y += vect.y; }
+    if (moving[1]) { speed.x -= vect.x; speed.y -= vect.y; }
+    if (moving[2]) { speed.x += vect.y; speed.y -= vect.x; }
+    if (moving[3]) { speed.x -= vect.y; speed.y += vect.x; }
+
+    speed = speed.normalize() * (MOVEMENT_SPEED + isSprinting * SPRINT_SPEED);
+    pos.x += speed.x;
+    pos.z += speed.y;
+
+    if (pos.y >= 1.75f){
+        pos.y += jump;
+        jump -= GRAVITY;
+    } else {
+        jump = 0.0f;
+        pos.y = 1.75f;
+    }
+}
+
+
+void Character::Jump(){
+    if (pos.y <= 1.75f){
+        jump = JUMP_FORCE;
+    }
+        
+}
+
+void Character::switchCamera(){
+    fp = !fp;
+}
+
+gloop::Vector3f Character::getPosition() const{
+    return pos;
+}
+
+void Character::setLookingAt(const gloop::Vector3f& dir) {
+    looking_at = dir;
+}
+
+void Character::updateMouse()
+{
+
+    auto mousePos = prop::getMouse().getPosition();
+
+    auto size = prop::getDisplay();
+    //float centerX = 240;
+    //float centerY = 240;
+    float centerX = prop::getDisplay().getSizeX() / 2.0f;
+    float centerY = prop::getDisplay().getSizeY() / 2.0f;
+
+    float dx = (mousePos.x - centerX) * MOUSE_SENS;
+    float dy = (mousePos.y - centerY) * MOUSE_SENS;
+
+    rotate_x += dx;
+    rotate_y += dy;
+
+    const float limit = 1.5f;
+    if (rotate_y > limit) rotate_y = limit;
+    if (rotate_y < -limit) rotate_y = -limit;
+
+    looking_at.x = cos(rotate_y) * sin(rotate_x);
+    looking_at.y = -sin(rotate_y);
+    looking_at.z = -cos(rotate_y) * cos(rotate_x);
+}

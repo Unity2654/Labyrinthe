@@ -1,5 +1,5 @@
 #include "Camera.h"
-
+#include <iostream>
 
 namespace gloop {
 
@@ -14,7 +14,7 @@ namespace gloop {
 
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-
+        
         gluLookAt(pos.x, pos.y, pos.z, ori.x, ori.y, ori.z, vis.x, vis.y, vis.z);
     }
 

@@ -32,6 +32,7 @@
 #include "Components/LabyrintheScene.h"
 #include "Components/MenuScene.h"
 #include "Laby/tab.h"
+#include "Components/Character.h"
 
 #define SHOW_HITBOX
 //#define TEST
@@ -60,21 +61,13 @@ static int currentDisplay = 1;
 #define JUMP_FORCE 0.2f           // force of the jump
 #define CAM_SHAKE_AMPLITUDE 0.03f // used for the camera animation
 #define CAM_SHAKE_SPEED 0.02f     // used for the camera animation
+#define SPECIAL_KEY_OFFSET 256 
 
 // --- camera ---
 static int old_x = 0; // used to detect mouse movement
 static int old_y = 0;
-static float rotate_x = 0.0f; // used to store the angle of rotation
-static float rotate_y = 0.0f;
-static gloop::Vector3f looking_at(0.0, 0.0, -1.0); // direction of the camera
-static gloop::Vector3f pos(1.0, 1.75, 1.0);        // position of the camera
-static int camera = 0;                             // 0 = 1st person, 1 = map open
 static float cam_shake = 0.0f;                     // used for the camera animation
 
-// --- movement ---
-static float jump = 0.0f;            // used to detect if the player is jumping
-static int moving[4] = {0, 0, 0, 0}; // up, down, left, right
-static bool isSprinting = 0;         // if the player is sprinting
 
 /**********************************************************/
 /************* END OF TEMPORARY CONTENT  ******************/
@@ -101,22 +94,6 @@ static void init(void){
 static void display(void)
 {
     glPolygonMode(GL_FRONT, displays[currentDisplay]);
-    if (prop::isMainScene()) {
-        // TESTS //
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        gluPerspective(60.0, (float)wTx / wTy, 0.1, 100.0);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-
-        gluLookAt(
-            pos.x, pos.y + sin(cam_shake) * CAM_SHAKE_AMPLITUDE, pos.z,       // position caméra
-            pos.x + looking_at.x, pos.y + looking_at.y, pos.z + looking_at.z, // point regardé
-            0.0, 1.0, 0.0);
-
-        cam_shake += CAM_SHAKE_SPEED;
-        // END OF TESTS //
-    }
     glPushMatrix();
 
     prop::getSceneManager().display();
@@ -131,45 +108,6 @@ static void timer(int value)
 {
     prop::getSceneManager().update();
 
-    if (prop::isMainScene()) {
-        gloop::Vector2f vect{ looking_at.x, looking_at.z };
-
-        gloop::Vector2f speed{ 0, 0 };
-        if (moving[0])
-        {
-            speed.x += vect.x;
-            speed.y += vect.y;
-        }
-        if (moving[1])
-        {
-            speed.x -= vect.x;
-            speed.y -= vect.y;
-        }
-        if (moving[2])
-        {
-            speed.x += vect.y;
-            speed.y -= vect.x;
-        }
-        if (moving[3])
-        {
-            speed.x -= vect.y;
-            speed.y += vect.x;
-        }
-        speed = speed.normalize() * (MOVEMENT_SPEED + isSprinting * SPRINT_SPEED);
-        pos = { pos.x + speed.x, pos.y, pos.z + speed.y };
-
-        if (pos.y >= 1.75f)
-        {
-            pos.y += jump;
-            jump -= GRAVITY;
-        }
-        else
-        {
-            jump = 0.0f;
-            pos.y = 1.75f;
-        }
-    }
-
     glutPostRedisplay();
     glutTimerFunc(1000 / prop::FPS, timer, 0);
 }
@@ -183,82 +121,27 @@ static void reshape(int wx, int wy)
 
 static void keyboard(unsigned char key, int x, int y)
 {
-    (void)x;
-    (void)y;
-
-    switch (key)
-    {
-    case 'c':
-        camera = (camera + 1) % 2;
-        break;
-    case 'z':
-        moving[0] = 1;
-        break;
-    case 's':
-        moving[1] = 1;
-        break;
-    case 'q':
-        moving[2] = 1;
-        break;
-    case 'd':
-        moving[3] = 1;
-        break;
-    case 'a':
-        isSprinting = !isSprinting;
-        break;
-    case ' ':
-        if (pos.y <= 1.75f)
-            jump = JUMP_FORCE;
-        break;
-    case 'r':
-        currentDisplay = (currentDisplay + 1) % displayCount;
-        break;
-    }
+    (void)x; (void)y;
+    prop::getKey().setKeyStateTrue(key);
 }
 
 static void keyboardUp(unsigned char key, int x, int y)
 {
-    (void)x;
-    (void)y;
-    switch (key)
-    {
-    case 'z':
-        moving[0] = 0;
-        break;
-    case 's':
-        moving[1] = 0;
-        break;
-    case 'q':
-        moving[2] = 0;
-        break;
-    case 'd':
-        moving[3] = 0;
-        break;
-    }
+    (void)x; (void)y;
+    prop::getKey().setKeyStateFalse(key);
 }
 
 static void special(int specialKey, int x, int y)
 {
-    (void)x;
-    (void)y;
-
-    switch (specialKey)
-    {
-    case GLUT_KEY_UP:
-        moving[0] = 1;
-        break;
-    case GLUT_KEY_DOWN:
-        moving[1] = 1;
-        break;
-    case GLUT_KEY_LEFT:
-        moving[2] = 1;
-        break;
-    case GLUT_KEY_RIGHT:
-        moving[3] = 1;
-        break;
-    }
-
+    (void)x; (void)y;
+    prop::getKey().setKeyStateTrue(SPECIAL_KEY_OFFSET + specialKey);
     glutPostRedisplay();
+}
+
+static void specialUp(int specialKey, int x, int y)
+{
+    (void)x; (void)y;
+    prop::getKey().setKeyStateFalse(SPECIAL_KEY_OFFSET + specialKey);
 }
 
 /* Fonction executee lors du passage            */
@@ -266,30 +149,8 @@ static void special(int specialKey, int x, int y)
 /* avec un bouton presse                        */
 static void mouseMotion(int x, int y)
 {
-    // rotate_x += x - old_x;
-    // rotate_y += y - old_y;
-    // old_x = x;
-    // old_y = y;
-    // glutPostRedisplay();
     prop::getMouse().update(gloop::Vector2f{ (float)x ,(float)y });
 
-    if (!prop::isMainScene())
-        return;
-
-    float dx = (x - old_x) * MOUSE_SENS;
-    float dy = (y - old_y) * MOUSE_SENS;
-
-    old_x = x;
-    old_y = y;
-
-    rotate_x += dx;
-    rotate_y += dy;
-
-    // printf("rotate_x = %f, rotate_y = %f\n", rotate_x, rotate_y);
-
-    looking_at.x = cos(rotate_y) * sin(rotate_x);
-    looking_at.y = -sin(rotate_y);
-    looking_at.z = -cos(rotate_y) * cos(rotate_x);
 }
 
 static int warp = 0;
@@ -297,24 +158,12 @@ static int warp = 0;
 static void passiveMouseMotion(int x, int y)
 {
     prop::getMouse().update({ (float)x,(float)y });
-    if (!prop::isMainScene())
-        return;
 
     if (warp)
     {
         warp = 0;
         return;
     }
-
-    float dx = (x - wTx / 2) * MOUSE_SENS;
-    float dy = (y - wTy / 2) * MOUSE_SENS;
-
-    rotate_x += dx;
-    rotate_y += dy;
-
-    looking_at.x = cos(rotate_y) * sin(rotate_x);
-    looking_at.y = -sin(rotate_y);
-    looking_at.z = -cos(rotate_y) * cos(rotate_x);
 
     warp = 1;
     glutWarpPointer(wTx / 2, wTy / 2);
@@ -359,11 +208,23 @@ int main(int argc, char** argv) {
     atexit(clean);
     // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme
     init();
+
+    //Ajout des touches dans le KeybordManager
+    prop::getKey().addKeys({
+        'a', 'z', 'q', 's', 'd', 'c', ' ',
+        SPECIAL_KEY_OFFSET + GLUT_KEY_LEFT,
+        SPECIAL_KEY_OFFSET + GLUT_KEY_UP,
+        SPECIAL_KEY_OFFSET + GLUT_KEY_DOWN,
+        SPECIAL_KEY_OFFSET + GLUT_KEY_RIGHT
+    });
+
+
     // programmation de la gestion des événements
     glutKeyboardFunc(keyboard);
     glutKeyboardUpFunc(keyboardUp);
     glutMouseFunc(mouseFunction);
     glutSpecialFunc(special);
+    glutSpecialUpFunc(specialUp);
     glutReshapeFunc(reshape);
     glutPassiveMotionFunc(passiveMouseMotion);
     glutTimerFunc(1000 / prop::FPS, timer, 0); // Using a timer instead of idle to sync with the computer clock
