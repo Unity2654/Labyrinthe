@@ -21,6 +21,8 @@ Laby3D::Laby3D(Tab t, float x_size, float z_size, float y_size, float wall_thick
     maze_show(t);
 }
 
+
+
 void Laby3D::displayInScene(gloop::Scene &scene)
 {
     // TODO : facettiser le sol
@@ -40,42 +42,50 @@ void Laby3D::displayInScene(gloop::Scene &scene)
         {
             if (j == 0 && !t.cells[i][j].left)
             {
-                scene.addObject(Wall(x_min,
-                                     z_min + size_cell_z * i + size_cell_z / 2,
-                                     wall_width,
-                                     wall_thickness,
-                                     y_size,
-                                     90));
+                auto wall = Wall(x_min,
+                    z_min + size_cell_z * i + size_cell_z / 2,
+                    wall_width,
+                    wall_thickness,
+                    y_size,
+                    90);
+                scene.addObject(wall);
+                objectsHitBoxes.push_back(wall.getCollisionBox());
             }
 
             if (i == 0 && !t.cells[i][j].up)
             {
-                scene.addObject(Wall(x_min + size_cell_x * j + size_cell_x / 2,
-                                     z_min,
-                                     wall_width,
-                                     wall_thickness,
-                                     y_size,
-                                     0));
+                auto wall = Wall(x_min + size_cell_x * j + size_cell_x / 2,
+                    z_min,
+                    wall_width,
+                    wall_thickness,
+                    y_size,
+                    0);
+                scene.addObject(wall);
+                objectsHitBoxes.push_back(wall.getCollisionBox());
             }
 
             if (!t.cells[i][j].down)
             {
-                scene.addObject(Wall(x_min + size_cell_x * j + size_cell_x / 2,
-                                     z_min + size_cell_z * (i + 1),
-                                     wall_width,
-                                     wall_thickness,
-                                     y_size,
-                                     0)); // or 180
+                auto wall = Wall(x_min + size_cell_x * j + size_cell_x / 2,
+                    z_min + size_cell_z * (i + 1),
+                    wall_width,
+                    wall_thickness,
+                    y_size,
+                    0);
+                scene.addObject(wall);
+                objectsHitBoxes.push_back(wall.getCollisionBox());
             }
 
             if (!t.cells[i][j].right)
             {
-                scene.addObject(Wall(x_min + size_cell_x * (j + 1),
-                                     z_min + size_cell_z * i + size_cell_z / 2,
-                                     wall_width,
-                                     wall_thickness,
-                                     y_size,
-                                     90));
+                auto wall = Wall(x_min + size_cell_x * (j + 1),
+                    z_min + size_cell_z * i + size_cell_z / 2,
+                    wall_width,
+                    wall_thickness,
+                    y_size,
+                    90);
+                scene.addObject(wall);
+                objectsHitBoxes.push_back(wall.getCollisionBox());
             }
         }
     }
@@ -93,9 +103,15 @@ void Laby3D::displayInScene(gloop::Scene &scene)
             glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, color_pillars);
             glutSolidCube(1.0);
             glPopMatrix();
-            scene.addObject(Pillar(x_min + size_cell_x * j, z_min + size_cell_z * i, pillar_width, y_size));
+            auto pillar = Pillar(x_min + size_cell_x * j, z_min + size_cell_z * i, pillar_width, y_size);
+            scene.addObject(pillar);
+            objectsHitBoxes.push_back(pillar.getCollisionBox());
         }
     }
+}
+
+const std::vector<gloop::CollisionBox>& Laby3D::getMazeCollisionBox() const{
+    return objectsHitBoxes;
 }
 
 Laby3D::~Laby3D(){

@@ -13,6 +13,11 @@ LabyrintheScene::LabyrintheScene()
 	player.setSceneReference(this);
 }
 
+const std::vector<gloop::CollisionBox>& LabyrintheScene::getNearbyHitboxes(const gloop::Vector2f& position) const
+{
+	return laby.getMazeCollisionBox();
+}
+
 void LabyrintheScene::onLoad(){
 	glutSetCursor(GLUT_CURSOR_NONE);
 	prop::setMainScene();

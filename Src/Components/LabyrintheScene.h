@@ -24,6 +24,8 @@ public:
 
 	LabyrintheScene();
 
+	const std::vector<gloop::CollisionBox>& getNearbyHitboxes(const gloop::Vector2f& position) const;
+
 	virtual void onLoad() override;
 
 	virtual void display() override;
