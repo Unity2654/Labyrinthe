@@ -31,11 +31,15 @@ void Character::update(){
     updateMouse();
     updateMovement();
 
+    auto& d = prop::getDisplay();
+
     camFP.pos = pos;
     camFP.ori = pos + looking_at;
+    camFP.reshape(d.getSizeY(), d.getSizeX() / d.getSizeY());
 
     camMap.pos = { pos.x, pos.y + 20.0f, pos.z };
     camMap.ori = pos;
+    camMap.reshape(-d.getSizeX()/2, d.getSizeX() / 2, -d.getSizeY() / 2, d.getSizeY() / 2);
 }
 
 void Character::render()

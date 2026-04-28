@@ -26,6 +26,7 @@ namespace gloop {
 
             void buildPerspectiveCamera();
 
+            void reshape(float foc, float ratio);
         private:
             float foc;
             float ratio;
@@ -37,6 +38,7 @@ namespace gloop {
 
             void buildOrthoCamera();
 
+            void reshape(float g, float d, float b, float h);
         private:
             float g;
             float d;

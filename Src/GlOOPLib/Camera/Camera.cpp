@@ -18,6 +18,11 @@ namespace gloop {
         gluLookAt(pos.x, pos.y, pos.z, ori.x, ori.y, ori.z, vis.x, vis.y, vis.z);
     }
 
+    void CameraPerspective::reshape(float foc, float ratio){
+        this->foc = foc;
+        this->ratio = ratio;
+    }
+
 
     CameraOrtho::CameraOrtho(Vector3f pos, Vector3f ori, Vector3f vis, float g, float d, float b, float h, float cmin, float cmax) : Camera(pos, ori, vis, cmin, cmax), g(g), d(d), b(b), h(h) {}
 
@@ -35,4 +40,10 @@ namespace gloop {
         );
     }
 
+    void CameraOrtho::reshape(float g, float d, float b, float h){
+        this->g = g;
+        this->d = d;
+        this->b = b;
+        this->g = h;
+    }
 }
