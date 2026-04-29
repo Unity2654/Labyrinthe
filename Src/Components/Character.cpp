@@ -51,7 +51,7 @@ void Character::render()
     }else{
         camMap.buildOrthoCamera();
     }
-    drawHitbox(3.0f);
+    //drawHitbox(3.0f);
 }
 
 void Character::updateMovement(){
