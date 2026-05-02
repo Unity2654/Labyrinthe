@@ -44,6 +44,10 @@
 //static int displayCount = 3;
 //static int currentDisplay = 1;
 
+/******************************/
+/**** GLUT EVENT FUNCTIONS ****/
+/******************************/
+
 static void init(void){
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
@@ -127,6 +131,21 @@ static void mouseFunction(int button, int state, int x, int y) {
             mouse.releaseRightClick();
 }
 
+/*****************************/
+/**** KEY EVENT FUNCTIONS ****/
+/*****************************/
+
+void toggleDisplay(bool state) {
+    if (state) {
+        std::cout << "cool" << std::endl;
+        // Change the display
+    }
+}
+
+void loadkeyboardCallbacks() {
+    prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F1, toggleDisplay);
+}
+
 int main(int argc, char** argv) {
     prop::init(argc, argv, gloop::Rectangle({0,0},480, 480), "Labyrinthe");
 
@@ -143,6 +162,7 @@ int main(int argc, char** argv) {
         SPECIAL_KEY_OFFSET + GLUT_KEY_DOWN,
         SPECIAL_KEY_OFFSET + GLUT_KEY_RIGHT
     });
+    loadkeyboardCallbacks();
 
 
     // programmation de la gestion des événements
