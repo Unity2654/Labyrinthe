@@ -131,20 +131,32 @@ static void mouseFunction(int button, int state, int x, int y) {
 /**** KEY EVENT FUNCTIONS ****/
 /*****************************/
 
-void toggleDisplay(bool state) {
+static void toggleDisplay(bool state) {
     if (state) {
         prop::getDisplayMode().next();
     }
 }
 
-void quit(bool state) {
+static void toggleLights(bool state) {
+    if (state)
+        prop::getSceneProperties().toggleLights();
+}
+
+static void toggleTextures(bool state) {
+    if (state)
+        prop::getSceneProperties().toggleTexures();
+}
+
+static void quit(bool state) {
     if (state)
         exit(0);
 }
 
-void loadkeyboardCallbacks() {
+static void loadkeyboardCallbacks() {
     prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F1, toggleDisplay);
     prop::getKey().registerCallback(0x1b, quit); // Escape key
+    prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F2, toggleLights);
+    prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F3, toggleTextures);
 }
 
 int main(int argc, char** argv) {

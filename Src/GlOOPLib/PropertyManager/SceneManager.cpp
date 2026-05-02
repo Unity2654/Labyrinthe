@@ -3,7 +3,7 @@
 void gloop::SceneManager::popScene(){
 	scenes.pop();
 	if (scenes.empty())
-		exit(1);
+		exit(0);
 	scenes.top()->onLoad();
 }
 

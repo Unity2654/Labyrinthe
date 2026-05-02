@@ -48,6 +48,7 @@ void MenuScene::update(){
 
 void MenuScene::display(){
 	prop::getDisplayMode().display();
+	prop::getSceneProperties().display();
 	auto& window = prop::getDisplay();
 
 	// Camera

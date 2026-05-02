@@ -30,6 +30,7 @@ void LabyrintheScene::update(){
 
 void LabyrintheScene::display(){
 	prop::getDisplayMode().display();
+	prop::getSceneProperties().display();
 	auto& window = prop::getDisplay();
 
 	// Main scene
