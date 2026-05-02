@@ -165,7 +165,16 @@
     <ClInclude Include="..\..\Src\GlOOPLib\GUI\Text.h">
       <Filter>Fichiers d%27en-tête\glOOP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Components\ExitDoor.h">
+    <ClInclude Include="..\..\Src\Components\SpecialKeysObject.h">
+      <Filter>Fichiers d%27en-tête\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\KeybordManager\KeybordManager.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\Camera\Camera.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Components\Character.h">
       <Filter>Fichiers d%27en-tête\Main</Filter>
     </ClInclude>
   </ItemGroup>
@@ -302,7 +311,13 @@
     <ClCompile Include="..\..\Src\GlOOPLib\GUI\Text.cpp">
       <Filter>Fichiers sources\glOOP</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Components\ExitDoor.cpp">
+    <ClCompile Include="..\..\Src\GlOOPLib\KeybordManager\KeybordManager.cpp">
+      <Filter>Fichiers sources\glOOP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\GlOOPLib\Camera\Camera.cpp">
+      <Filter>Fichiers sources\glOOP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Components\Character.cpp">
       <Filter>Fichiers sources\Main</Filter>
     </ClCompile>
   </ItemGroup>

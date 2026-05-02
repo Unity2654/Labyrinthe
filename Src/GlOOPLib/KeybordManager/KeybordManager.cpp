@@ -1,4 +1,5 @@
 #include "KeybordManager.h"
+#include <functional>
 
 namespace gloop {
 
@@ -14,8 +15,16 @@ namespace gloop {
         }
     }
 
+    void KeybordManager::registerCallback(int k, std::function<void(bool)> callback){
+        auto& find = callbacks.find(k);
+        if (find == callbacks.end()) {
+            callbacks[k] = {};
+        }
+        callbacks[k].push_back(callback);
+    }
+
     bool KeybordManager::getKeyState(int k) const {
-        auto find = keyState.find(k);
+        auto& find = keyState.find(k);
         if (find != keyState.end()) {
             return find->second;
         }
@@ -24,10 +33,20 @@ namespace gloop {
 
     void KeybordManager::setKeyStateTrue(int k) {
         keyState[k] = true;
+        auto& find = callbacks.find(k);
+        if (find != callbacks.end()) {
+            for (auto& callback : find->second)
+                callback(true);
+        }
     }
 
     void KeybordManager::setKeyStateFalse(int k) {
         keyState[k] = false;
+        auto& find = callbacks.find(k);
+        if (find != callbacks.end()) {
+            for (auto& callback : find->second)
+                callback(false);
+        }
     }
 
 }
