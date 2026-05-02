@@ -34,6 +34,7 @@ public:
 
     void update() override;
     void render() override;
+    void renderOnMap();
 
     void setLookingAt(const gloop::Vector3f& dir);
 

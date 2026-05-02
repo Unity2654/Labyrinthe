@@ -7,6 +7,29 @@
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
 #include "Character.h"
 
+void LabyrintheScene::drawMinimap(gloop::Display& window){
+	float map_size = max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
+	auto& cpos = player.getPosition();
+	glViewport(0, window.getSizeY() - map_size, map_size, map_size);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-15, 15, -15, 15, 0.1, 100.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(
+		cpos.x, 30.0, cpos.z, // position caméra
+		cpos.x, 0.0, cpos.z,  // point regardé
+		0.0, 0.0, -1.0);
+
+	displayLights();
+	displayObjects();
+	glPushMatrix();
+	glTranslatef(cpos.x, 2.0, cpos.z);
+	glutSolidSphere(0.5, 10, 10);
+	glPopMatrix();
+}
+
 LabyrintheScene::LabyrintheScene()
 	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH),
 	player({1.0f, 1.75f, 1.0f}) {
@@ -36,6 +59,8 @@ void LabyrintheScene::update(){
 	Scene::update();
 }
 
+
+
 void LabyrintheScene::display(){
 	prop::getDisplayMode().display();
 	prop::getSceneProperties().display();
@@ -49,26 +74,8 @@ void LabyrintheScene::display(){
 	displayObjects();
 	
 	// Minimap
-	float map_size = max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
-	auto& cpos = player.getPosition();
-	glViewport(0, window.getSizeY() - map_size, map_size, map_size);
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(-15, 15, -15, 15, 0.1, 100.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(
-		cpos.x, 30.0, cpos.z, // position caméra
-		cpos.x, 0.0, cpos.z,  // point regardé
-		0.0, 0.0, -1.0);
-
-	displayLights();
-	displayObjects();
-	glPushMatrix();
-	glTranslatef(cpos.x, 2.0, cpos.z);
-	glutSolidSphere(0.5, 10, 10);
-	glPopMatrix();
+	if (player.isFirstPerson())
+		drawMinimap(window);
 
 	glutSwapBuffers();
 }

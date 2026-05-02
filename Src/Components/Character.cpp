@@ -2,7 +2,7 @@
 #include <cmath>
 #include "../GlOOPLib/Physics/Physics.h"
 #include "LabyrintheScene.h"
-
+#include "../GlOOPLib/Maths/Utils.h"
 
 #define MOVEMENT_SPEED 0.05f
 #define SPRINT_SPEED 0.05f
@@ -20,7 +20,7 @@ Character::Character(gloop::Vector3f pos) :
     rotate_y(0.0f),
     looking_at(0.0f, 0.0f, -1.0f),
     camFP(pos, pos + looking_at, { 0.0f, 1.0f, 0.0f }, 60.0f, 1.0f, 0.1f, 100.0f),
-    camMap({ pos.x, pos.y + 20.0f, pos.z }, pos, { 0.0f, 0.0f, -1.0f }, -10, 10, -10, 10, 0.1f, 100.0f),
+    camMap({ pos.x, pos.y + 30.0f, pos.z }, pos, { 0.0f, 0.0f, -1.0f }, -10, 10, -10, 10, 0.1f, 100.0f),
     fp(true),
     speed(0.0f,0.0f){
     for (int i = 0; i < 4; i++){
@@ -33,14 +33,15 @@ void Character::update(){
     updateMovement();
 
     auto& d = prop::getDisplay();
+    double ratio = (float)d.getSizeX() / d.getSizeY();
 
     camFP.pos = pos;
     camFP.ori = pos + looking_at;
-    camFP.reshape(d.getSizeX(), d.getSizeX() / d.getSizeY());
+    camFP.reshape(d.getSizeX(), ratio);
 
-    camMap.pos = { pos.x, pos.y + 20.0f, pos.z };
+    camMap.pos = { pos.x, pos.y + 30.0f, pos.z };
     camMap.ori = pos;
-    camMap.reshape(-d.getSizeX()/2, d.getSizeX() / 2, -d.getSizeY() / 2, d.getSizeY() / 2);
+    camMap.reshape(-10.0*ratio, 10.0*ratio, -10.0f, 10.0f);
 }
 
 void Character::render()
@@ -49,8 +50,24 @@ void Character::render()
         camFP.buildPerspectiveCamera();
     }else{
         camMap.buildOrthoCamera();
+
+        renderOnMap();
     }
     //drawHitbox(3.0f);
+}
+
+void Character::renderOnMap(){
+    double direction = (looking_at.x < 0?-1:1) * gloop::radToDeg(acos(looking_at.dot(gloop::Vector3f{ 0.0, 0.0, 1.0 }) / looking_at.norm()));
+
+    glPushMatrix();
+    glTranslatef(pos.x, 2.0f, pos.z);
+    glRotatef(direction, 0.0f,1.0f,0.0f);
+    glBegin(GL_TRIANGLES);
+    glVertex3f(0.4f, 0.0f, -0.5f);
+    glVertex3f(-0.4f, 0.0f, -0.5f);
+    glVertex3f(0.0f, 0.0f ,0.5f);
+    glEnd();
+    glPopMatrix();
 }
 
 void Character::updateMovement(){
@@ -132,7 +149,8 @@ void Character::updateMouse()
     if (rotate_y < -limit) rotate_y = -limit;
 
     looking_at.x = cos(rotate_y) * sin(rotate_x);
-    looking_at.y = -sin(rotate_y);
+    if(fp)
+        looking_at.y = -sin(rotate_y);
     looking_at.z = -cos(rotate_y) * cos(rotate_x);
 }
 

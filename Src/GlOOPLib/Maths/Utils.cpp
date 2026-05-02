@@ -13,6 +13,10 @@ float gloop::degCos(float angle){
 	return radToDeg(cos(degToRad(angle)));
 }
 
+float gloop::degAcos(float angle) {
+	return radToDeg(acos(degToRad(angle)));
+}
+
 float gloop::degSin(float angle){
 	return radToDeg(sin(degToRad(angle)));
 }

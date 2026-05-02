@@ -9,6 +9,7 @@ namespace gloop {
 	float degToRad(float deg);
 
 	float degCos(float angle);
+	float degAcos(float angle);
 	float degSin(float angle);
 	float degTan(float angle);
 

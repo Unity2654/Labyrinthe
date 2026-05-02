@@ -22,6 +22,8 @@ private:
 	Laby3D laby;
 	Character player;
 
+	void drawMinimap(gloop::Display& window);
+
 public:
 
 	LabyrintheScene();

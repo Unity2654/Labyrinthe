@@ -44,6 +44,6 @@ namespace gloop {
         this->g = g;
         this->d = d;
         this->b = b;
-        this->g = h;
+        this->h = h;
     }
 }
