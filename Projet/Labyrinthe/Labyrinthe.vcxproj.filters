@@ -177,6 +177,9 @@
     <ClInclude Include="..\..\Src\Components\Character.h">
       <Filter>Fichiers d%27en-tête\Main</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\SceneProperties.h">
+      <Filter>Fichiers d%27en-tête\glOOP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp">
@@ -319,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Components\Character.cpp">
       <Filter>Fichiers sources\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\SceneProperties.cpp">
+      <Filter>Fichiers sources\glOOP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
