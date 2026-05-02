@@ -34,43 +34,15 @@
 #include "Components/Character.h"
 
 #define SHOW_HITBOX
+#define SPECIAL_KEY_OFFSET 256 
+
 //#define TEST
 
 #ifndef TEST
 
-// --- window ---
-static int wTx = 480; // size of the window, initially set to 480x480
-static int wTy = 480;
-static int wPx = 50; // initial position of the window (50x50)
-static int wPy = 50;
-
-// --- display ---
-static GLenum displays[3] = {GL_LINE, GL_FILL, GL_POINT};
-static int displayCount = 3;
-static int currentDisplay = 1;
-
-/********************************************************************/
-/************* TEMPORARY CONTENT FOR FIRST DEPOSIT ******************/
-/********************************************************************/
-// --- constants ---
-#define MOUSE_SENS 0.003f         // mouse sensitivity
-#define MOVEMENT_SPEED 0.05f      // movement speed
-#define SPRINT_SPEED 0.05f        // sprint speed, added to MOVEMENT_SPEED
-#define GRAVITY 0.01f             // gravity (used for the jump)
-#define JUMP_FORCE 0.2f           // force of the jump
-#define CAM_SHAKE_AMPLITUDE 0.03f // used for the camera animation
-#define CAM_SHAKE_SPEED 0.02f     // used for the camera animation
-#define SPECIAL_KEY_OFFSET 256 
-
-// --- camera ---
-static int old_x = 0; // used to detect mouse movement
-static int old_y = 0;
-static float cam_shake = 0.0f;                     // used for the camera animation
-
-
-/**********************************************************/
-/************* END OF TEMPORARY CONTENT  ******************/
-/**********************************************************/
+//static GLenum displays[3] = {GL_LINE, GL_FILL, GL_POINT};
+//static int displayCount = 3;
+//static int currentDisplay = 1;
 
 static void init(void){
     glEnable(GL_LIGHTING);
@@ -88,9 +60,7 @@ static void init(void){
     glClearColor(0.0, 0.0, 0.0, 1.0);
 }
 
-static void display(void)
-{
-    glPolygonMode(GL_FRONT, displays[currentDisplay]);
+static void display(void){
     glPushMatrix();
 
     prop::getSceneManager().display();
@@ -110,50 +80,36 @@ static void timer(int value)
     glutTimerFunc(1000 / prop::FPS, timer, 0);
 }
 
-static void reshape(int wx, int wy)
-{
-    wTx = wx;
-    wTy = wy;
+static void reshape(int wx, int wy){
     prop::getDisplay().reshape(wx, wy);
 }
 
-static void keyboard(unsigned char key, int x, int y)
-{
+static void keyboard(unsigned char key, int x, int y){
     (void)x; (void)y;
     prop::getKey().setKeyStateTrue(key);
 }
 
-static void keyboardUp(unsigned char key, int x, int y)
-{
+static void keyboardUp(unsigned char key, int x, int y){
     (void)x; (void)y;
     prop::getKey().setKeyStateFalse(key);
 }
 
-static void special(int specialKey, int x, int y)
-{
+static void special(int specialKey, int x, int y){
     (void)x; (void)y;
     prop::getKey().setKeyStateTrue(SPECIAL_KEY_OFFSET + specialKey);
     glutPostRedisplay();
 }
 
-static void specialUp(int specialKey, int x, int y)
-{
+static void specialUp(int specialKey, int x, int y){
     (void)x; (void)y;
     prop::getKey().setKeyStateFalse(SPECIAL_KEY_OFFSET + specialKey);
 }
 
-/* Fonction executee lors du passage            */
-/* de la souris sur la fenetre                  */
-/* avec un bouton presse                        */
-static void mouseMotion(int x, int y)
-{
+static void mouseMotion(int x, int y){
     prop::getMouse().moveTo(gloop::Vector2f{ (float)x ,(float)y });
 }
 
-static int warp = 0;
-
-static void passiveMouseMotion(int x, int y)
-{
+static void passiveMouseMotion(int x, int y){
     prop::getMouse().moveTo({ (float)x,(float)y });
 }
 
@@ -171,30 +127,12 @@ static void mouseFunction(int button, int state, int x, int y) {
             mouse.releaseRightClick();
 }
 
-static void clean(void)
-{
-}
-
-static void showDebugs()
-{
-#ifdef SHOW_HITBOX
-    std::cout << "debug : hitbox displayed" << std::endl;
-#endif // SHOW_HITBOX
-}
-
 int main(int argc, char** argv) {
-//#if defined(WIN32) || defined(WIN32)
-//    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-//    _crtBreakAlloc = 634;
-//#endif
-    //for test : malloc(10);
     prop::init(argc, argv, gloop::Rectangle({0,0},480, 480), "Labyrinthe");
-    //prop::getSceneManager().pushScene(LabyrintheScene());
+
     MenuScene ms;
     prop::getSceneManager().pushScene(ms);
 
-    atexit(clean);
-    // configuration des paramètres OpenGL obligatoires qui n'auront pas à être reconfigurés au cours de la vie du programme
     init();
 
     //Ajout des touches dans le KeybordManager
