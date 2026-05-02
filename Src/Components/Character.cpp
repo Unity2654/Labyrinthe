@@ -26,7 +26,6 @@ Character::Character(gloop::Vector3f pos) :
     for (int i = 0; i < 4; i++){
         moving[i] = 0;
     }
-
 }
 
 void Character::update(){
@@ -55,6 +54,7 @@ void Character::render()
 }
 
 void Character::updateMovement(){
+
     auto& key = prop::getKey();
 
     moving[0] = key.getKeyState('z') || key.getKeyState(SPECIAL_KEY_OFFSET + GLUT_KEY_UP);
@@ -104,6 +104,10 @@ void Character::Jump(){
 
 void Character::switchCamera(){
     fp = !fp;
+}
+
+bool Character::isFirstPerson() const{
+    return fp;
 }
 
 gloop::Vector3f Character::getPosition() const{

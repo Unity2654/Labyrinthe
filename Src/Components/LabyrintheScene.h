@@ -28,6 +28,8 @@ public:
 
 	const std::vector<gloop::CollisionBox> getNearbyHitboxes(const gloop::Vector3f& position) const;
 
+	Character& getPlayer();
+
 	virtual void onLoad() override;
 
 	virtual void display() override;

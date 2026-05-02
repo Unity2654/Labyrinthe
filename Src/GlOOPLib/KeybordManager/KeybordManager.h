@@ -5,6 +5,7 @@
 #include <functional>
 
 namespace gloop {
+
     class KeybordManager {
     private:
         std::map<int, bool> keyState;
@@ -17,6 +18,7 @@ namespace gloop {
         void addKeys(const std::vector<int>& keys);
 
         void registerCallback(int k, std::function<void(bool)> callback);
+        void clearCallbacks(int k);
 
         bool getKeyState(int k) const;
 

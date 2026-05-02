@@ -30,7 +30,6 @@ private:
 public:
     Character(gloop::Vector3f pos);
 
-
     void updateMovement();
 
     void update() override;
@@ -40,7 +39,8 @@ public:
 
     void Jump();
 
-    void switchCamera(); 
+    void switchCamera();
+    bool isFirstPerson() const;
 
     gloop::Vector3f getPosition() const;
 

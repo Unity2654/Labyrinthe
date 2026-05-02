@@ -23,6 +23,13 @@ namespace gloop {
         callbacks[k].push_back(callback);
     }
 
+    void KeybordManager::clearCallbacks(int k){
+        auto& find = callbacks.find(k);
+        if (find != callbacks.end()) {
+            callbacks[k] = {};
+        }
+    }
+
     bool KeybordManager::getKeyState(int k) const {
         auto& find = keyState.find(k);
         if (find != keyState.end()) {

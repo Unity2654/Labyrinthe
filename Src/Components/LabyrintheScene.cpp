@@ -18,9 +18,17 @@ const std::vector<gloop::CollisionBox> LabyrintheScene::getNearbyHitboxes(const 
 	return laby.getMazeCollisionBox();
 }
 
+Character& LabyrintheScene::getPlayer(){
+	return player;
+}
+
 void LabyrintheScene::onLoad(){
 	glutSetCursor(GLUT_CURSOR_NONE);
 	prop::getMouse().isWarpEnabled = true;
+	prop::getKey().registerCallback('c', [this](bool b) {
+		if (b)
+			getPlayer().switchCamera();
+	});
 }
 
 void LabyrintheScene::update(){
