@@ -24,10 +24,7 @@ void LabyrintheScene::drawMinimap(gloop::Display& window){
 
 	displayLights();
 	displayObjects();
-	glPushMatrix();
-	glTranslatef(cpos.x, 2.0, cpos.z);
-	glutSolidSphere(0.5, 10, 10);
-	glPopMatrix();
+	player.renderOnMap(2.0f);
 }
 
 LabyrintheScene::LabyrintheScene()

@@ -51,17 +51,18 @@ void Character::render()
     }else{
         camMap.buildOrthoCamera();
 
-        renderOnMap();
+        renderOnMap(1.0f);
     }
     //drawHitbox(3.0f);
 }
 
-void Character::renderOnMap(){
+void Character::renderOnMap(float scale){
     double direction = (looking_at.x < 0?-1:1) * gloop::radToDeg(acos(looking_at.dot(gloop::Vector3f{ 0.0, 0.0, 1.0 }) / looking_at.norm()));
 
     glPushMatrix();
     glTranslatef(pos.x, 2.0f, pos.z);
     glRotatef(direction, 0.0f,1.0f,0.0f);
+    glScalef(scale, scale, scale);
     glBegin(GL_TRIANGLES);
     glVertex3f(0.4f, 0.0f, -0.5f);
     glVertex3f(-0.4f, 0.0f, -0.5f);
