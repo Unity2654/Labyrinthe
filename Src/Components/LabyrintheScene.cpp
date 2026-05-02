@@ -20,7 +20,6 @@ const std::vector<gloop::CollisionBox> LabyrintheScene::getNearbyHitboxes(const 
 
 void LabyrintheScene::onLoad(){
 	glutSetCursor(GLUT_CURSOR_NONE);
-	prop::setMainScene();
 	prop::getMouse().isWarpEnabled = true;
 }
 
