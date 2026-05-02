@@ -9,6 +9,17 @@
    The class mostly contains static methods, and implements the Singleton design pattern.
 */
 namespace gloop {
+	class DisplayMode {
+	private:
+		const GLenum displays[3] = { GL_LINE, GL_FILL, GL_POINT };
+		static constexpr int displayCount = 3;
+		int currentDisplay = 1;
+
+	public:
+		void next();
+		void display();
+	};
+
 	class GlPropertyManager {
 	private:
 		static GlPropertyManager* instance;
@@ -17,6 +28,7 @@ namespace gloop {
 		SceneManager* sceneManager;
 		Display* window;
 		KeybordManager* key;
+		DisplayMode* dm;
 		static inline GlPropertyManager& get();
 		GlPropertyManager();
 	public :
@@ -31,6 +43,7 @@ namespace gloop {
 		static SceneManager& getSceneManager();
 		static KeybordManager& getKey();
 		static Mouse& getMouse();
+		static DisplayMode& getDisplayMode();
 
 		~GlPropertyManager();
 	};

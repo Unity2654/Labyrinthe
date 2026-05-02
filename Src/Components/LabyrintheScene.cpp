@@ -29,7 +29,9 @@ void LabyrintheScene::update(){
 }
 
 void LabyrintheScene::display(){
+	prop::getDisplayMode().display();
 	auto& window = prop::getDisplay();
+
 	// Main scene
 	window.displayViewPort();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

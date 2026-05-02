@@ -47,7 +47,9 @@ void MenuScene::update(){
 }
 
 void MenuScene::display(){
+	prop::getDisplayMode().display();
 	auto& window = prop::getDisplay();
+
 	// Camera
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();

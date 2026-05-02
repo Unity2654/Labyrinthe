@@ -4,51 +4,68 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-gloop::GlPropertyManager* gloop::GlPropertyManager::instance = nullptr;
+namespace gloop {
+	GlPropertyManager* GlPropertyManager::instance = nullptr;
 
-gloop::GlPropertyManager& gloop::GlPropertyManager::get(){
-	if (instance == nullptr)
-		instance = new GlPropertyManager();
-	return *instance;
-}
+	GlPropertyManager& GlPropertyManager::get() {
+		if (instance == nullptr)
+			instance = new GlPropertyManager();
+		return *instance;
+	}
 
-gloop::GlPropertyManager::GlPropertyManager() : window(nullptr), sceneManager(nullptr), mouse(nullptr) {}
+	GlPropertyManager::GlPropertyManager() : window(nullptr), sceneManager(nullptr), mouse(nullptr), key(nullptr), dm(nullptr) {}
 
-void gloop::GlPropertyManager::init(int argc, char** argv, Rectangle windowDimensions, std::string windowName){
-	GlPropertyManager& man = get();
+	void GlPropertyManager::init(int argc, char** argv, Rectangle windowDimensions, std::string windowName) {
+		GlPropertyManager& man = get();
 
-	man.window = new Display(windowDimensions, windowName);
-	man.sceneManager = new SceneManager();
-	man.mouse = new Mouse();
-	man.key = new KeybordManager();
+		man.window = new Display(windowDimensions, windowName);
+		man.sceneManager = new SceneManager();
+		man.mouse = new Mouse();
+		man.key = new KeybordManager();
+		man.dm = new DisplayMode();
 
-	glutInit(&argc, argv);
-	man.window->createWindow();
-}
+		glutInit(&argc, argv);
+		man.window->createWindow();
+	}
 
-gloop::Display& gloop::GlPropertyManager::getDisplay(){
-	return *(get().window);
-}
+	Display& GlPropertyManager::getDisplay() {
+		return *(get().window);
+	}
 
-gloop::SceneManager& gloop::GlPropertyManager::getSceneManager(){
-	return (*get().sceneManager);
-}
+	SceneManager& GlPropertyManager::getSceneManager() {
+		return (*get().sceneManager);
+	}
 
-gloop::Mouse& gloop::GlPropertyManager::getMouse(){
-	return (*get().mouse);
-}
+	Mouse& GlPropertyManager::getMouse() {
+		return (*get().mouse);
+	}
 
-gloop::KeybordManager& gloop::GlPropertyManager::getKey(){
-	return (*get().key);
-}
+	DisplayMode& GlPropertyManager::getDisplayMode(){
+		return (*get().dm);
+	}
 
-gloop::GlPropertyManager::~GlPropertyManager(){
-	if(window != nullptr)
-		delete window;
-	if (sceneManager != nullptr)
-		delete sceneManager;
-	if (mouse != nullptr)
-		delete mouse;
-	if (key != nullptr)
-		delete key;
+	KeybordManager& GlPropertyManager::getKey() {
+		return (*get().key);
+	}
+
+	GlPropertyManager::~GlPropertyManager() {
+		if (window != nullptr)
+			delete window;
+		if (sceneManager != nullptr)
+			delete sceneManager;
+		if (mouse != nullptr)
+			delete mouse;
+		if (key != nullptr)
+			delete key;
+		if (dm != nullptr)
+			delete dm;
+	}
+
+	void DisplayMode::next() {
+		currentDisplay = (currentDisplay + 1) % displayCount;
+	}
+
+	void DisplayMode::display() {
+		glPolygonMode(GL_FRONT, displays[currentDisplay]);
+	}
 }

@@ -40,10 +40,6 @@
 
 #ifndef TEST
 
-//static GLenum displays[3] = {GL_LINE, GL_FILL, GL_POINT};
-//static int displayCount = 3;
-//static int currentDisplay = 1;
-
 /******************************/
 /**** GLUT EVENT FUNCTIONS ****/
 /******************************/
@@ -137,13 +133,18 @@ static void mouseFunction(int button, int state, int x, int y) {
 
 void toggleDisplay(bool state) {
     if (state) {
-        std::cout << "cool" << std::endl;
-        // Change the display
+        prop::getDisplayMode().next();
     }
+}
+
+void quit(bool state) {
+    if (state)
+        exit(0);
 }
 
 void loadkeyboardCallbacks() {
     prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F1, toggleDisplay);
+    prop::getKey().registerCallback(0x1b, quit); // Escape key
 }
 
 int main(int argc, char** argv) {
@@ -162,6 +163,7 @@ int main(int argc, char** argv) {
         SPECIAL_KEY_OFFSET + GLUT_KEY_DOWN,
         SPECIAL_KEY_OFFSET + GLUT_KEY_RIGHT
     });
+
     loadkeyboardCallbacks();
 
 
