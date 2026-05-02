@@ -80,10 +80,10 @@ void Character::updateMovement(){
     auto& otherObjects = prop::getSceneManager().getActiveScene<LabyrintheScene&>().getNearbyHitboxes(pos);
     gloop::collisionData data = gloop::Physics::collide(getCollisionBox(), otherObjects);
 
-    speed = speed + data.collision + data.correction;
+    speed = speed + data.collision;
 
-    pos.x += speed.x;
-    pos.z += speed.y;
+    pos.x += speed.x + data.correction.x;
+    pos.z += speed.y + data.correction.y;
 
     if (jump > 0.0f || pos.y > 1.75f){
         pos.y += jump;
