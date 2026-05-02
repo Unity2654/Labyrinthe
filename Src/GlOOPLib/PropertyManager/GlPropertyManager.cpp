@@ -13,7 +13,7 @@ namespace gloop {
 		return *instance;
 	}
 
-	GlPropertyManager::GlPropertyManager() : window(nullptr), sceneManager(nullptr), mouse(nullptr), key(nullptr), dm(nullptr) {}
+	GlPropertyManager::GlPropertyManager() : window(nullptr), sceneManager(nullptr), mouse(nullptr), key(nullptr), dm(nullptr), sp(nullptr) {}
 
 	void GlPropertyManager::init(int argc, char** argv, Rectangle windowDimensions, std::string windowName) {
 		GlPropertyManager& man = get();
@@ -23,6 +23,7 @@ namespace gloop {
 		man.mouse = new Mouse();
 		man.key = new KeybordManager();
 		man.dm = new DisplayMode();
+		man.sp = new SceneProperties();
 
 		glutInit(&argc, argv);
 		man.window->createWindow();
@@ -44,6 +45,10 @@ namespace gloop {
 		return (*get().dm);
 	}
 
+	SceneProperties& GlPropertyManager::getSceneProperties(){
+		return (*get().sp);
+	}
+
 	KeybordManager& GlPropertyManager::getKey() {
 		return (*get().key);
 	}
@@ -59,6 +64,8 @@ namespace gloop {
 			delete key;
 		if (dm != nullptr)
 			delete dm;
+		if (sp != nullptr)
+			delete sp;
 	}
 
 	void DisplayMode::next() {

@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "Mouse.h"
 #include "../KeybordManager/KeybordManager.h"
+#include "SceneProperties.h"
 
 /* Class made to allow to manage general properties of the application, and allow their access from a static context.
    The class mostly contains static methods, and implements the Singleton design pattern.
@@ -29,6 +30,8 @@ namespace gloop {
 		Display* window;
 		KeybordManager* key;
 		DisplayMode* dm;
+		SceneProperties* sp;
+
 		static inline GlPropertyManager& get();
 		GlPropertyManager();
 	public :
@@ -44,6 +47,7 @@ namespace gloop {
 		static KeybordManager& getKey();
 		static Mouse& getMouse();
 		static DisplayMode& getDisplayMode();
+		static SceneProperties& getSceneProperties();
 
 		~GlPropertyManager();
 	};

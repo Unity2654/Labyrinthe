@@ -3,8 +3,8 @@
 namespace gloop {
 	class SceneProperties {
 	private :
-		bool textures;
-		bool lights;
+		bool textures = true;
+		bool lights = true;
 
 	public : 
 
