@@ -67,7 +67,7 @@ namespace gloop {
 
 	collisionData Physics::collide(const CollisionBox& mainObject, const std::vector<CollisionBox> otherObjects){
         collisionData res;
-        int nbCollide = 0;
+        float nbCollide = 0;
 		for (auto& other : otherObjects) {
 			auto collision = collide(mainObject, other);
             if (collision.collisionOccured) {

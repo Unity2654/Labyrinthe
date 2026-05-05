@@ -18,8 +18,8 @@ private :
 
 	const gloop::PonctualLight light = gloop::PonctualLight(
 		GL_LIGHT0,
-		gloop::LightData{ {0.0,0.0,0.0,1.0}, {0.7,0.7,0.7,1.0} },
-		{ 0.0,0.0,0.0 });
+		gloop::LightData{ {0.0f,0.0f,0.0f,1.0f}, {0.7f,0.7f,0.7f,1.0f} },
+		{ 0.0f,0.0f,0.0f });
 
 	gloop::GUI UI;
 

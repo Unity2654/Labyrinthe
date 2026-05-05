@@ -7,11 +7,11 @@
 namespace gloop {
     class Material {
     public :
-        Color ambientReflexion{ 0.2,0.2,0.2,1.0 };
-        Color diffuseReflexion{ 0.8,0.8,0.8,1.0 };
-        Color specularReflexion{ 0.0,0.0,0.0,1.0 };
-        Color emissionColor{ 0.0,0.0,0.0,1.0 };
-        float shininess = 0.0;
+        Color ambientReflexion{ 0.2f,0.2f,0.2f,1.0f };
+        Color diffuseReflexion{ 0.8f,0.8f,0.8f,1.0f };
+        Color specularReflexion{ 0.0f,0.0f,0.0f,1.0f };
+        Color emissionColor{ 0.0f,0.0f,0.0f,1.0f };
+        float shininess = 0.0f;
 
         // Stores the current material applied to the scene in an object
         static Material getCurrentMaterial(GLenum face) {

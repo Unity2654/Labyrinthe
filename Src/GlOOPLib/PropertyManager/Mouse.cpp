@@ -52,7 +52,7 @@ namespace gloop {
 		return clickStartPosition;
 	}
 
-	const Vector2f& Mouse::getMovement() const{
+	const Vector2f Mouse::getMovement() const{
 		return position - previousPosition;
 	}
 

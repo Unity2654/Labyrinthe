@@ -1,6 +1,6 @@
 #pragma once
 #include <cmath>
-#define UTILS_PI 3.14159
+#define UTILS_PI 3.14159f
 
 namespace gloop {
 

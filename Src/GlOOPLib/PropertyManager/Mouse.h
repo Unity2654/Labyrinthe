@@ -51,7 +51,7 @@ namespace gloop {
 
 		const Vector2f& getClickStartPosition() const;
 
-		const Vector2f& getMovement() const;
+		const Vector2f getMovement() const;
 
 		const MouseState& getState() const;
 	};
