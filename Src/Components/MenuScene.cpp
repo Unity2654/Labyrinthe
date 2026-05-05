@@ -67,3 +67,8 @@ void MenuScene::display(){
 
 	glutSwapBuffers();
 }
+
+void MenuScene::onLoad(){
+	glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+	prop::getMouse().isWarpEnabled = false;
+}

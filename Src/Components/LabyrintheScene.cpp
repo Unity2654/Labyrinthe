@@ -55,6 +55,10 @@ void LabyrintheScene::onLoad(){
 	});
 }
 
+void LabyrintheScene::onDeLoad(){
+	laby.free();
+}
+
 void LabyrintheScene::update(){
 	player.update();
 	Scene::update();

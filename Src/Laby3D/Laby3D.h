@@ -24,6 +24,8 @@ public:
     void displayInScene(gloop::Scene &scene);
 
     const std::vector<gloop::CollisionBox> getMazeCollisionBox() const;
-
-    ~Laby3D();
+    
+    // Free the memory related to the object
+    // /!\ this leaves the object in an invalid state
+    void free();
 };

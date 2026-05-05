@@ -30,6 +30,8 @@ namespace gloop {
 		virtual void display();
 		// Called by the scene manager when the current scene is changed to be this one
 		virtual void onLoad() {}
+		// Called by the scene manager when this scene is popped or swapped
+		virtual void onDeLoad() {}
 
 		// Adds objects to the scene
 		template<typename T>

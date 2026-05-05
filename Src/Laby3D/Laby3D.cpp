@@ -114,6 +114,7 @@ const std::vector<gloop::CollisionBox> Laby3D::getMazeCollisionBox() const{
     return objectsHitBoxes;
 }
 
-Laby3D::~Laby3D(){
+void Laby3D::free()
+{
     free_tab(t);
 }

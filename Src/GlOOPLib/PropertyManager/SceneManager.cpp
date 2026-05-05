@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 
 void gloop::SceneManager::popScene(){
+	scenes.top()->onDeLoad();
 	scenes.pop();
 	if (scenes.empty())
 		exit(0);

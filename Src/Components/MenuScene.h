@@ -28,4 +28,5 @@ public :
 
 	virtual void update() override;
 	virtual void display() override;
+	virtual void onLoad() override;
 };

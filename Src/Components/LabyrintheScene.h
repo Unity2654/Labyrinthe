@@ -33,6 +33,7 @@ public:
 	Character& getPlayer();
 
 	virtual void onLoad() override;
+	virtual void onDeLoad() override;
 
 	virtual void display() override;
 
