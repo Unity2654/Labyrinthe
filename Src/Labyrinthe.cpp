@@ -1,16 +1,3 @@
-//// Memory checking
-//#if defined(WIN32) || defined(WIN64)
-//#define _CRTDBG_MAP_ALLOC
-//#if defined(_DEBUG)
-//#define _AFXDLL
-//#include <afx.h>
-//#endif
-//#endif
-//#include <stdlib.h>
-//#if defined(WIN32) || defined(WIN64)
-//#include <crtdbg.h>
-//#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/glut.h>
@@ -149,7 +136,7 @@ static void toggleTextures(bool state) {
 
 static void quit(bool state) {
     if (state)
-        exit(0);
+        prop::getSceneManager().popScene();
 }
 
 static void loadkeyboardCallbacks() {
