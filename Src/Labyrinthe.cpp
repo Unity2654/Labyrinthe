@@ -179,6 +179,8 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     // affichage de la fenêtre de visualisation et lancement de la boucle infinie de gestion des événements
     glutMainLoop();
+
+    prop::destroy();
     return 0;
 }
 

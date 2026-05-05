@@ -49,23 +49,37 @@ namespace gloop {
 		return (*get().sp);
 	}
 
-	KeybordManager& GlPropertyManager::getKey() {
-		return (*get().key);
+	void GlPropertyManager::destroy()
+	{
+		GlPropertyManager& instance = get();
+		if (instance.window != nullptr) {
+			delete instance.window;
+			instance.window = nullptr;
+		}
+		if (instance.sceneManager != nullptr) {
+			delete instance.sceneManager;
+			instance.sceneManager = nullptr;
+		}
+		if (instance.mouse != nullptr) {
+			delete instance.mouse;
+			instance.mouse = nullptr;
+		}
+		if (instance.key != nullptr) {
+			delete instance.key;
+			instance.key = nullptr;
+		}
+		if (instance.dm != nullptr) {
+			delete instance.dm;
+			instance.dm = nullptr;
+		}
+		if (instance.sp != nullptr) {
+			delete instance.sp;
+			instance.sp = nullptr;
+		}
 	}
 
-	GlPropertyManager::~GlPropertyManager() {
-		if (window != nullptr)
-			delete window;
-		if (sceneManager != nullptr)
-			delete sceneManager;
-		if (mouse != nullptr)
-			delete mouse;
-		if (key != nullptr)
-			delete key;
-		if (dm != nullptr)
-			delete dm;
-		if (sp != nullptr)
-			delete sp;
+	KeybordManager& GlPropertyManager::getKey() {
+		return (*get().key);
 	}
 
 	void DisplayMode::next() {

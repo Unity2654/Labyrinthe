@@ -35,6 +35,9 @@ namespace gloop {
 		static inline GlPropertyManager& get();
 		GlPropertyManager();
 	public :
+		GlPropertyManager(GlPropertyManager& other) = delete;
+		GlPropertyManager(GlPropertyManager&& other) = delete;
+
 		const constexpr static int FPS = 60;
 		
 		void operator=(const GlPropertyManager&) = delete;
@@ -49,7 +52,8 @@ namespace gloop {
 		static DisplayMode& getDisplayMode();
 		static SceneProperties& getSceneProperties();
 
-		~GlPropertyManager();
+
+		static void destroy();
 	};
 }
 
