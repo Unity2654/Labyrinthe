@@ -8,8 +8,8 @@
 #include "Character.h"
 
 void LabyrintheScene::drawMinimap(gloop::Display& window){
-	float map_size = max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
-	auto& cpos = player.getPosition();
+	float map_size = std::max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
+	auto cpos = player.getPosition();
 	glViewport(0, window.getSizeY() - map_size, map_size, map_size);
 
 	glMatrixMode(GL_PROJECTION);

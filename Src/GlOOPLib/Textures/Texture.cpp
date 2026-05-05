@@ -104,7 +104,7 @@ namespace gloop {
 	std::map <std::string, Texture> TextureManager::loadedTextures{};
 
 	Texture TextureManager::load(const std::string path) {
-		auto& tex = loadedTextures.find(path);
+		auto tex = loadedTextures.find(path);
 		if (tex != loadedTextures.end()) {
 			return Texture(tex->second);
 		}

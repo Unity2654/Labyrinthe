@@ -1,5 +1,6 @@
 #include "Display.h"
 #include <GL/glut.h>
+#include <cmath>
 
 gloop::Display::Display(Rectangle dimensions, std::string name) : dimensions(dimensions), name(name)
 {}
@@ -28,8 +29,8 @@ const gloop::Rectangle& gloop::Display::getDimensions() const{
 }
 
 const gloop::Vector2f& gloop::Display::getCenter() const{
-    auto& center = dimensions.getCenter();
-    return { (float)floor(center.x), (float)floor(center.y) };
+    auto center = dimensions.getCenter();
+    return { (float)std::floor(center.x), (float)std::floor(center.y) };
 }
 
 void gloop::Display::displayViewPort() const{
