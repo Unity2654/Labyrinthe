@@ -138,7 +138,7 @@ void Character::setLookingAt(const gloop::Vector3f& dir) {
 
 void Character::updateMouse()
 {
-    auto center = prop::getDisplay().getCenter();
+    gloop::Vector2f center = prop::getDisplay().getCenter();
     auto mouseDep = (prop::getMouse().getPosition() - center) * MOUSE_SENS;
 
 

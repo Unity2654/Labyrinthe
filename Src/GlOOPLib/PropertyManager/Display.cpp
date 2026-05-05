@@ -28,7 +28,7 @@ const gloop::Rectangle& gloop::Display::getDimensions() const{
     return dimensions;
 }
 
-const gloop::Vector2f& gloop::Display::getCenter() const{
+const gloop::Vector2f gloop::Display::getCenter() const{
     auto center = dimensions.getCenter();
     return { (float)std::floor(center.x), (float)std::floor(center.y) };
 }
