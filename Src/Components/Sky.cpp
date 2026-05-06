@@ -14,29 +14,21 @@ void Sky::drawSky(int facettesX, int facettesZ){
 
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
     texture.bind();
+    glFrontFace(GL_CW);
+    glEnable(GL_TEXTURE_GEN_S); //enable texture coordinate generation
+    glEnable(GL_TEXTURE_GEN_T);
 
+    glutSolidSphere(1,50,50);
 
-    glBegin(GL_QUADS);
-
-    glNormal3f(0.0, 1.0, 0.0);
-
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(-0.5, 0.5, 0.5);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-0.5, 0.5, -0.5);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(0.5, 0.5, -0.5);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(0.5, 0.5, 0.5);
-    
-    glEnd();
-    
+    glDisable(GL_TEXTURE_GEN_S); //enable texture coordinate generation
+    glDisable(GL_TEXTURE_GEN_T);
+    glFrontFace(GL_CCW);
 }
 
 void Sky::render(){
     glPushMatrix();
-    glTranslatef(0, positionY, 0);
-    glScalef(sizeX*2, sizeY*2, sizeZ*2);
+    glTranslatef(0, positionY*2, 0);
+    glScalef(sizeX*1.2, sizeY*2, sizeZ*1.2);
 
     drawSky(50, 50);
     glPopMatrix();
