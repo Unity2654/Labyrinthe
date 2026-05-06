@@ -13,42 +13,22 @@ void Sky::drawSky(int facettesX, int facettesZ){
     float white[] = { 1.0, 1.0, 1.0, 1.0 };
 
     glFrontFace(GL_CW);
+    glEnable(GL_TEXTURE_GEN_S); //enable texture coordinate generation
+    glEnable(GL_TEXTURE_GEN_T);
+
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
-
     texture.bind();
-    /*glBegin(GL_QUADS);
-
-    // Horizontal wall (ceilling)
-    glNormal3f(0.0, -1.0, 0.0);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(0.5f, 0.5f, -0.5f);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(0.5f, 0.5f, 0.5f);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(-0.5f, 0.5f, 0.5f);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-0.5f, 0.5f, -0.5f);
-
-    // Vertical walls
-    glNormal3f(-1.0, 0.0, 0.0);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, -0.5f);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(-0.5f, 0.5f, 0.5f);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(-0.5f, 0.5f, 0.5f);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, -0.5f);
-
-    glEnd();*/
     glutSolidCube(1.0f);
+
     glFrontFace(GL_CCW);
+    glDisable(GL_TEXTURE_GEN_S);
+    glDisable(GL_TEXTURE_GEN_T);
 }
 
 void Sky::render(){
     glPushMatrix();
-    glTranslatef(0, positionY/2, 0);
-    glScalef(sizeX, sizeY, sizeZ);
+    glTranslatef(0, positionY, 0);
+    glScalef(sizeX*2, sizeY*2, sizeZ*2);
 
     drawSky(50, 50);
     glPopMatrix();
