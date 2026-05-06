@@ -88,4 +88,18 @@ namespace gloop {
 	void DisplayMode::display() {
 		glPolygonMode(GL_FRONT, displays[currentDisplay]);
 	}
+
+	int GlPropertyManager::getFacets() {
+		return get().facets;
+	}
+	
+	void GlPropertyManager::increaseFacets() {
+		if (get().facets < 100)
+			get().facets += 1;
+	}
+	
+	void GlPropertyManager::decreaseFacets() {
+		if (get().facets > 1)
+			get().facets -= 1;
+	}
 }

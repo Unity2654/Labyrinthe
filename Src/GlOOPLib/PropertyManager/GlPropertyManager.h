@@ -15,6 +15,7 @@ namespace gloop {
 		const GLenum displays[3] = { GL_LINE, GL_FILL, GL_POINT };
 		static constexpr int displayCount = 3;
 		int currentDisplay = 1;
+		
 
 	public:
 		void next();
@@ -32,6 +33,8 @@ namespace gloop {
 		DisplayMode* dm;
 		SceneProperties* sp;
 
+		int facets = 10;
+
 		static inline GlPropertyManager& get();
 		GlPropertyManager();
 	public :
@@ -48,6 +51,11 @@ namespace gloop {
 		static Mouse& getMouse();
 		static DisplayMode& getDisplayMode();
 		static SceneProperties& getSceneProperties();
+
+		static int getFacets();
+		static void increaseFacets();
+		static void decreaseFacets();
+		
 
 		static void destroy();
 	};

@@ -4,6 +4,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+#include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
+
 //#define SHOW_HITBOX
 
 void Pillar::drawCube(int facettesX, int facettesY, float height)  const{ 
@@ -85,25 +87,27 @@ Pillar::Pillar(float posX, float posZ, float thickness, float height) : posX(pos
 void Pillar::render()
 {
     displayMaterial.apply(GL_FRONT_AND_BACK);
-#ifdef SHOW_HITBOX // Show hitbox for debug purposes
+#ifdef SHOW_HITBOX 
     Collidable::drawHitbox(height);
 #else
+    int f = prop::getFacets();
+    
     glPushMatrix();
     glTranslatef(posX, height/2, posZ);
     glScalef(thickness, 1.0, thickness);
-    drawCube(10, 10, height*0.8);
+    drawCube(f, f, height*0.8);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(posX, height/20, posZ);
     glScalef(thickness * 1.2, 1.0, thickness * 1.2);
-    drawCube(1, 1, height / 10);
+    drawCube(f, f, height / 10);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(posX, height - height/20, posZ);
     glScalef(thickness * 1.2, 1.0, thickness * 1.2);
-    drawCube(2, 2, height/10);
+    drawCube(f, f, height/10);
     glPopMatrix();
 #endif
 }

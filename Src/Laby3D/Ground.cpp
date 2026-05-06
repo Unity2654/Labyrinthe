@@ -4,6 +4,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+#include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
+
 Ground::Ground(float sizeX, float sizeZ) : sizeX(sizeX), sizeZ(sizeZ), texture(gloop::TextureManager::load("../Resources/ground.png")){
 }
 
@@ -37,6 +39,8 @@ void Ground::render()
     glTranslatef(0, -0.1, 0);
     glScalef(sizeX, 0.2, sizeZ);
 
-    drawCube(50, 50);
+    int f = prop::getFacets();
+    drawCube(f * 5, f * 5); 
+
     glPopMatrix();
 }
