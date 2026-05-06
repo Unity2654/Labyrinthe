@@ -15,24 +15,18 @@ void Sky::drawSky(int facettesX, int facettesZ){
     texture.bind();
     glNormal3f(0.0, -1.0, 0.0);
 
-    float sizeFacettesX = 1.0 / facettesX;
-    float sizeFacettesZ = 1.0 / facettesZ;
+    // Horizontal wall (ceilling)
     glBegin(GL_QUADS);
-    for (int i = 0; i <= facettesZ; i++)
-    {
-        for (int j = 0; j <= facettesX; j++)
-        {
-            // Horizontal wall
-            glTexCoord2f(j * sizeFacettesX, (i + 1) * sizeFacettesZ);
-            glVertex3f(-0.5 + j * sizeFacettesX, 0.5, -0.5 + (i + 1) * sizeFacettesZ);
-            glTexCoord2f(j * sizeFacettesX, i * sizeFacettesZ);
-            glVertex3f(-0.5 + j * sizeFacettesX, 0.5, -0.5 + i * sizeFacettesZ);
-            glTexCoord2f((j+1) * sizeFacettesX, i * sizeFacettesZ);
-            glVertex3f(-0.5 + (j+1) * sizeFacettesX, 0.5, -0.5 + i * sizeFacettesZ);
-            glTexCoord2f((j+1) * sizeFacettesX, (i+1) * sizeFacettesZ);
-            glVertex3f(-0.5 + (j+1) * sizeFacettesX, 0.5, -0.5 + (i+1) * sizeFacettesZ);
-        }
-    }
+
+    glTexCoord2f(1.0f, 0.0f);
+    glVertex3f(0.5f, 0.5f, -0.5f);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex3f(0.5f, 0.5f, 0.5f);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex3f(-0.5f, 0.5f, 0.5f);
+    glTexCoord2f(0.0f, 0.0f);
+    glVertex3f(-0.5f, 0.5f, -0.5f);
+
     glEnd();
 }
 
