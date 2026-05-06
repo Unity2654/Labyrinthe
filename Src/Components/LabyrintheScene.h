@@ -3,6 +3,7 @@
 #include "../GlOOPLib/Scenes/Scenes.h"
 #include "../Laby3D/Laby3D.h"
 #include "Character.h"
+#include "Sky.h"
 
 // The scene the labyrinthe is displayed in
 class LabyrintheScene: public gloop::Scene {
@@ -21,6 +22,7 @@ private:
 
 	Laby3D laby;
 	Character player;
+	Sky skybox;
 
 	void drawMinimap(gloop::Display& window);
 
