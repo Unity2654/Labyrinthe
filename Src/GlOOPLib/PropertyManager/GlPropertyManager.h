@@ -49,7 +49,7 @@ namespace gloop {
 		static DisplayMode& getDisplayMode();
 		static SceneProperties& getSceneProperties();
 
-		~GlPropertyManager();
+		static void destroy();
 	};
 }
 
