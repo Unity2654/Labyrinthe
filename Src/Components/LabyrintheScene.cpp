@@ -34,7 +34,7 @@ void LabyrintheScene::drawMinimap(gloop::Display& window){
 LabyrintheScene::LabyrintheScene()
 	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH),
 		player({1.0f, 1.75f, 1.0f}),
-		skybox(X_SIZE, Z_SIZE, 5.0f){
+		skybox(X_SIZE, Z_SIZE, Y_SIZE, 5.0f){
 	laby.displayInScene(*this);
 }
 

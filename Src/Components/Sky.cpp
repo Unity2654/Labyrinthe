@@ -1,9 +1,10 @@
 #include "Sky.h"
 #include <GL/gl.h>
 
-Sky::Sky(float sizeX, float sizeZ, float positionY) :
-	sizeX(sizeX),
-	sizeZ(sizeZ),
+Sky::Sky(float sizeX, float sizeZ, float sizeY, float positionY) :
+    sizeX(sizeX),
+    sizeZ(sizeZ),
+    sizeY(sizeY),
 	positionY(positionY),
 	texture(gloop::TextureManager::load("../Resources/sky.png")){}
 
@@ -16,18 +17,23 @@ void Sky::drawSky(int facettesX, int facettesZ){
 
     float sizeFacettesX = 1.0 / facettesX;
     float sizeFacettesZ = 1.0 / facettesZ;
+    glBegin(GL_QUADS);
     for (int i = 0; i <= facettesZ; i++)
     {
-        glBegin(GL_QUAD_STRIP);
         for (int j = 0; j <= facettesX; j++)
         {
+            // Horizontal wall
             glTexCoord2f(j * sizeFacettesX, (i + 1) * sizeFacettesZ);
             glVertex3f(-0.5 + j * sizeFacettesX, 0.5, -0.5 + (i + 1) * sizeFacettesZ);
             glTexCoord2f(j * sizeFacettesX, i * sizeFacettesZ);
             glVertex3f(-0.5 + j * sizeFacettesX, 0.5, -0.5 + i * sizeFacettesZ);
+            glTexCoord2f((j+1) * sizeFacettesX, i * sizeFacettesZ);
+            glVertex3f(-0.5 + (j+1) * sizeFacettesX, 0.5, -0.5 + i * sizeFacettesZ);
+            glTexCoord2f((j+1) * sizeFacettesX, (i+1) * sizeFacettesZ);
+            glVertex3f(-0.5 + (j+1) * sizeFacettesX, 0.5, -0.5 + (i+1) * sizeFacettesZ);
         }
-        glEnd();
     }
+    glEnd();
 }
 
 void Sky::render(){
