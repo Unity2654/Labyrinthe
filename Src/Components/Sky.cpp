@@ -77,7 +77,6 @@ void Sky::drawSky(int facettesX, int facettesZ){
 
 void Sky::render(){
     glPushMatrix();
-    //glTranslatef(0, positionY*1.5, 0);
     glScalef(sizeX*1.5, sizeY*2, sizeZ*1.5);
 
     drawSky(50, 50);

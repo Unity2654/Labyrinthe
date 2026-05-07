@@ -1,5 +1,6 @@
 #pragma once
 #include "../Laby3D/Wall.h"
+#include "../Laby3D/Ground.h"
 #include "../GlOOPLib/Objects/Entity3D.h"
 #include "../Laby3D/Pillar.h"
 #include "../GlOOPLib/GUI/GUIElement.h"
@@ -20,6 +21,22 @@ private :
 public :
 
 	MovingWall(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width, float thickness, float height, float rotation);
+
+	void update() override;
+	void render() override;
+};
+
+class MovingGround : public Ground, public gloop::Entity3D {
+private:
+	gloop::Vector2f position;
+	gloop::Vector2f minPosition;
+	gloop::Vector2f maxPosition;
+	gloop::Vector2f speed;
+	const float distance;
+
+public :
+
+	MovingGround(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width);
 
 	void update() override;
 	void render() override;

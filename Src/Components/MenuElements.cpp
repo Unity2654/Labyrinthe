@@ -181,3 +181,27 @@ void StartButton::update(){
 		rotationspeed = DEFAULT_ROTATION_SPEED;
 	rotation += rotationspeed;
 }
+
+MovingGround::MovingGround(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width) :
+	Ground(width, width),
+	position(basePosition),
+	minPosition(minPosition),
+	maxPosition(maxPosition),
+	speed((minPosition - maxPosition) / time / prop::FPS),
+	distance((minPosition - maxPosition).norm())
+{}
+
+void MovingGround::render() {
+	glPushMatrix();
+	glTranslatef(position.x, 0.0f, position.y);
+	Ground::render();
+	glPopMatrix();
+}
+
+void MovingGround::update() {
+	position = position + speed;
+
+	if ((position - maxPosition).norm() >= distance) {
+		position = maxPosition;
+	}
+}
