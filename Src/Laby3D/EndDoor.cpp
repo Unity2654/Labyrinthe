@@ -6,6 +6,11 @@
 #include "GL/gl.h"
 #include "GL/glu.h"
 #include "GL/glut.h"
+#include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
+#include "../GlOOPLib/Physics/Physics.h"
+#include "../GlOOPLib/Physics/Collidable.h"
+#include "../Components/EndScene.h"
+#include "../Components/LabyrintheScene.h"
 
 EndDoor::EndDoor(float posX, float posZ, float height, float width, float rotation, gloop::Scene &scene) :
     posX(posX),
@@ -164,8 +169,24 @@ void EndDoor::render() {
     glPopMatrix();
 }
 
+void EndDoor::update(){
+    // check collision with the player
+    gloop::CollisionBox playerHitbox = prop::getSceneManager().getActiveScene<LabyrintheScene&>().getPlayer().getCollisionBox();
+    gloop::collisionData data = gloop::Physics::collide(getCollisionBox(), playerHitbox);
+    if (data.collisionOccured) {
+        EndScene endScene = EndScene();
+        prop::getSceneManager().popScene();
+		prop::getSceneManager().pushScene(endScene);
+    }
+    
+}
+
 
 
 gloop::CollisionBox EndDoor::getCollisionBox() const {
     return hitbox;
+}
+
+EndDoor::~EndDoor() {
+    glDisable(GL_LIGHT7);
 }

@@ -98,3 +98,22 @@ public:
 
 	void update() override;
 };
+
+class EndButton : public gloop::Entity3D {
+private:
+	std::shared_ptr<gloop::GUIElement> interface;
+	gloop::Vector3f position;
+	float width;
+	float height;
+
+
+	gloop::Material defaultMaterial{ {0.0, 0.0, 0.0, 1.0}, { 0.0,0.0,0.0,1.0 }, { 0.0,0.0,0.0,1.0 }, { 1.0,1.0,1.0,1.0 } };
+	gloop::Material hover{ {0.0, 0.0, 0.0, 1.0}, { 0.0,0.0,0.0,1.0 }, { 0.0,0.0,0.0,1.0 }, { 1.0,0.0,0.0,0.0 } };
+
+public:
+	EndButton(gloop::Vector3f position, float width, float height, std::shared_ptr<gloop::GUIElement> interface);
+
+	void render() override;
+
+	void update() override;
+};

@@ -3,6 +3,7 @@
 #include "../GlOOPLib/GUI/Text.h"
 #include <GL/glut.h>
 #include "LabyrintheScene.h"
+#include "EndScene.h"
 
 MovingWall::MovingWall(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width, float thickness, float height, float rotation):
 	Wall(basePosition.x, basePosition.y, width, thickness, height, rotation),
@@ -180,4 +181,55 @@ void StartButton::update(){
 	else
 		rotationspeed = DEFAULT_ROTATION_SPEED;
 	rotation += rotationspeed;
+}
+
+EndButton::EndButton(gloop::Vector3f position, float width, float height, std::shared_ptr<gloop::GUIElement> interface) :
+	position(position),
+	interface(interface),
+	width(width),
+	height(height){}
+
+void EndButton::render() {
+		gloop::Material old = gloop::Material::getCurrentMaterial(GL_FRONT);
+
+	// Text
+	gloop::Vector3f pos = position;
+	auto w = width/3;
+	if (interface->isHovered())
+		hover.apply(GL_FRONT);
+	else
+		defaultMaterial.apply(GL_FRONT);
+	float letterSpace = 1.0f;
+	glPushMatrix();
+
+	glTranslatef(pos.x, pos.y, pos.z);
+	glScalef(w, w, 0.0);
+	glTranslatef((2 * letterSpace), 0.0, 0.0);
+	// E
+	gloop::glyphs::E();
+	// N
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::N();
+	// D
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::D();
+
+	glPopMatrix();
+
+	// Rectangle
+	glPushMatrix();
+
+	glTranslatef(pos.x, pos.y, pos.z);
+	glScalef(width, height, height);
+
+	glPopMatrix();
+
+	old.apply(GL_FRONT);
+}
+
+void EndButton::update(){
+	if (interface->isClicked()){
+		prop::getSceneManager().popScene();
+	}
+
 }

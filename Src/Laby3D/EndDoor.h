@@ -7,7 +7,7 @@
 #include "../GlOOPLib/Scenes/Scenes.h"
 
 
-class EndDoor : public gloop::Object3D, public gloop::Collidable
+class EndDoor : public gloop::Entity3D, public gloop::Collidable
 {
 protected:
     float posX;
@@ -25,9 +25,12 @@ protected:
 
 public:
     EndDoor(float posX, float posZ, float height, float width, float rotation, gloop::Scene &scene);
+    
+    ~EndDoor();
 
     void render() override;
 
+    void update() override;
 
     void drawCube();
 

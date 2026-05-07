@@ -54,7 +54,7 @@ void Laby3D::displayInScene(gloop::Scene &scene)
                 if (t.cells[i][j].type == end && t.endDoorDirection == LEFT)
                 {
                     auto endDoor = EndDoor(x_min, z_min + size_cell_z * i + size_cell_z / 2, y_size*0.75f, size_cell_x*0.65f, 90, scene);
-                    scene.addObject(endDoor);
+                    scene.addEntity(endDoor);
                     objectsHitBoxes.push_back(endDoor.getCollisionBox());
 
                     std::cout << "end door at left wall, cell (" << j << "," << i << ")" << std::endl;
@@ -75,7 +75,7 @@ void Laby3D::displayInScene(gloop::Scene &scene)
                 if (t.cells[i][j].type == end && t.endDoorDirection == UP)
                 {
                     auto endDoor = EndDoor(x_min + size_cell_x * j + size_cell_x / 2, z_min, y_size*0.75f, size_cell_x*0.65f, 0, scene);
-                    scene.addObject(endDoor);
+                    scene.addEntity(endDoor);
                     objectsHitBoxes.push_back(endDoor.getCollisionBox());
                     std::cout << "end door at up wall, cell (" << j << "," << i << ")" << std::endl;
                 }
@@ -95,7 +95,7 @@ void Laby3D::displayInScene(gloop::Scene &scene)
                 if (t.cells[i][j].type == end && t.endDoorDirection == DOWN)
                 {
                     auto endDoor = EndDoor(x_min + size_cell_x * j + size_cell_x / 2, z_min + size_cell_z * (i + 1), y_size*0.75f, size_cell_x*0.65f, 180, scene);
-                    scene.addObject(endDoor);
+                    scene.addEntity(endDoor);
                     objectsHitBoxes.push_back(endDoor.getCollisionBox());
                     std::cout << "end door at down wall, cell (" << j << "," << i << ")" << std::endl;
                 }
@@ -115,7 +115,7 @@ void Laby3D::displayInScene(gloop::Scene &scene)
                 if (t.cells[i][j].type == end && t.endDoorDirection == RIGHT)
                 {
                     auto endDoor = EndDoor(x_min + size_cell_x * (j + 1), z_min + size_cell_z * i + size_cell_z / 2, y_size*0.75f, size_cell_x*0.65f, 270, scene);
-                    scene.addObject(endDoor);
+                    scene.addEntity(endDoor);
                     objectsHitBoxes.push_back(endDoor.getCollisionBox());
                     std::cout << "end door at right wall, cell (" << j << "," << i << ")" << std::endl;
                 }
