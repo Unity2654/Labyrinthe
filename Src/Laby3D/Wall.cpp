@@ -5,6 +5,8 @@
 #include <iostream>
 #include "../GlOOPLib/Maths/Utils.h"
 #include "../GlOOPLib/Textures/Texture.h"
+#include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
+
 //#define SHOW_HITBOX
 
 Wall::Wall(float posX, float posZ, float width, float thickness, float height, float rotation) : 
@@ -84,7 +86,8 @@ void Wall::render()
 
     glScalef(width, height, thickness);
 
-    drawCube(10, 10);
+    int f = prop::getFacets();
+    drawCube(f, f);
     glPopMatrix();
 #endif
 }
