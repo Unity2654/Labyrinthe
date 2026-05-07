@@ -154,6 +154,8 @@ int main(int argc, char** argv) {
 
     init();
 
+    srand(time(nullptr));
+
     //Ajout des touches dans le KeybordManager
     prop::getKey().addKeys({
         'a', 'z', 'q', 's', 'd', 'c', ' ',

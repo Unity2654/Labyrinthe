@@ -32,7 +32,6 @@ Tab new_tab(int width, int height, int show_msg)
       tab.cells[i][j].visited = 0;
     }
   }
-  tab.cells[height - 1][width - 1].type = end;
   return tab;
 }
 
