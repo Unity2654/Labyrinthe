@@ -8,7 +8,11 @@
 #define SPRINT_SPEED 0.05f
 #define GRAVITY 0.01f
 #define JUMP_FORCE 0.2f
+#if defined(WIN32) || defined(WIN64)
+#define MOUSE_SENS 0.0015f
+#else
 #define MOUSE_SENS 0.006f
+#endif
 
 #define SPECIAL_KEY_OFFSET 256 
 

@@ -8,7 +8,7 @@
 #include "Character.h"
 
 void LabyrintheScene::drawMinimap(gloop::Display& window){
-#if defined(WIN32) || defined(WIN32)
+#if defined(WIN32) || defined(WIN64)
 	float map_size = max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
 #else
 	float map_size = std::max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
