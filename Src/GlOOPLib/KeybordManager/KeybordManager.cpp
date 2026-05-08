@@ -1,5 +1,6 @@
 #include "KeybordManager.h"
 #include <functional>
+#include <iostream>
 
 namespace gloop {
 
@@ -26,7 +27,7 @@ namespace gloop {
     void KeybordManager::clearCallbacks(int k){
         auto find = callbacks.find(k);
         if (find != callbacks.end()) {
-            callbacks[k] = {};
+            callbacks[k].clear();
         }
     }
 

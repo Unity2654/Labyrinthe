@@ -57,6 +57,7 @@ void LabyrintheScene::onLoad(){
 }
 
 void LabyrintheScene::onDeLoad(){
+	prop::getKey().clearCallbacks('c');
 	laby.free();
 }
 
