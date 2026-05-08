@@ -1,6 +1,7 @@
 #include "Sky.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include <cmath>
 #include "../GlOOPLib/Lights/Materials.h"
 
 Sky::Sky(float sizeX, float sizeZ, float sizeY, float positionY) :
@@ -61,7 +62,7 @@ static void drawSphere(float r, float spaceX, float spaceY) {
 
 void Sky::drawSky(int facettesX, int facettesZ){
     //gloop::Material
-    auto& mat = gloop::Material{
+    auto mat = gloop::Material{
         { 0.0f,0.0f,0.0f,1.0f },
         { 0.0f,0.0f,0.0f,1.0f },
         { 0.0f,0.0f,0.0f,1.0f },
