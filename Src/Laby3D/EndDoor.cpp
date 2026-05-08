@@ -88,12 +88,12 @@ void EndDoor::render() {
     glTranslatef(0.0f, 0.0f, 0.11f);
 
 
-    
+    gloop::Material oldMaterial = gloop::Material::getCurrentMaterial(GL_FRONT);    
+    displayMaterial.apply(GL_FRONT_AND_BACK);
 
-
-    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    float white[] = {1.0, 1.0, 1.0, 1.0};
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white);
+    // glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    // float white[] = {1.0, 1.0, 1.0, 1.0};
+    // glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white);
     gloop::Vector2f points[] =
     {
         // { -0.3635f, 0.0f },
@@ -107,24 +107,24 @@ void EndDoor::render() {
         // { -0.3405f, 0.93f },
         // { -0.4545f, 0.77f },
         // { -0.5f, 0.53f },
-        // { -0.477f, 0.29f }
+        // { -0.477f, 0.29f },
 
-        // { -0.5f, 0.0f },
-        // { 0.5f, 0.0f },
-        // { 0.5f, 1.0f },
-        // { -0.5f, 1.0f }
+        { -0.5f, 0.0f },
+        { 0.5f, 0.0f },
+        { 0.5f, 1.0f },
+        { -0.5f, 1.0f },
 
-        { -0.4f, 0.0f },
-        { 0.4f, 0.0f },
-        { 0.5f, 0.8f },
-        { 0.3f, 1.0f },
-        { -0.3f, 1.0f },
-        { -0.5f, 0.8f },
+        // { -0.4f, 0.0f },
+        // { 0.4f, 0.0f },
+        // { 0.5f, 0.8f },
+        // { 0.3f, 1.0f },
+        // { -0.3f, 1.0f },
+        // { -0.5f, 0.8f },
 
 
     };
 
-    int nbPoints = 6;
+    int nbPoints = 4;
 
     glBegin(GL_POLYGON);
     glNormal3f(0.0f, 0.0f, 1.0f);
@@ -165,7 +165,7 @@ void EndDoor::render() {
 
 
 
-
+    oldMaterial.apply(GL_FRONT_AND_BACK);
     glPopMatrix();
 }
 

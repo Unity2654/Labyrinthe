@@ -21,6 +21,7 @@ protected:
     const gloop::Texture texture;
     gloop::Scene &scene;
     int alpha = 0;
+    const gloop::Material displayMaterial{ gloop::Color{1.0,1.0,1.0,1.0}, gloop::Color{1.0,1.0,1.0,1.0} };
 
 
 public:
