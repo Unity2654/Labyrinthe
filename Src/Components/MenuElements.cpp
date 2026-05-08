@@ -194,7 +194,7 @@ void EndButton::render() {
 
 	// Text
 	gloop::Vector3f pos = position;
-	auto w = width/3;
+	auto w = width/4;
 	if (interface->isHovered())
 		hover.apply(GL_FRONT);
 	else
@@ -204,7 +204,7 @@ void EndButton::render() {
 
 	glTranslatef(pos.x, pos.y, pos.z);
 	glScalef(w, w, 0.0);
-	glTranslatef((2 * letterSpace), 0.0, 0.0);
+	glTranslatef((1 * letterSpace), 0.0, 0.0);
 	// E
 	gloop::glyphs::E();
 	// N
