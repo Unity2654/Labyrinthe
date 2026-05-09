@@ -16,7 +16,27 @@ Tab tab_start(int w, int h, int show_msg)
     t.cells[t.start_y + h - 1][i].down = 0;
   }
 
-  t.cells[t.height - 1][t.width - 1].type = end;
+
+  Direction endWallDirection = rand() % 4;
+  t.endDoorDirection = endWallDirection;
+
+
+  switch (endWallDirection)
+  {  
+    case UP:
+      t.cells[0][rand() % t.width].type = end;
+      break;
+  
+    case DOWN:
+      t.cells[t.height - 1][rand() % t.width].type = end;
+      break;
+    case LEFT:
+      t.cells[rand() % t.height][0].type = end;
+      break;
+    case RIGHT:
+      t.cells[rand() % t.height][t.width - 1].type = end;
+      break;
+  }
   return t;
 }
 

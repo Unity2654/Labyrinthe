@@ -5,6 +5,7 @@
 
 #include "Wall.h"
 #include "Pillar.h"
+#include "EndDoor.h"
 #include "Ground.h"
 #include "../GlOOPLib/Scenes/Scenes.h"
 #include "../Laby/tab.h"
@@ -25,7 +26,6 @@ Laby3D::Laby3D(Tab t, float x_size, float z_size, float y_size, float wall_thick
 
 void Laby3D::displayInScene(gloop::Scene &scene)
 {
-    // TODO : facettiser le sol
     scene.addObject(Ground(x_size, z_size));
 
     float size_cell_x = x_size / t.width;
@@ -50,6 +50,15 @@ void Laby3D::displayInScene(gloop::Scene &scene)
                     90);
                 scene.addObject(wall);
                 objectsHitBoxes.push_back(wall.getCollisionBox());
+
+                if (t.cells[i][j].type == end && t.endDoorDirection == LEFT)
+                {
+                    auto endDoor = EndDoor(x_min, z_min + size_cell_z * i + size_cell_z / 2, y_size*0.75f, size_cell_x*0.65f, 90, scene);
+                    scene.addEntity(endDoor);
+                    objectsHitBoxes.push_back(endDoor.getCollisionBox());
+
+                    std::cout << "end door at left wall, cell (" << j << "," << i << ")" << std::endl;
+                }
             }
 
             if (i == 0 && !t.cells[i][j].up)
@@ -62,6 +71,14 @@ void Laby3D::displayInScene(gloop::Scene &scene)
                     0);
                 scene.addObject(wall);
                 objectsHitBoxes.push_back(wall.getCollisionBox());
+
+                if (t.cells[i][j].type == end && t.endDoorDirection == UP)
+                {
+                    auto endDoor = EndDoor(x_min + size_cell_x * j + size_cell_x / 2, z_min, y_size*0.75f, size_cell_x*0.65f, 0, scene);
+                    scene.addEntity(endDoor);
+                    objectsHitBoxes.push_back(endDoor.getCollisionBox());
+                    std::cout << "end door at up wall, cell (" << j << "," << i << ")" << std::endl;
+                }
             }
 
             if (!t.cells[i][j].down)
@@ -71,9 +88,17 @@ void Laby3D::displayInScene(gloop::Scene &scene)
                     wall_width,
                     wall_thickness,
                     y_size,
-                    0);
+                    180);
                 scene.addObject(wall);
                 objectsHitBoxes.push_back(wall.getCollisionBox());
+
+                if (t.cells[i][j].type == end && t.endDoorDirection == DOWN)
+                {
+                    auto endDoor = EndDoor(x_min + size_cell_x * j + size_cell_x / 2, z_min + size_cell_z * (i + 1), y_size*0.75f, size_cell_x*0.65f, 180, scene);
+                    scene.addEntity(endDoor);
+                    objectsHitBoxes.push_back(endDoor.getCollisionBox());
+                    std::cout << "end door at down wall, cell (" << j << "," << i << ")" << std::endl;
+                }
             }
 
             if (!t.cells[i][j].right)
@@ -83,9 +108,17 @@ void Laby3D::displayInScene(gloop::Scene &scene)
                     wall_width,
                     wall_thickness,
                     y_size,
-                    90);
+                    270);
                 scene.addObject(wall);
                 objectsHitBoxes.push_back(wall.getCollisionBox());
+
+                if (t.cells[i][j].type == end && t.endDoorDirection == RIGHT)
+                {
+                    auto endDoor = EndDoor(x_min + size_cell_x * (j + 1), z_min + size_cell_z * i + size_cell_z / 2, y_size*0.75f, size_cell_x*0.65f, 270, scene);
+                    scene.addEntity(endDoor);
+                    objectsHitBoxes.push_back(endDoor.getCollisionBox());
+                    std::cout << "end door at right wall, cell (" << j << "," << i << ")" << std::endl;
+                }
             }
         }
     }

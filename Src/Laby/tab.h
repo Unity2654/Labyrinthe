@@ -16,6 +16,14 @@ typedef enum
   end
 } type_cell;
 
+typedef enum
+{
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT
+} Direction;
+
 typedef struct cell
 {
   bool up : 1, down : 1, left : 1, right : 1;
@@ -37,6 +45,7 @@ typedef struct tab
   int start_y; // used for generation
   Pos start;   // position of the start
   Cell **cells;
+  Direction endDoorDirection;
 } Tab;
 
 /**
