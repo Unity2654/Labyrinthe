@@ -139,11 +139,23 @@ static void quit(bool state) {
         prop::getSceneManager().popScene();
 }
 
+static void increaseFacets(bool state) {
+    if (state)
+        prop::increaseFacets();
+}
+
+static void decreaseFacets(bool state) {
+    if (state)
+        prop::decreaseFacets();
+}
+
 static void loadkeyboardCallbacks() {
     prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F1, toggleDisplay);
     prop::getKey().registerCallback(0x1b, quit); // Escape key
     prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F2, toggleLights);
     prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F3, toggleTextures);
+    prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F4, decreaseFacets);
+    prop::getKey().registerCallback(SPECIAL_KEY_OFFSET + GLUT_KEY_F5, increaseFacets);
 }
 
 int main(int argc, char** argv) {

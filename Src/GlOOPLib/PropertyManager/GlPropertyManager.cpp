@@ -53,19 +53,32 @@ namespace gloop {
 		return (*get().key);
 	}
 
-	GlPropertyManager::~GlPropertyManager() {
-		if (window != nullptr)
-			delete window;
-		if (sceneManager != nullptr)
-			delete sceneManager;
-		if (mouse != nullptr)
-			delete mouse;
-		if (key != nullptr)
-			delete key;
-		if (dm != nullptr)
-			delete dm;
-		if (sp != nullptr)
-			delete sp;
+	void GlPropertyManager::destroy() {
+		auto& instance = get();
+		if (instance.window != nullptr) {
+			delete instance.window;
+			instance.window = nullptr;
+		}
+		if (instance.sceneManager != nullptr) {
+			delete instance.sceneManager;
+			instance.sceneManager = nullptr;
+		}
+		if (instance.mouse != nullptr) {
+			delete instance.mouse;
+			instance.mouse = nullptr;
+		}
+		if (instance.key != nullptr) {
+			delete instance.key;
+			instance.key = nullptr;
+		}
+		if (instance.dm != nullptr) {
+			delete instance.dm;
+			instance.dm = nullptr;
+		}
+		if (instance.sp != nullptr) {
+			delete instance.sp;
+			instance.sp = nullptr;
+		}
 	}
 
 	void DisplayMode::next() {
@@ -74,5 +87,19 @@ namespace gloop {
 
 	void DisplayMode::display() {
 		glPolygonMode(GL_FRONT, displays[currentDisplay]);
+	}
+
+	int GlPropertyManager::getFacets() {
+		return get().facets;
+	}
+	
+	void GlPropertyManager::increaseFacets() {
+		if (get().facets < 100)
+			get().facets += 1;
+	}
+	
+	void GlPropertyManager::decreaseFacets() {
+		if (get().facets > 1)
+			get().facets -= 1;
 	}
 }

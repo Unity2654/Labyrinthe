@@ -8,15 +8,21 @@
 #include "../Laby3D/Ground.h"
 #include "../Laby3D/Wall.h"
 #include "MenuElements.h"
+#include "Sky.h"
 
 
 
 MenuScene::MenuScene() : UI(1000,1000) {
-	addObject(Ground(3,50));
+	int nbGrounds = ceil(X_SIZE / 10);
+	gloop::Vector2f groundOffset{ 0.0f,10.0f };
+	for (int i = 0; i < nbGrounds; i++) {
+		MovingGround ground(initialPosition + groundOffset * i - groundOffset/2, initialPosition, finalPosition, 4, 10);
+		addEntity(ground);
+	}
 
 	int nbWalls = (finalPosition - initialPosition).norm() / Z_SIZE;
 	auto wallOffset = (finalPosition - initialPosition) / nbWalls;
-	gloop::Vector2f pillarOffset = { 0.0, Z_SIZE / 2 };
+	gloop::Vector2f pillarOffset = { 0.0, Z_SIZE / 2 + 0.5 };
 	addStaticLight(light);
 
 	for (int i = 0; i < nbWalls; i++) {
@@ -28,6 +34,9 @@ MenuScene::MenuScene() : UI(1000,1000) {
 		addEntity(MovingWall(wallpos * symmetryFactor, initialPosition * symmetryFactor, finalPosition * symmetryFactor, 4, Z_SIZE, WALL_THICKNESS, Y_SIZE, 90));
 		addEntity(MovingPillar(pillarpos * symmetryFactor, initialPosition * symmetryFactor, finalPosition * symmetryFactor, 4, PILLAR_WIDTH, Y_SIZE));
 	}
+
+	Sky sky(X_SIZE*1.2, Z_SIZE*2.3, Y_SIZE*3, 0.0f);
+	addObject(sky);
 
 	auto element = UI.registerElement(gloop::Rectangle::fromCenter({ 500, 500 }, 300, 100));
 

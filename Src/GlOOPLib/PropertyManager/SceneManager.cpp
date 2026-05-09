@@ -1,10 +1,13 @@
 #include "SceneManager.h"
+#include "GlPropertyManager.h"
 
 void gloop::SceneManager::popScene(){
 	scenes.top()->onDeLoad();
 	scenes.pop();
-	if (scenes.empty())
+	if (scenes.empty()) {
+		prop::destroy();
 		exit(0);
+	}
 	scenes.top()->onLoad();
 }
 

@@ -8,7 +8,11 @@
 #define SPRINT_SPEED 0.05f
 #define GRAVITY 0.01f
 #define JUMP_FORCE 0.2f
+#if defined(WIN32) || defined(WIN64)
+#define MOUSE_SENS 0.0015f
+#else
 #define MOUSE_SENS 0.006f
+#endif
 
 #define SPECIAL_KEY_OFFSET 256 
 
@@ -19,7 +23,7 @@ Character::Character(gloop::Vector3f pos) :
     rotate_x(0.0f),
     rotate_y(0.0f),
     looking_at(0.0f, 0.0f, -1.0f),
-    camFP(pos, pos + looking_at, { 0.0f, 1.0f, 0.0f }, 60.0f, 1.0f, 0.1f, 100.0f),
+    camFP(pos, pos + looking_at, { 0.0f, 1.0f, 0.0f }, 120.0f, 1.0f, 0.1f, 100.0f),
     camMap({ pos.x, pos.y + 30.0f, pos.z }, pos, { 0.0f, 0.0f, -1.0f }, -10, 10, -10, 10, 0.1f, 100.0f),
     fp(true),
     speed(0.0f,0.0f){
@@ -37,7 +41,7 @@ void Character::update(){
 
     camFP.pos = pos;
     camFP.ori = pos + looking_at;
-    camFP.reshape(d.getSizeX(), ratio);
+    camFP.reshape(120.0f, ratio);
 
     camMap.pos = { pos.x, pos.y + 30.0f, pos.z };
     camMap.ori = pos;

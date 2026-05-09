@@ -8,7 +8,7 @@
 #include "Character.h"
 
 void LabyrintheScene::drawMinimap(gloop::Display& window){
-#if defined(WIN32) || defined(WIN32)
+#if defined(WIN32) || defined(WIN64)
 	float map_size = max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
 #else
 	float map_size = std::max(window.getSizeX() * (0.1), window.getSizeY() * (0.1));
@@ -33,7 +33,8 @@ void LabyrintheScene::drawMinimap(gloop::Display& window){
 
 LabyrintheScene::LabyrintheScene()
 	:	laby(tab_start(WIDTH, HEIGHT, false), X_SIZE, Z_SIZE, Y_SIZE, WALL_THICKNESS, PILLAR_WIDTH),
-	player({1.0f, 1.75f, 1.0f}) {
+		player({1.0f, 1.75f, 1.0f}),
+		skybox(X_SIZE, Z_SIZE, Y_SIZE*1.5, 5.0f){
 	laby.displayInScene(*this);
 }
 
@@ -56,6 +57,7 @@ void LabyrintheScene::onLoad(){
 }
 
 void LabyrintheScene::onDeLoad(){
+	prop::getKey().clearCallbacks('c');
 	laby.free();
 }
 
@@ -76,6 +78,7 @@ void LabyrintheScene::display(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	player.render();
 	displayLights();
+	skybox.render();
 	displayObjects();
 	
 	// Minimap

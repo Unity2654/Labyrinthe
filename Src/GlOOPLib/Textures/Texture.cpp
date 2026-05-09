@@ -101,6 +101,10 @@ namespace gloop {
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	}
 
+	void Texture::unbind() const{
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
 	std::map <std::string, Texture> TextureManager::loadedTextures{};
 
 	Texture TextureManager::load(const std::string path) {
