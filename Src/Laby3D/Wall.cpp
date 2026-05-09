@@ -72,6 +72,7 @@ void Wall::drawCube(int facettesX, int facettesY) const
     }
     glEnd();
     glPopMatrix();
+    texture.unbind();
 }
 
 void Wall::render()

@@ -27,6 +27,7 @@ namespace gloop {
 
 		// Binds the texture to use it
 		void bind() const;
+		void unbind() const;
 
 	};
 

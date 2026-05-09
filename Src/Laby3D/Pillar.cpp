@@ -78,6 +78,7 @@ void Pillar::drawCube(int facettesX, int facettesY, float height)  const{
     }
     glEnd();
     glPopMatrix();
+    texture.unbind();
 }
 
 Pillar::Pillar(float posX, float posZ, float thickness, float height) : posX(posX), posZ(posZ), thickness(thickness), height(height), texture(gloop::TextureManager::load("../Resources/pillars.png"))

@@ -74,6 +74,8 @@ void Sky::drawSky(int facettesX, int facettesZ){
 
     drawSphere(1, 5, 5);
 
+    texture.unbind();
+
 }
 
 void Sky::render(){

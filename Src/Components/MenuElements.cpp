@@ -75,45 +75,46 @@ TitleText::TitleText(gloop::Vector3f position) : position{position.x, position.y
 
 void TitleText::render(){
 	gloop::Vector3f pos = position;
-	TextMaterial.renderWithMaterial(GL_FRONT, [pos]() {
-		float letterSpace = 1.0f;
-		glPushMatrix();
+	TextMaterial.apply(GL_FRONT_AND_BACK);
 
-		glTranslatef(pos.x, pos.y, pos.z);
-		glScalef(0.2, 0.2, 0.0);
-		glTranslatef((4.5*letterSpace), 0.0, 0.0);
-		// L
-		gloop::glyphs::L();
-		// A
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::A();
-		// B
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::B();
-		// Y
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::Y();
-		// R
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::R();
-		// I
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::I();
-		// N
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::N();
-		// T
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::T();
-		// H
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::H();
-		// E
-		glTranslatef(-letterSpace, 0.0, 0.0);
-		gloop::glyphs::E();
 
-		glPopMatrix();
-	});
+	float letterSpace = 1.0f;
+	glPushMatrix();
+
+	glTranslatef(pos.x, pos.y, pos.z);
+	glScalef(0.2, 0.2, 0.0);
+	glTranslatef((4.5*letterSpace), 0.0, 0.0);
+	// L
+	gloop::glyphs::L();
+	// A
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::A();
+	// B
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::B();
+	// Y
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::Y();
+	// R
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::R();
+	// I
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::I();
+	// N
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::N();
+	// T
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::T();
+	// H
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::H();
+	// E
+	glTranslatef(-letterSpace, 0.0, 0.0);
+	gloop::glyphs::E();
+
+	glPopMatrix();
 }
 
 StartButton::StartButton(gloop::Vector3f position, float width, float height, std::shared_ptr<gloop::GUIElement> interface) :

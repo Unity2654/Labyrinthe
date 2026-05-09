@@ -32,6 +32,7 @@ void Ground::drawCube(int facettesX, int facettesZ)
         }
         glEnd();
     }
+    texture.unbind();
 }
 
 void Ground::render()
