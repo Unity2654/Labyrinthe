@@ -16,10 +16,23 @@ private :
 
 	const gloop::Vector3f POS = gloop::Vector3f(0, 1.75, 0);
 
-	const gloop::PonctualLight light = gloop::PonctualLight(
-		GL_LIGHT0,
-		gloop::LightData{ {0.0f,0.0f,0.0f,1.0f}, {0.7f,0.7f,0.7f,1.0f} },
-		{ 0.0f,0.0f,0.0f });
+	gloop::PonctualLight light1 = gloop::PonctualLight(
+        GL_LIGHT0, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.77f, 0.09f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
+        POS, 
+        { 0.0f, 0.3f, 0.1f }
+    );
+    // Lumiere rouge moins intense
+    gloop::PonctualLight light2 = gloop::PonctualLight(
+        GL_LIGHT1, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.1f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
+        POS, 
+        { 0.0f, 0.5f, 0.2f }
+    );
+    // Lumiere jaune encore moins intense mais plus large
+    gloop::PonctualLight light3 = gloop::PonctualLight(
+        GL_LIGHT2, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
+        POS, 
+        { 0.0f, 0.5f, 0.0f }
+    );
 
 	gloop::GUI UI;
 

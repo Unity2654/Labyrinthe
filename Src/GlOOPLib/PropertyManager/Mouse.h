@@ -19,7 +19,7 @@ namespace gloop {
 	class Mouse {
 	private :
 		Vector2f position;
-		Vector2f previousPosition;
+		Vector2f movementDelta;
 
 		// Position of the mouse when the user starts clicking
 		// Can be important for when the user : starts clicking on a box -> drags its mouse outside of the box -> stops clicking

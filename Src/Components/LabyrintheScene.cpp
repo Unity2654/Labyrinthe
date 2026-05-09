@@ -26,6 +26,7 @@ void LabyrintheScene::drawMinimap(gloop::Display& window){
 		cpos.x, 0.0, cpos.z,  // point regardé
 		0.0, 0.0, -1.0);
 
+	mapLight.render();
 	displayLights();
 	displayObjects();
 	player.renderOnMap(2.0f);

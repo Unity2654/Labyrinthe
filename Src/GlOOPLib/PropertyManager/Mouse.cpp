@@ -5,19 +5,24 @@
 
 namespace gloop {
 
-	Mouse::Mouse() : position(0.0,0.0), previousPosition(0.0,0.0), clickStartPosition(0.0,0.0){}
+	Mouse::Mouse() : position(0.0,0.0), movementDelta(0.0,0.0), clickStartPosition(0.0,0.0){}
 
 	void Mouse::moveTo(Vector2f newPosition){
 		auto c = prop::getDisplay().getCenter();
 		if (isWarpEnabled && ((newPosition.x != c.x) || (newPosition.y != c.y)) ) {
-			
-			glutWarpPointer(c.x, c.y);
+				movementDelta = movementDelta + (newPosition - position);
+				glutWarpPointer(c.x, c.y);
+        		position = c;
 		}
-		position = newPosition;
+		else{
+			movementDelta = movementDelta + (newPosition - position);
+			position = newPosition;
+		}
 	}
 
+
 	void Mouse::update(){
-		previousPosition = position;
+		movementDelta = Vector2f(0.0f, 0.0f);
 		if (buttonsState.leftButton == RELEASE)
 			buttonsState.leftButton = NONE;
 		if (buttonsState.rightButton == RELEASE)
@@ -45,16 +50,12 @@ namespace gloop {
 		return position;
 	}
 
-	const Vector2f& Mouse::getPreviousPosition() const{
-		return previousPosition;
-	}
-
 	const Vector2f& Mouse::getClickStartPosition() const{
 		return clickStartPosition;
 	}
 
 	const Vector2f Mouse::getMovement() const{
-		return position - previousPosition;
+		return movementDelta;
 	}
 
 	const MouseState& Mouse::getState() const{

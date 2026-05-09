@@ -89,17 +89,23 @@ namespace gloop{
     class PonctualLight : public Light {
     public :
         Vector3f position{ 0.0F, 0.0F, 0.0F };
+        Vector3f attenuation{ 1.0f, 0.0f, 0.0f };
+
 
         // Constructors
         using Light::Light;
         PonctualLight(GLenum light, Vector3f position) : Light(light), position(position) {}
         PonctualLight(GLenum light, LightData data, Vector3f position) : Light(light, data), position(position) {}
         PonctualLight(Light light) : Light(light.light, light.data) {}
+        PonctualLight(GLenum light, LightData data, Vector3f position, Vector3f attenuation) : Light(light, data), position(position), attenuation(attenuation) {}
 
         // Methods
         virtual void doRender() const override {
             float v[] = { position.x, position.y, position.z, 1.0F };
             glLightfv(light, GL_POSITION, v);
+            glLightf(light, GL_CONSTANT_ATTENUATION, attenuation.x);
+            glLightf(light, GL_LINEAR_ATTENUATION, attenuation.y);
+            glLightf(light, GL_QUADRATIC_ATTENUATION, attenuation.z);
         }
 
         // Stores the light currently applied to the scene in an object

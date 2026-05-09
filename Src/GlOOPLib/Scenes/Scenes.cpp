@@ -46,9 +46,12 @@ namespace gloop
 	}
 
 	void Scene::updateLights(){
+		std::cout << "Updating lights" << std::endl;
 		// Updating every lights of the scene
 		for (std::shared_ptr<Light>& l : dynamicLights)
 		{
+			std::cout << "Updating lights" << l.get()->data.diffuseColor.r << std::endl;
+
 			l->update();
 		}
 	}

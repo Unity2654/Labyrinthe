@@ -10,7 +10,7 @@ EndDoorParticle::EndDoorParticle(float offsetY, float offsetZ, float velocity, f
     rotationSpeed(rotationSpeed),
     size(size),
     initialPosition(initialPosition),
-    alpha(0),
+    alpha(100),
     rotation(rotation)
 {
 }

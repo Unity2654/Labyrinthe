@@ -26,6 +26,8 @@ private:
 	Character player;
 	Sky skybox;
 
+	gloop::DirectionalLight mapLight = gloop::DirectionalLight(GL_LIGHT1, {{ 0.3f, 0.3f, 0.3f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f }, { 0.0f, 0.0f, 0.0f, 1.0f}} ,{ 0.0f, -1.0f, 0.0f });
+
 	void drawMinimap(gloop::Display& window);
 
 public:

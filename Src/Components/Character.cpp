@@ -3,6 +3,7 @@
 #include "../GlOOPLib/Physics/Physics.h"
 #include "LabyrintheScene.h"
 #include "../GlOOPLib/Maths/Utils.h"
+#include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
 
 #define MOVEMENT_SPEED 0.05f
 #define SPRINT_SPEED 0.05f
@@ -30,11 +31,15 @@ Character::Character(gloop::Vector3f pos) :
     for (int i = 0; i < 4; i++){
         moving[i] = 0;
     }
+    // prop::getSceneManager().getActiveScene<LabyrintheScene&>().addDynamicLight(&light);
 }
 
 void Character::update(){
+
     updateMouse();
     updateMovement();
+    // updateLight();
+
 
     auto& d = prop::getDisplay();
     double ratio = (float)d.getSizeX() / d.getSizeY();
@@ -57,6 +62,7 @@ void Character::render()
 
         renderOnMap(1.0f);
     }
+    updateLight();
     //drawHitbox(3.0f);
 }
 
@@ -143,7 +149,7 @@ void Character::setLookingAt(const gloop::Vector3f& dir) {
 void Character::updateMouse()
 {
     gloop::Vector2f center = prop::getDisplay().getCenter();
-    auto mouseDep = (prop::getMouse().getPosition() - center) * MOUSE_SENS;
+    auto mouseDep = prop::getMouse().getMovement() * MOUSE_SENS;
 
 
     rotate_x += mouseDep.x;
@@ -166,4 +172,19 @@ gloop::CollisionBox Character::getCollisionBox() const{
         {},
         { speed.x, speed.y }
     };
+}
+
+void Character::updateLight() {
+    light1.position = pos; // Set the light's position to the character's position
+    light1.render();
+    light2.position = pos; // Set the light's position to the character's position
+    light2.render();
+    light3.position = pos; // Set the light's position to the character's position
+    light3.render();
+}
+
+Character::~Character() {
+    glDisable(GL_LIGHT0);
+    glDisable(GL_LIGHT1);
+    glDisable(GL_LIGHT2);
 }

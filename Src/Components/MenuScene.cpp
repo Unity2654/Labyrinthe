@@ -23,7 +23,9 @@ MenuScene::MenuScene() : UI(1000,1000) {
 	int nbWalls = (finalPosition - initialPosition).norm() / Z_SIZE;
 	auto wallOffset = (finalPosition - initialPosition) / nbWalls;
 	gloop::Vector2f pillarOffset = { 0.0, Z_SIZE / 2 + 0.5 };
-	addStaticLight(light);
+	addStaticLight(light1);
+	addStaticLight(light2);
+	addStaticLight(light3);
 
 	for (int i = 0; i < nbWalls; i++) {
 		auto wallpos = initialPosition + wallOffset * i;

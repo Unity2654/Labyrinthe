@@ -5,6 +5,7 @@
 #include "../GlOOPLib/Camera/Camera.h"
 #include "../GlOOPLib/PropertyManager/GlPropertyManager.h"
 #include "../GlOOPLib/Physics/Collidable.h"
+#include "../GlOOPLib/Lights/Lights.h"
 #include <stdlib.h>
 #include <GL/glut.h>
 #include <GL/gl.h>
@@ -25,12 +26,35 @@ private:
 
     gloop::CameraPerspective camFP;
     gloop::CameraOrtho camMap;
+
+    // Lumiere orange
+    gloop::PonctualLight light1 = gloop::PonctualLight(
+        GL_LIGHT0, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.77f, 0.09f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
+        pos, 
+        { 0.0f, 0.3f, 0.1f }
+    );
+    // Lumiere rouge moins intense
+    gloop::PonctualLight light2 = gloop::PonctualLight(
+        GL_LIGHT1, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.1f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
+        pos, 
+        { 0.0f, 0.5f, 0.2f }
+    );
+    // Lumiere jaune encore moins intense mais plus large
+    gloop::PonctualLight light3 = gloop::PonctualLight(
+        GL_LIGHT2, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
+        pos, 
+        { 0.0f, 0.5f, 0.0f }
+    );
+
+
     bool fp; // true = 1st person, false = map
 
 public:
     Character(gloop::Vector3f pos);
+    ~Character();
 
     void updateMovement();
+    void updateLight();
 
     void update() override;
     void render() override;
