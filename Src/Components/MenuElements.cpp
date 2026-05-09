@@ -232,6 +232,7 @@ void EndButton::update(){
 	if (interface->isClicked()){
 		prop::getSceneManager().popScene();
 	}
+}
 
 MovingGround::MovingGround(gloop::Vector2f basePosition, gloop::Vector2f minPosition, gloop::Vector2f maxPosition, float time, float width) :
 	Ground(width, width),
