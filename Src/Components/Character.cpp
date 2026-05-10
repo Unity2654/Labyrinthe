@@ -175,16 +175,19 @@ gloop::CollisionBox Character::getCollisionBox() const{
 }
 
 void Character::updateLight() {
-    light1.position = pos; // Set the light's position to the character's position
-    light1.render();
-    light2.position = pos; // Set the light's position to the character's position
-    light2.render();
-    light3.position = pos; // Set the light's position to the character's position
-    light3.render();
+    lightWhite.position = pos;
+    lightYellow.position = pos;
+    lightOrange.position = pos;
+    lightRed.position = pos;
+    lightWhite.render();
+    lightYellow.render();
+    lightOrange.render();
+    lightRed.render();
 }
 
 Character::~Character() {
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHT1);
     glDisable(GL_LIGHT2);
+    glDisable(GL_LIGHT3);
 }
