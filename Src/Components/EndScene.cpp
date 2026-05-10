@@ -12,6 +12,10 @@ EndScene::EndScene() : UI(1000,1000) {
 
     addObject(EndDoor(POS.x, POS.z + 3.0f, 2.5f, 1.5f, 180.0f, *this));
 	addObject(Wall(POS.x, POS.z + 3.0f, 5.0f, 0.2f, 4.0f, 180.0f));
+	addObject(Wall(POS.x+2.3f, POS.z, 5.0f, 0.2f, 4.0f, 90.0f));
+	addObject(Wall(POS.x-2.3f, POS.z, 5.0f, 0.2f, 4.0f, 90.0f));
+	addObject(Pillar(POS.x + 2.5f, POS.z + 3.0f, 0.4f, 4.0f));
+	addObject(Pillar(POS.x - 2.5f, POS.z + 3.0f, 0.4f, 4.0f));
 	addStaticLight(light);
 
 
