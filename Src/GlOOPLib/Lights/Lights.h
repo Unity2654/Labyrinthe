@@ -4,17 +4,21 @@
 #include "../Maths/Vector.h"
 
 namespace gloop{
-
+    // Data structure made to store the main properties of a light
     struct LightData {
         Color ambientColor;
         Color diffuseColor;
         Color specularColor;
     };
 
+    // Class storing the main properties of a light
     class Light{
     public :
+        // OpenGL light used by the object
         const GLenum light;
+        // Data of the light
         LightData data;
+        // If true, the light is displayed in the scene
         bool enabled = true;
 
         Light() = delete;
@@ -22,8 +26,12 @@ namespace gloop{
         Light(GLenum light, LightData data) : light(light), data(data) {}
 
         // Methods
+        
+        // Updates the light
+        // This method should be overriden to create dynamic lights
         virtual void update() {}
 
+        // Displays the light in the scene.
         void render() const{
             doRender();
             float colorA[4] = { data.ambientColor.r, data.ambientColor.g, data.ambientColor.b, data.ambientColor.alpha };
@@ -57,11 +65,15 @@ namespace gloop{
         }
 
     protected :
+        // Method called when the render method is called
+        // Should be overriden to customize the call
         virtual void doRender() const{}
     };
 
+    // Specialization of the light class, modelizing a directionnal light
     class DirectionalLight : public Light {
     public :
+        // Direction of the light
         Vector3f direction{ 1.0,0.0,1.0 };
 
         // Constructors
@@ -76,7 +88,7 @@ namespace gloop{
             glLightfv(light, GL_POSITION, v);
         }
 
-        // Stores the light currently applied to the scene in an object
+        // Stores the light currently applied to the scene as a directionnal light
         static DirectionalLight GetCurrentLight(GLenum targetLight) {
             DirectionalLight res = DirectionalLight(Light::GetCurrentLight(targetLight));
             float dir[3];
@@ -86,9 +98,12 @@ namespace gloop{
         }
     };
 
+    // Specialization of the light class, modelizing a ponctual light
     class PonctualLight : public Light {
     public :
+        // Position of the light in the scene
         Vector3f position{ 0.0F, 0.0F, 0.0F };
+        // Attenuation of the light
         Vector3f attenuation{ 1.0f, 0.0f, 0.0f };
 
 
@@ -118,10 +133,14 @@ namespace gloop{
         }
     };
 
+    // Specialization of the positionnal light class, modelizing a spot light
     class SpotLight : public PonctualLight {
     public:
+        // Direction of the cone of light
         Vector3f direction{ 0.0F, 0.0F, -1.0F };
+        // Cutoff of the cone of light
         float cutoff = 90.0F;
+        // Exponent of the cone of light
         float exponent = 0.0F;
 
         // Constructors
