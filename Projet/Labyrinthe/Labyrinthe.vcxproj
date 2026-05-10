@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Components\Character.h" />
+    <ClInclude Include="..\..\Src\Components\EndScene.h" />
     <ClInclude Include="..\..\Src\Components\LabyrintheScene.h" />
     <ClInclude Include="..\..\Src\Components\MenuElements.h" />
     <ClInclude Include="..\..\Src\Components\MenuScene.h" />
@@ -50,6 +51,8 @@
     <ClInclude Include="..\..\Src\GlOOPLib\PropertyManager\SceneProperties.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Scenes\Scenes.h" />
     <ClInclude Include="..\..\Src\GlOOPLib\Textures\Texture.h" />
+    <ClInclude Include="..\..\Src\Laby3D\EndDoor.h" />
+    <ClInclude Include="..\..\Src\Laby3D\EndDoorParticle.h" />
     <ClInclude Include="..\..\Src\Laby3D\Ground.h" />
     <ClInclude Include="..\..\Src\Laby3D\Laby3D.h" />
     <ClInclude Include="..\..\Src\Laby3D\Pillar.h" />
@@ -73,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Components\Character.cpp" />
+    <ClCompile Include="..\..\Src\Components\EndScene.cpp" />
     <ClCompile Include="..\..\Src\Components\LabyrintheScene.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuElements.cpp" />
     <ClCompile Include="..\..\Src\Components\MenuScene.cpp" />
@@ -95,6 +99,8 @@
     <ClCompile Include="..\..\Src\GlOOPLib\PropertyManager\SceneProperties.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Scenes\Scenes.cpp" />
     <ClCompile Include="..\..\Src\GlOOPLib\Textures\Texture.cpp" />
+    <ClCompile Include="..\..\Src\Laby3D\EndDoor.cpp" />
+    <ClCompile Include="..\..\Src\Laby3D\EndDoorParticle.cpp" />
     <ClCompile Include="..\..\Src\Labyrinthe.cpp" />
     <ClCompile Include="..\..\Src\Laby3D\Ground.cpp" />
     <ClCompile Include="..\..\Src\Laby3D\Laby3D.cpp" />

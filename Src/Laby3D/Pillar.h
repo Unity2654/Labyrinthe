@@ -12,7 +12,7 @@ protected:
     float posZ;
     float thickness;
     float height;
-    gloop::Material displayMaterial{ gloop::Color{0.7, 0.7, 0.7, 1.0 }, gloop::Color{0.7, 0.7, 0.7, 1.0} };
+    gloop::Material displayMaterial{ gloop::Color{0.7f, 0.7f, 0.7f, 1.0f }, gloop::Color{0.7f, 0.7f, 0.7f, 1.0f} };
     gloop::Texture texture;
 
     void drawCube(int facettesX, int facettesY, float height) const;

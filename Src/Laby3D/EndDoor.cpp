@@ -11,6 +11,9 @@
 #include "../GlOOPLib/Physics/Collidable.h"
 #include "../Components/EndScene.h"
 #include "../Components/LabyrintheScene.h"
+#if defined(WIN32) || defined(WIN64)
+#define M_PI 3.14159
+#endif
 
 EndDoor::EndDoor(float posX, float posZ, float height, float width, float rotation, gloop::Scene &scene) :
     posX(posX),
