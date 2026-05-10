@@ -26,9 +26,9 @@ typedef enum
 
 typedef struct cell
 {
-  bool up : 1, down : 1, left : 1, right : 1;
-  type_cell type : 2;
-  bool visited : 1;
+  bool up, down, left, right;
+  type_cell type;
+  bool visited;
 } Cell;
 
 typedef struct pos
