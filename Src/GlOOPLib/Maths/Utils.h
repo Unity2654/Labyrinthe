@@ -4,7 +4,6 @@
 
 namespace gloop {
 
-	// Angles
 	float radToDeg(float rad);
 	float degToRad(float deg);
 

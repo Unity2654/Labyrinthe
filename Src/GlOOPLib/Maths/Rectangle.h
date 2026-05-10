@@ -24,20 +24,26 @@ namespace gloop {
 		// Construct a rectangle from its up left and down right corners
 		static Rectangle fromUlDrCorners(Vector2f upLeftCorner, Vector2f downRightCorner);
 
+		// Returns the center of the rectangle
 		Vector2f getCenter() const;
 
+		// Returns the position of the top left corner of the rectangle
 		const Vector2f getPosition() const { return position; }
+		// Returns the width of the rectangle
 		const float getWidth() const { return width; }
+		// Returns the height of the rectangle
 		const float getHeight() const { return height; }
 
 		// Checks if the given position is located within the rectangle's boudaries
 		bool isWithin(const Vector2f& position) const;
 
-		//Gets a vector containing the four corners of the square in the following order : { UL, UR, DL, DR }
+		// Gets a vector containing the four corners of the square in the following order : { UL, UR, DL, DR }
 		std::vector<Vector2f> getCorners() const;
 
+		// Returs the area of the rectangle
 		float getSize() const;
 
+		// Returns the diagonal vector of the rectangle
 		Vector2f getDiagonal() const;
 	};
 }

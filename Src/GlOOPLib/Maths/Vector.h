@@ -53,14 +53,19 @@ namespace gloop {
 		Vector3f operator-(const Vector3f& other) const; 
 		Vector3f operator-() const;
 
-		// Methods
-		float dot(const Vector3f& other) const; // scalar product
-		Vector3f vectorial(const Vector3f& other) const; // vectorial product
+		// Scalar product
+		float dot(const Vector3f& other) const;
+		// Vectorial product
+		Vector3f vectorial(const Vector3f& other) const;
+		// True if the current vector is orthogonal to the other
 		float isOrthogonal(const Vector3f& other) const;
+		// Norm of the vector
 		float norm() const;
 
+		// Returns a new vector corresponding to the current one, normalized
 		Vector3f normalize() const;
 
+		// Returns a new vector. Its coordinates are the absolute of the ones of the vector passed in parameter
 		static Vector3f absolute(const Vector3f& other);
 	};
 }

@@ -4,10 +4,9 @@
 #include <set>
 
 namespace gloop {
-	/** Data returned by the physics collision methods
-	  * collision : Vector to apply to the movement to simulate the collision
-	  * correction : Correction to prevent objects from sinking into one another
-	  */
+	// Data returned by the physics collision methods
+	// collision : Vector to apply to the movement to simulate the collision
+	// correction : Correction to prevent objects from sinking into one another
 	struct collisionData {
 		Vector2f collision{ 0,0 };
 		Vector2f correction{ 0,0 };
@@ -29,6 +28,7 @@ namespace gloop {
 		}
 	};
 
+	// Class containing static method allowing to process collisions between objects
 	class Physics {
 	private :
 		static constexpr float Skin = 0.0f; // Penetration threshold for a collision to be considered
