@@ -27,23 +27,48 @@ private:
     gloop::CameraPerspective camFP;
     gloop::CameraOrtho camMap;
 
-    // Lumiere orange
-    gloop::PonctualLight light1 = gloop::PonctualLight(
-        GL_LIGHT0, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.77f, 0.09f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
-        pos, 
-        { 0.0f, 0.3f, 0.1f }
+    gloop::PonctualLight lightWhite = gloop::PonctualLight(
+        GL_LIGHT0,
+        {
+            {0.0f, 0.0f, 0.0f, 1.0f},
+            {1.0f, 0.95f, 0.85f, 1.0f},
+            {0.0f, 0.0f, 0.0f, 1.0f}
+        },
+        pos,
+        {1.0f, 0.4f, 0.2f}
     );
-    // Lumiere rouge moins intense
-    gloop::PonctualLight light2 = gloop::PonctualLight(
-        GL_LIGHT1, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.1f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
-        pos, 
-        { 0.0f, 0.5f, 0.2f }
+
+    gloop::PonctualLight lightYellow = gloop::PonctualLight(
+        GL_LIGHT1,
+        {
+            {0.0f, 0.0f, 0.0f, 1.0f},
+            {1.0f, 0.80f, 0.25f, 1.0f},
+            {0.0f, 0.0f, 0.0f, 1.0f}
+        },
+        pos,
+        {1.0f, 0.3f, 0.18f}
     );
-    // Lumiere jaune encore moins intense mais plus large
-    gloop::PonctualLight light3 = gloop::PonctualLight(
-        GL_LIGHT2, { {0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f} }, 
-        pos, 
-        { 0.0f, 0.5f, 0.0f }
+
+    gloop::PonctualLight lightOrange = gloop::PonctualLight(
+        GL_LIGHT2,
+        {
+            {0.0f, 0.0f, 0.0f, 1.0f},
+            {1.0f, 0.45f, 0.08f, 1.0f},
+            {0.0f, 0.0f, 0.0f, 1.0f}
+        },
+        pos,
+        {1.0f, 0.22f, 0.07f}
+    );
+
+    gloop::PonctualLight lightRed = gloop::PonctualLight(
+        GL_LIGHT3,
+        {
+            {0.0f, 0.0f, 0.0f, 1.0f},
+            {0.35f, 0.03f, 0.0f, 1.0f},
+            {0.0f, 0.0f, 0.0f, 1.0f}
+        },
+        pos,
+        {1.0f, 0.12f, 0.05f}
     );
 
 
