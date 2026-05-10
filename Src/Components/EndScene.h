@@ -16,9 +16,21 @@ private :
 	gloop::GUI UI;
 
 public :
+	/**
+	 * @brief Construct a new End Scene object, with the end door and the button to go back to the menu
+	 */
 	EndScene();
 
+	/**
+	 * @brief Updates the scene, check if the button is clicked
+	 */
 	virtual void update() override;
+	/**
+	 * @brief Displays the scene, with the end door and the button to go back to the menu
+	 */
 	virtual void display() override;
+	/**
+	 * @brief Called when the scene is loaded, used to initialize the scene
+	 */
 	virtual void onLoad() override;
 };

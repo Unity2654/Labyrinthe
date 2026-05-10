@@ -31,18 +31,40 @@ private:
 	void drawMinimap(gloop::Display& window);
 
 public:
-
+	/**
+	 * @brief Construct a new Labyrinthe Scene object, with the maze, the player and the skybox
+	 */
 	LabyrintheScene();
 
+	/**
+	 * @brief Get the collision boxes of the maze that are near the given position, used for collision detection
+	 * @param position The position to check around
+	 * @return The collision boxes of the maze that are near the given position
+	 */
 	const std::vector<gloop::CollisionBox> getNearbyHitboxes(const gloop::Vector3f& position) const;
 
+	/**
+	 * @brief Get the player character of the scene
+	 * @return The player character of the scene
+	 */
 	Character& getPlayer();
 
+	/**
+	 * @brief Called when the scene is loaded, used to initialize the scene
+	 */
 	virtual void onLoad() override;
+	/**
+	 * @brief Called when the scene is unloaded, used to free the memory related to the maze
+	 */
 	virtual void onDeLoad() override;
 
+	/**
+	 * @brief Displays the scene, with the maze, the player and the skybox
+	 */
 	virtual void display() override;
-
+	/**
+	 * @brief Updates the scene, check the player input and update the player, then update the scene
+	 */
 	virtual void update() override;
 
 };

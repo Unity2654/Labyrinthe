@@ -22,9 +22,25 @@ protected:
     void drawCube(int facettesX, int facettesY) const;
 
 public:
+    /**
+     * @brief Construct a new Wall object
+     * @param posX The X position of the wall
+     * @param posZ The Z position of the wall
+     * @param width The width of the wall
+     * @param thickness The thickness of the wall
+     * @param height The height of the wall
+     * @param rotation The rotation of the wall, in degrees, around the Y axis
+     */
     Wall(float posX, float posZ, float width, float thickness, float height, float rotation);
 
+    /**
+     * @brief Renders the wall, with a texture
+     */
     void render() override;
 
+    /**
+     * @brief Get the collision box of the wall
+     * @return The collision box of the wall
+     */
     gloop::CollisionBox getCollisionBox() const override;
 };
