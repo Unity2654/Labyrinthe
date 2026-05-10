@@ -37,9 +37,21 @@ private :
 	gloop::GUI UI;
 
 public :
+    /**
+     * @brief Construct a new Menu Scene object, with the moving pillars, the title of the game and the button to start the game
+     */
 	MenuScene();
 
+    /**
+     * @brief Updates the scene, check if the button is clicked and update the position of the pillars and walls
+     */
 	virtual void update() override;
+    /**
+     * @brief Displays the scene
+     */
 	virtual void display() override;
+    /**
+     * @brief Called when the scene is loaded, used to initialize the scene
+     */
 	virtual void onLoad() override;
 };
