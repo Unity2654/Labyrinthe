@@ -5,12 +5,18 @@
 #include <functional>
 
 namespace gloop {
+    // Class storing the main properties of a Material
     class Material {
     public :
+        // Ambient reflexion of the material
         Color ambientReflexion{ 0.2f,0.2f,0.2f,1.0f };
+        // Diffuse reflexion of the material
         Color diffuseReflexion{ 0.8f,0.8f,0.8f,1.0f };
+        // Specular reflexion of the material
         Color specularReflexion{ 0.0f,0.0f,0.0f,1.0f };
+        // Emission of the material
         Color emissionColor{ 0.0f,0.0f,0.0f,1.0f };
+        // Shininess of the material
         float shininess = 0.0f;
 
         // Stores the current material applied to the scene in an object
