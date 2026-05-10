@@ -21,7 +21,7 @@ namespace gloop {
 		man.window = new Display(windowDimensions, windowName);
 		man.sceneManager = new SceneManager();
 		man.mouse = new Mouse();
-		man.key = new KeybordManager();
+		man.key = new KeyboardManager();
 		man.dm = new DisplayMode();
 		man.sp = new SceneProperties();
 
@@ -49,7 +49,7 @@ namespace gloop {
 		return (*get().sp);
 	}
 
-	KeybordManager& GlPropertyManager::getKey() {
+	KeyboardManager& GlPropertyManager::getKey() {
 		return (*get().key);
 	}
 

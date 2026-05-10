@@ -35,7 +35,7 @@ namespace gloop {
 		Mouse* mouse;
 		SceneManager* sceneManager;
 		Display* window;
-		KeybordManager* key;
+		KeyboardManager* key;
 		DisplayMode* dm;
 		SceneProperties* sp;
 
@@ -58,7 +58,7 @@ namespace gloop {
 		// Getters for the various properties handled by the manager
 		static Display& getDisplay();
 		static SceneManager& getSceneManager();
-		static KeybordManager& getKey();
+		static KeyboardManager& getKey();
 		static Mouse& getMouse();
 		static DisplayMode& getDisplayMode();
 		static SceneProperties& getSceneProperties();

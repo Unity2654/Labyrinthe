@@ -4,19 +4,19 @@
 
 namespace gloop {
 
-    KeybordManager::KeybordManager(){}
+    KeyboardManager::KeyboardManager(){}
 
-    void KeybordManager::addKey(int k) {
+    void KeyboardManager::addKey(int k) {
         keyState[k] = false;
     }
 
-    void KeybordManager::addKeys(const std::vector<int>& keys) {
+    void KeyboardManager::addKeys(const std::vector<int>& keys) {
         for (int k : keys) {
             addKey(k);
         }
     }
 
-    void KeybordManager::registerCallback(int k, std::function<void(bool)> callback){
+    void KeyboardManager::registerCallback(int k, std::function<void(bool)> callback){
         auto find = callbacks.find(k);
         if (find == callbacks.end()) {
             callbacks[k] = {};
@@ -24,14 +24,14 @@ namespace gloop {
         callbacks[k].push_back(callback);
     }
 
-    void KeybordManager::clearCallbacks(int k){
+    void KeyboardManager::clearCallbacks(int k){
         auto find = callbacks.find(k);
         if (find != callbacks.end()) {
             callbacks[k].clear();
         }
     }
 
-    bool KeybordManager::getKeyState(int k) const {
+    bool KeyboardManager::getKeyState(int k) const {
         auto find = keyState.find(k);
         if (find != keyState.end()) {
             return find->second;
@@ -39,7 +39,7 @@ namespace gloop {
         return false;
     }
 
-    void KeybordManager::setKeyStateTrue(int k) {
+    void KeyboardManager::setKeyStateTrue(int k) {
         keyState[k] = true;
         auto find = callbacks.find(k);
         if (find != callbacks.end()) {
@@ -48,7 +48,7 @@ namespace gloop {
         }
     }
 
-    void KeybordManager::setKeyStateFalse(int k) {
+    void KeyboardManager::setKeyStateFalse(int k) {
         keyState[k] = false;
         auto find = callbacks.find(k);
         if (find != callbacks.end()) {

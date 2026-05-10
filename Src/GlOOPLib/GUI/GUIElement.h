@@ -1,20 +1,19 @@
 #pragma once
 #include "../Maths/Rectangle.h"
-
-/* An element that's part of a graphic user interface
-*  It contains a "clickbox" defining a rectangular zone in screen coordinates. 
-*  If the user's mouse is located in this area, the element will be considered to be "hovered".
-*  If the user clicks in this area, the element will be considered to be "clicked".
-* 
-*  Those states are reset in each frame, and updated through it.
-* 
-*  GUI elements are not rendered, and are only there to detect user's clicks in given area, and help other components of the app react to it.
-* 
-*  GUI elements can be enabled or disabled at will.
-*  The interpretation of this state is done outside of this class.
-*/
 namespace gloop {
 
+	// An element that's part of a graphic user interface
+	//  It contains a "clickbox" defining a rectangular zone in screen coordinates. 
+	//  If the user's mouse is located in this area, the element will be considered to be "hovered".
+	//  If the user clicks in this area, the element will be considered to be "clicked".
+	// 
+	//  Those states are reset in each frame, and updated through it.
+	// 
+	//  GUI elements are not rendered, and are only there to detect user's clicks in given area, and help other components of the app react to it.
+	// 
+	//  GUI elements can be enabled or disabled at will.
+	//  The interpretation of this state is done outside of this class.
+	//
 	class GUIElement {
 	private :
 		const Rectangle clickBox;
@@ -43,9 +42,7 @@ namespace gloop {
 		void disable();
 		bool toggle();
 
-		/** 
-		 * Resets the state of the element (the element is not hovered nor clicked)
-		 */
+		// Resets the state of the element (the element is not hovered nor clicked)
 		void reset();
 	};
 }
