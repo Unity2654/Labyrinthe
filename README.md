@@ -24,6 +24,12 @@ Move with the following keys :
  - S : Backwards
  - D : Right
 
-Toggle Spring by pressing A.
+Toggle Sprint by pressing A.
+
+## Debug
+- F1 : To toggle wireframe mode
+- F2 : To toggle lighting
+- F3 : To toggle textures
+
 
 Avoid using directionnal arrow, as they're bugged in the current version.
