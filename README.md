@@ -19,17 +19,20 @@ The compiled executable will be available in the "{project directory}/Bin" direc
 ## How to use 
 Rotate the camera with the mouse.
 Move with the following keys :
- - Z : Forwards
- - Q : Left
- - S : Backwards
- - D : Right
+ - Z/↑ : Forwards
+ - Q/← : Left
+ - S/↓ : Backwards
+ - D/→ : Right
 
-Toggle Sprint by pressing A.
+Press A to sprint.
+Press Space to jump.
+
+Press Esc to return to the menu.
+When on the menu, press Esc to leave the game.
 
 ## Debug
-- F1 : To toggle wireframe mode
-- F2 : To toggle lighting
-- F3 : To toggle textures
-
-
-Avoid using directionnal arrow, as they're bugged in the current version.
+- F1 : Switches the display between Points mode, Wireframe mode and full mode
+- F2 : Toggle lighting
+- F3 : Toggle textures
+- F4 : Reduce the number of facets used by the objects
+- F5 : Increase the number of facets used by the object
